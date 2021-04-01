@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
 
-    }
+    };
   }
 
-  render () {
+  render() {
     return (
-      <div id='App'>
+      <div id="App">
         There be pirates!
       </div>
-    )
+    );
   }
 }
 
