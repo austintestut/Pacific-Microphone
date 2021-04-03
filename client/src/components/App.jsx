@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import AppHeader from './AppHeader';
+import AppBody from './AppBody';
 
 class App extends React.Component {
   constructor() {
@@ -8,6 +10,7 @@ class App extends React.Component {
       authenticated: false,
       user: '',
       userId: '',
+      scriptList: [],
     };
     this.login = this.login.bind(this);
   }
@@ -34,20 +37,24 @@ class App extends React.Component {
   }
 
   render() {
-    const { authenticated, user } = this.state;
+    const { authenticated, user, scriptList } = this.state;
     return (
       <div id="App">
-        There be pirates!
-        <br />
         {!authenticated && (
           <div>
-            <button>
+            <button type="button">
               <a href="/google">Log in with Google</a>
             </button>
             <br />
           </div>
         )}
-        {authenticated && <div>This is where the app will be, {user}</div>}
+        {authenticated && (
+          <div>
+            Welcome, {user}
+            <AppHeader />
+            <AppBody scriptList={scriptList} />
+          </div>
+        )}
       </div>
     );
   }
