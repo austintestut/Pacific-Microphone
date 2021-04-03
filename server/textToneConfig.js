@@ -9,17 +9,19 @@ const toneAnalyzer = new ToneAnalyzerV3({
   serviceUrl: process.env.WATSON_TEXT_ANALYSIS_URL,
 });
 
-const getTextToneAnalysis = (text) => {
+const getTextToneAnalysis = (req, res) => {
   const toneParams = {
-    toneInput: { 'text': text },
+    toneInput: { text: req.body.text },
     contentType: 'application/json',
   };
 
-  return toneAnalyzer.tone(toneParams)
-    .then(toneAnalysis => (JSON.stringify(toneAnalysis, null, 2)))
-    .catch(err =>  err)
-}
+  return toneAnalyzer
+    .tone(toneParams)
+    .then((toneAnalysis) => JSON.stringify(toneAnalysis, null, 2))
+    .then((results) => res.status(200).send(results))
+    .catch((error) => res.status(500).send(error));
+};
 
 module.exports = {
   getTextToneAnalysis,
-}
+};
