@@ -7,24 +7,29 @@ class App extends React.Component {
     this.state = {
       authenticated: false,
       user: '',
+      userId: '',
     };
     this.login = this.login.bind(this);
   }
 
+  componentDidMount() {
+    this.login();
+  }
+
   login() {
     axios
-      .get('/google', {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
+      .get('/user')
+      .then((user) => {
+        if (user.data.userName) {
+          this.setState({
+            authenticated: true,
+            user: user.data.userName,
+            userId: user.data._id,
+          });
+        }
       })
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          authenticated: true,
-        }).catch((err) => {
-          console.log(err);
-        });
+      .catch((err) => {
+        throw err;
       });
   }
 
@@ -36,7 +41,9 @@ class App extends React.Component {
         <br />
         {!authenticated && (
           <div>
-            <button onClick={this.login}>Log in with Google</button>
+            <button>
+              <a href="/google">Log in with Google</a>
+            </button>
             <br />
           </div>
         )}
