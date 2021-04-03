@@ -2,7 +2,7 @@
 const express = require('express');
 require('dotenv').config();
 
-const db = require('../database/index');
+const DB = require('../database/index');
 const SA = require('./speechAnalysis.js');
 const TA = require('./textToneConfig.js');
 
