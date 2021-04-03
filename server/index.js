@@ -5,7 +5,6 @@ require('dotenv').config();
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const auth = require('./authentication');
-const { authCheck } = require('./middleware');
 
 const DB = require('../database/index');
 const SA = require('./speechAnalysis.js');
@@ -41,9 +40,9 @@ app.get('/google', auth.authScope);
 
 app.get('/google/callback', auth.googleAuth, auth.loggedinRedirect);
 
-app.get('/user', authCheck, auth.sendUser);
+app.get('/user', auth.authCheck, auth.sendUser);
 
-app.get('/loggedin', authCheck, auth.homeRedirect);
+app.get('/loggedin', auth.authCheck, auth.homeRedirect);
 
 app.get('/logout', auth.logout);
 
