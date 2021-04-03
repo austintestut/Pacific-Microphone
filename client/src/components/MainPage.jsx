@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 class MainPage extends React.Component {
@@ -7,7 +8,8 @@ class MainPage extends React.Component {
   }
 
   render() {
-    return <div id="mainPage">MainPage</div>;
+    const { page } = this.props;
+    return <div id="mainPage">{page}</div>;
   }
 }
 

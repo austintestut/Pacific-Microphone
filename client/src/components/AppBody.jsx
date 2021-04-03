@@ -12,15 +12,16 @@ class AppBody extends React.Component {
     this.changeSelectedPage = this.changeSelectedPage.bind(this);
   }
 
-  changeSelectedPage(e) {
-    this.setState({ selectedPage: e.target.value });
+  changeSelectedPage(page) {
+    this.setState({ selectedPage: page });
   }
 
   render() {
+    const { selectedPage } = this.state;
     return (
       <div id="appBody">
         <SidePanel changeSelectedPage={this.changeSelectedPage} />
-        <MainPage />
+        <MainPage page={selectedPage} />
       </div>
     );
   }

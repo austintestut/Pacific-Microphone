@@ -10,15 +10,27 @@ class PageList extends React.Component {
     const { changeSelectedPage } = this.props;
     return (
       <div id="pageList">
-        <button type="button" className="pageOption">
+        <button
+          type="button"
+          className="pageOption"
+          onClick={() => changeSelectedPage('scriptAnalyzer')}
+        >
           <i className="" />
           <h3>Script Analyzer</h3>
         </button>
-        <button type="button" className="pageOption">
+        <button
+          type="button"
+          className="pageOption"
+          onClick={() => changeSelectedPage('toneAnalyzer')}
+        >
           <i className="" />
           <h3>Tone Analyzer</h3>
         </button>
-        <button type="button" className="pageOption">
+        <button
+          type="button"
+          className="pageOption"
+          onClick={() => changeSelectedPage('livePractice')}
+        >
           <i className="" />
           <h3>Live Practice</h3>
         </button>
