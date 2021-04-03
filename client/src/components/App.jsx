@@ -5,14 +5,17 @@ import AppBody from './AppBody';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      scriptList: [],
+    };
   }
 
   render() {
+    const { scriptList } = this.state;
     return (
       <div id="App">
         <AppHeader />
-        <AppBody scriptList={['test', 'australia', 'hack reactor']} />
+        <AppBody scriptList={scriptList} />
       </div>
     );
   }
