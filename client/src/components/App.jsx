@@ -51,8 +51,7 @@ class App extends React.Component {
         )}
         {authenticated && (
           <div>
-            Welcome, {user}
-            <AppHeader />
+            <AppHeader user={user}/>
             <AppBody scriptList={scriptList} />
           </div>
         )}
