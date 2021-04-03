@@ -10,6 +10,7 @@ const { authCheck } = require('./middleware');
 const DB = require('../database/index');
 const SA = require('./speechAnalysis.js');
 const TA = require('./textToneConfig.js');
+const LP = require('./livePerformance.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -29,6 +30,8 @@ app.use(passport.session());
 app.get('/', (req, res) => {
   res.send("Ahoy Matey's");
 });
+
+// app.get('/livePerformance', LP.getAudio);
 
 app.post('/speechAnalysisClip', SA.sendClip);
 
