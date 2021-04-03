@@ -5,13 +5,21 @@ import MainPage from './MainPage';
 class AppBody extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      selectedPage: 'home',
+    };
+
+    this.changeSelectedPage = this.changeSelectedPage.bind(this);
+  }
+
+  changeSelectedPage(e) {
+    this.setState({ selectedPage: e.target.value });
   }
 
   render() {
     return (
       <div id="appBody">
-        <SidePanel />
+        <SidePanel changeSelectedPage={this.changeSelectedPage} />
         <MainPage />
       </div>
     );

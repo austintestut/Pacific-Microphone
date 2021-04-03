@@ -7,7 +7,23 @@ class PageList extends React.Component {
   }
 
   render() {
-    return <div id="pageList">PageList</div>;
+    const { changeSelectedPage } = this.props;
+    return (
+      <div id="pageList">
+        <button type="button" className="pageOption">
+          <i className="" />
+          <h3>Script Analyzer</h3>
+        </button>
+        <button type="button" className="pageOption">
+          <i className="" />
+          <h3>Tone Analyzer</h3>
+        </button>
+        <button type="button" className="pageOption">
+          <i className="" />
+          <h3>Live Practice</h3>
+        </button>
+      </div>
+    );
   }
 }
 

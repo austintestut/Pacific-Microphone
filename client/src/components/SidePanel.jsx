@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PageList from './PageList';
 import ScriptList from './ScriptList';
@@ -9,9 +10,10 @@ class SidePanel extends React.Component {
   }
 
   render() {
+    const { changeSelectedPage } = this.props;
     return (
       <div id="sidePanel">
-        <PageList />
+        <PageList changeSelectedPage={changeSelectedPage} />
         <ScriptList />
       </div>
     );
