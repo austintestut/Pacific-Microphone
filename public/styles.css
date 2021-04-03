@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#appHeader {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 10vh;
+  background-color: rgb(141, 141, 141);
+  border-bottom: 2px solid black;
+}
+
+#appBody {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+}
+
+#mainPage {
+  width: calc(100% - 300px);
+  min-width: 80%;
+  height: 100%;
+}
+
+#sidePanel {
+  box-sizing: border-box;
+  width: 20%;
+  max-width: 300px;
+  height: 100%;
+  background-color: rgb(218, 218, 218);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+}
+
+#pageList {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageOption {
+  margin-bottom: 0.5em;
+}
+
+#scriptList {
+  height: 60%;
+  margin-top: auto;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid black;
+  background-color: moccasin;
+  display: flex;
+  flex-direction: column;
+}

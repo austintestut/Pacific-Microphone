@@ -9,17 +9,15 @@ const ScriptSchema = mongoose.Schema({
   talkingBlocks: [
     {
       character: String,
-      text: String
-    }
-  ]
-})
+      text: String,
+    },
+  ],
+});
 
 const UserSchema = mongoose.Schema({
   userName: String,
   googleId: String,
-  listScripts: [
-    ScriptSchema
-  ]
+  listScripts: [ScriptSchema],
 });
 
 const Scripts = mongoose.model('Script', ScriptSchema);
