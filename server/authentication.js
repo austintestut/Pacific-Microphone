@@ -9,7 +9,7 @@ const loggedinRedirect = (req, res) => {
   res.redirect('/loggedin');
 };
 const sendUser = (req, res) => {
-  res.send(req.user);
+  res.send({ userName: req.user.userName, _id: req.user._id });
 };
 const homeRedirect = (req, res) => {
   res.redirect('/');
@@ -17,6 +17,13 @@ const homeRedirect = (req, res) => {
 const logout = (req, res) => {
   req.logout();
   res.redirect('/');
+};
+const authCheck = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect('/');
+  }
 };
 
 module.exports = {
@@ -26,4 +33,5 @@ module.exports = {
   sendUser,
   homeRedirect,
   logout,
+  authCheck,
 };
