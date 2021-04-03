@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-require('../passport-setup.js');
+const auth = require('./authentication');
 const { authCheck } = require('./middleware');
 
 const DB = require('../database/index');
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(
   cookieSession({
     name: 'microphone-session',
-    keys: ['addahiddenandbettercookiekeyhere'],
+    keys: [`${process.env.COOKIE_KEY}`],
   })
 );
 app.use(passport.initialize());
@@ -37,27 +37,15 @@ app.post('/speechAnalysisClip', SA.sendClip);
 
 app.post('/textToneAnalysis', TA.getTextToneAnalysis);
 
-app.get(
-  '/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
+app.get('/google', auth.authScope);
 
-app.get('/google/callback', passport.authenticate('google'), (req, res) => {
-  res.redirect('/loggedin');
-});
+app.get('/google/callback', auth.googleAuth, auth.loggedinRedirect);
 
-app.get('/user', authCheck, (req, res) => {
-  res.send(req.user);
-})
+app.get('/user', authCheck, auth.sendUser)
 
-app.get('/loggedin', authCheck, (req, res) => {
-  res.redirect('/');
-});
+app.get('/loggedin', authCheck, auth.homeRedirect);
 
-app.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
+app.get('/logout', auth.logout);
 
 app.listen(port, () => {
   console.log(`We're sailing away from port ${port}`);
