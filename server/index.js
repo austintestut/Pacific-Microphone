@@ -43,6 +43,10 @@ app.get('/google/callback', passport.authenticate('google'), (req, res) => {
   res.redirect('/loggedin');
 });
 
+app.get('/user', authCheck, (req, res) => {
+  res.send(req.user);
+})
+
 app.get('/loggedin', authCheck, (req, res) => {
   res.redirect('/');
 });
