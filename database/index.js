@@ -5,8 +5,11 @@ mongoose.connect(process.env.DBTOKEN);
 
 const UserSchema = mongoose.Schema({
   userName: String,
+  googleId: String,
 });
 
 const Users = mongoose.model('Users', UserSchema);
 
-module.exports = {};
+module.exports = {
+  Users,
+};

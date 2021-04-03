@@ -11,15 +11,16 @@ const toneAnalyzer = new ToneAnalyzerV3({
 
 const getTextToneAnalysis = (text) => {
   const toneParams = {
-    toneInput: { 'text': text },
+    toneInput: { text },
     contentType: 'application/json',
   };
 
-  return toneAnalyzer.tone(toneParams)
-    .then(toneAnalysis => (JSON.stringify(toneAnalysis, null, 2)))
-    .catch(err =>  err)
-}
+  return toneAnalyzer
+    .tone(toneParams)
+    .then((toneAnalysis) => JSON.stringify(toneAnalysis, null, 2))
+    .catch((err) => err);
+};
 
 module.exports = {
   getTextToneAnalysis,
-}
+};
