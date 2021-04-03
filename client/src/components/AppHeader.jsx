@@ -1,13 +1,14 @@
 import React from 'react';
 
 class AppHeader extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
   render() {
-    return <div id="appHeader">AppHeader</div>;
+    const { user } = this.props;
+    return <div id="appHeader">Welcome, {user}</div>;
   }
 }
 

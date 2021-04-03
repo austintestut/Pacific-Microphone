@@ -24,4 +24,7 @@ const Scripts = mongoose.model('Script', ScriptSchema);
 
 const Users = mongoose.model('Users', UserSchema);
 
-module.exports = {};
+module.exports = {
+  Users,
+  Scripts,
+};
