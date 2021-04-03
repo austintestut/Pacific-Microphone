@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 class ScriptList extends React.Component {
@@ -7,7 +8,16 @@ class ScriptList extends React.Component {
   }
 
   render() {
-    return <div id="scriptList">ScriptList</div>;
+    const { scriptList, changeSelectedScript } = this.props;
+    return (
+      <div id="scriptList">
+        {scriptList.map((s, idx) => (
+          <button type="button" onClick={() => changeSelectedScript(idx)}>
+            {s}
+          </button>
+        ))}
+      </div>
+    );
   }
 }
 

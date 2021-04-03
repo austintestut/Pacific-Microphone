@@ -10,11 +10,14 @@ class SidePanel extends React.Component {
   }
 
   render() {
-    const { changeSelectedPage } = this.props;
+    const { changeSelectedPage, changeSelectedScript, scriptList } = this.props;
     return (
       <div id="sidePanel">
         <PageList changeSelectedPage={changeSelectedPage} />
-        <ScriptList />
+        <ScriptList
+          changeSelectedScript={changeSelectedScript}
+          scriptList={scriptList}
+        />
       </div>
     );
   }

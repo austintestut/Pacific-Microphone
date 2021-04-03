@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <div id="App">
         <AppHeader />
-        <AppBody />
+        <AppBody scriptList={['test', 'australia', 'hack reactor']} />
       </div>
     );
   }

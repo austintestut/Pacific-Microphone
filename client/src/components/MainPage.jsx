@@ -8,8 +8,13 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const { page } = this.props;
-    return <div id="mainPage">{page}</div>;
+    const { page, selectedScript } = this.props;
+    return (
+      <div id="mainPage">
+        <h2>Page: {page}</h2>
+        <div>Script: {selectedScript || 'Please select script'}</div>
+      </div>
+    );
   }
 }
 
