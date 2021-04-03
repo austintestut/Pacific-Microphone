@@ -44,6 +44,6 @@ const watsonGetAudio = (text) => {
   // ->returnedArry = [result for first element, resutlt from second element, ....]
 // }
 
-module.exports {
-  // getAudio
-}
+// module.exports {
+//   // getAudio
+// }
