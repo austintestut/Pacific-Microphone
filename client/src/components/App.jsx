@@ -1,4 +1,6 @@
 import React from 'react';
+import AppHeader from './AppHeader';
+import AppBody from './AppBody';
 
 class App extends React.Component {
   constructor() {
@@ -7,7 +9,12 @@ class App extends React.Component {
   }
 
   render() {
-    return <div id="App">There be pirates!</div>;
+    return (
+      <div id="App">
+        <AppHeader />
+        <AppBody />
+      </div>
+    );
   }
 }
 
