@@ -21,12 +21,7 @@ app.get('/', (req, res) => {
 
 app.post('/speechAnalysisClip', SA.sendClip);
 
-app.get('/textToneAnalysis', (req, res) => {
-  const { text } = req.query;
-  TA.getTextToneAnalysis(text)
-    .then((results) => res.status(200).send(results))
-    .catch((error) => res.status(500).send(error));
-});
+app.post('/textToneAnalysis', TA.getTextToneAnalysis);
 
 app.listen(port, () => {
   console.log(`We're sailing away from port ${port}`);
