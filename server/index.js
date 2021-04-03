@@ -41,7 +41,7 @@ app.get('/google', auth.authScope);
 
 app.get('/google/callback', auth.googleAuth, auth.loggedinRedirect);
 
-app.get('/user', authCheck, auth.sendUser)
+app.get('/user', authCheck, auth.sendUser);
 
 app.get('/loggedin', authCheck, auth.homeRedirect);
 

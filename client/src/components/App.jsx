@@ -27,6 +27,7 @@ class App extends React.Component {
           this.setState({
             authenticated: true,
             user: user.data.userName,
+            // eslint-disable-next-line no-underscore-dangle
             userId: user.data._id,
           });
         }
@@ -37,7 +38,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { authenticated, user, scriptList } = this.state;
+    const { authenticated, user, scriptList, userId } = this.state;
     return (
       <div id="App">
         {!authenticated && (
