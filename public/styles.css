@@ -60,3 +60,16 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+#newScriptButton {
+  margin-top: auto;
+}
+
+#newScriptModal {
+  top: '50%';
+  left: '50%';
+  right: 'auto';
+  bottom: 'auto';
+  margin-right: '-50%';
+  transform: 'translate(-50%, -50%)';
+}
