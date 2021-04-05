@@ -12,7 +12,7 @@ class MainPage extends React.Component {
     return (
       <div id="mainPage">
         <h2>Page: {page}</h2>
-        <div>Script: {selectedScript || 'Please select script'}</div>
+        <div>Script: {selectedScript?.title || 'Please select script'}</div>
       </div>
     );
   }

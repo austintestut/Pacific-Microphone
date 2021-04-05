@@ -14,18 +14,18 @@ class PageList extends React.Component {
         <button
           type="button"
           className="pageOption"
-          onClick={() => changeSelectedPage('scriptAnalyzer')}
-        >
-          <i className="" />
-          <h3>Script Analyzer</h3>
-        </button>
-        <button
-          type="button"
-          className="pageOption"
           onClick={() => changeSelectedPage('toneAnalyzer')}
         >
           <i className="" />
           <h3>Tone Analyzer</h3>
+        </button>
+        <button
+          type="button"
+          className="pageOption"
+          onClick={() => changeSelectedPage('voiceAnalyzer')}
+        >
+          <i className="" />
+          <h3>Voice Analyzer</h3>
         </button>
         <button
           type="button"
