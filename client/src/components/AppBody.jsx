@@ -4,11 +4,11 @@ import SidePanel from './SidePanel';
 import MainPage from './MainPage';
 
 class AppBody extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      selectedPage: 'scriptAnalyzer',
-      selectedScript: null,
+      selectedPage: 'toneAnalyzer',
+      selectedScriptIndex: null,
     };
 
     this.changeSelectedPage = this.changeSelectedPage.bind(this);
@@ -16,16 +16,16 @@ class AppBody extends React.Component {
   }
 
   changeSelectedPage(page) {
-    this.setState({ selectedPage: page, selectedScript: null });
+    this.setState({ selectedPage: page, selectedScriptIndex: null });
   }
 
   changeSelectedScript(index) {
-    const { scriptList } = this.props;
-    this.setState({ selectedScript: scriptList[index] });
+    // Will need change this to display the script in the appropriate format on the page
+    this.setState({ selectedScriptIndex: index });
   }
 
   render() {
-    const { selectedPage, selectedScript } = this.state;
+    const { selectedPage, selectedScriptIndex } = this.state;
     const { scriptList } = this.props;
     return (
       <div id="appBody">
@@ -34,7 +34,7 @@ class AppBody extends React.Component {
           changeSelectedScript={this.changeSelectedScript}
           scriptList={scriptList}
         />
-        <MainPage page={selectedPage} selectedScript={selectedScript} />
+        <MainPage page={selectedPage} selectedScript={scriptList[selectedScriptIndex]} />
       </div>
     );
   }
