@@ -1,49 +1,72 @@
 const fs = require('fs');
 const TextToSpeechV1 = require('ibm-watson/text-to-speech/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
+const db = require('../database/index.js');
 
 const textToSpeech = new TextToSpeechV1({
   authenticator: new IamAuthenticator({
-    apikey: process.env.WATSON_TEXT_TO_SPEECH
+    apikey: process.env.WATSON_TEXT_TO_SPEECH,
   }),
-  serviceUrl: process.env.WATSON_TEXT_TO_SPEECH_URL
+  serviceUrl: process.env.WATSON_TEXT_TO_SPEECH_URL,
 });
 
-const watsonGetAudio = (text) => {
+const watsonGetAudio = (text, title, index) => {
   const params = {
     text,
     voice: 'en-US_AllisonVoice', // Optional voice
-    accept: 'audio/wav'
+    accept: 'audio/wav',
   };
 
   return textToSpeech
     .synthesize(params)
-    .then(response => {
+    .then((response) => {
       const audio = response.result;
       return textToSpeech.repairWavHeaderStream(audio);
     })
-    .then(repairedFile => {
-      fs.writeFileSync('audio.wav', repairedFile);
+    .then((repairedFile) => {
+      const filePath = `${__dirname}/../public/livePerformanceAudio/${
+        title + index
+      }.wav`;
+      fs.writeFileSync(filePath, repairedFile);
       console.log('audio.wav written with a corrected wav header');
+      return filePath;
     })
-    //grab audio file)
-    .catch(err => {
-      console.log(err);
+    .catch((err) => {
+      console.log('watson err: ', err);
     });
-}
+};
 
-// const getAudio = (req, res) => {
-  // retrieve req.query.scriptName, req.query.userActor
-  // get parsed script from the database based on scriptName
+// const UserSchema = mongoose.Schema({
+//   userName: String,
+//   googleId: String,
+//   listScripts: [
+//     ScriptSchema
+//   ]
+// });
 
-  // get rid of text blocks for userActor
+// user1 'story1' -> contents1
+// user2 'story1' -> contents2
 
-  // watsonTextToSpeechPromises = []
-  // push all queries you want to preform into watsonTextToSpeechPromises
-  // Promise.all(watsonTextToSpeechPromises)
-  // ->returnedArry = [result for first element, resutlt from second element, ....]
-// }
+// users -> script from list -> grab
 
-// module.exports {
-//   // getAudio
-// }
+const getAudio = (req, res) => {
+  debugger;
+
+  const script = JSON.parse(req.query.script);
+  let talkingBlockPromises = [];
+  for (let i = 0; i < script.talkingBlocks.length; i += 1) {
+    if (script.talkingBlocks[i].character !== req.query.userCharacter) {
+      talkingBlockPromises.push(
+        watsonGetAudio(script.talkingBlocks[i].text, script.title, i)
+      );
+    }
+  }
+  return Promise.all(talkingBlockPromises).then((response) => {
+    // console.log('Promise.all responce: ', response);
+    res.send(response);
+  });
+};
+
+module.exports = {
+  getAudio,
+};
