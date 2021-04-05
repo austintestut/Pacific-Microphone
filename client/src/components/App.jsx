@@ -19,17 +19,39 @@ class App extends React.Component {
     this.login();
   }
 
+  getScripts() {
+    const { userId } = this.state;
+    axios
+      .get(`/scripts/${userId}`)
+      .then((scripts) => {
+        this.setState({
+          scriptList: scripts.data,
+        });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
   login() {
     axios
       .get('/user')
       .then((user) => {
-        if (user.data.userName) {
-          this.setState({
-            authenticated: true,
-            user: user.data.userName,
-            // eslint-disable-next-line no-underscore-dangle
-            userId: user.data._id,
-          });
+        if (user.data.userName !== undefined) {
+          this.setState(
+            {
+              authenticated: true,
+              user: user.data.userName,
+              // eslint-disable-next-line no-underscore-dangle
+              userId: user.data._id,
+            },
+            () => {
+              const { authenticated } = this.state;
+              if (authenticated) {
+                this.getScripts();
+              }
+            }
+          );
         }
       })
       .catch((err) => {
@@ -51,7 +73,7 @@ class App extends React.Component {
         )}
         {authenticated && (
           <div>
-            <AppHeader user={user}/>
+            <AppHeader user={user} />
             <AppBody scriptList={scriptList} />
           </div>
         )}

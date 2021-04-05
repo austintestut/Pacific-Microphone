@@ -4,8 +4,8 @@ import SidePanel from './SidePanel';
 import MainPage from './MainPage';
 
 class AppBody extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       selectedPage: 'scriptAnalyzer',
       selectedScript: null,
@@ -19,9 +19,9 @@ class AppBody extends React.Component {
     this.setState({ selectedPage: page, selectedScript: null });
   }
 
-  changeSelectedScript(index) {
+  changeSelectedScript(script) {
     const { scriptList } = this.props;
-    this.setState({ selectedScript: scriptList[index] });
+    this.setState({ selectedScript: script.title });
   }
 
   render() {
