@@ -11,9 +11,9 @@ class ScriptList extends React.Component {
     const { scriptList, changeSelectedScript } = this.props;
     return (
       <div id="scriptList">
-        {scriptList.map((s, idx) => (
-          <button type="button" onClick={() => changeSelectedScript(idx)}>
-            {s}
+        {scriptList.map((s) => (
+          <button type="button" key={s.title} onClick={() => changeSelectedScript(scriptList.indexOf(s))}>
+            {s.title}
           </button>
         ))}
       </div>
