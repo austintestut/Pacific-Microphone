@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
 import AppHeader from './AppHeader';
 import AppBody from './AppBody';
+import Recorder from './Recorder';
 
 class App extends React.Component {
   constructor() {
@@ -27,7 +29,6 @@ class App extends React.Component {
           this.setState({
             authenticated: true,
             user: user.data.userName,
-            // eslint-disable-next-line no-underscore-dangle
             userId: user.data._id,
           });
         }
@@ -51,10 +52,11 @@ class App extends React.Component {
         )}
         {authenticated && (
           <div>
-            <AppHeader user={user}/>
+            <AppHeader user={user} />
             <AppBody scriptList={scriptList} />
           </div>
         )}
+        <Recorder />
       </div>
     );
   }

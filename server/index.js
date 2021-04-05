@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const fileUpload = require('express-fileupload');
 const auth = require('./authentication');
 
 const DB = require('../database/index');
@@ -25,6 +26,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload());
 
 app.get('/', (req, res) => {
   res.send("Ahoy Matey's");
