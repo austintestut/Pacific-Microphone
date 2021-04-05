@@ -8,7 +8,7 @@ class AppBody extends React.Component {
     super(props);
     this.state = {
       selectedPage: 'toneAnalyzer',
-      selectedScript: null,
+      selectedScriptIndex: null,
     };
 
     this.changeSelectedPage = this.changeSelectedPage.bind(this);
@@ -16,17 +16,16 @@ class AppBody extends React.Component {
   }
 
   changeSelectedPage(page) {
-    this.setState({ selectedPage: page, selectedScript: null });
+    this.setState({ selectedPage: page, selectedScriptIndex: null });
   }
 
   changeSelectedScript(index) {
-    const { scriptList } = this.props;
     // Will need change this to display the script in the appropriate format on the page
-    this.setState({ selectedScript: scriptList[index].title });
+    this.setState({ selectedScriptIndex: index });
   }
 
   render() {
-    const { selectedPage, selectedScript } = this.state;
+    const { selectedPage, selectedScriptIndex } = this.state;
     const { scriptList } = this.props;
     return (
       <div id="appBody">
@@ -35,7 +34,7 @@ class AppBody extends React.Component {
           changeSelectedScript={this.changeSelectedScript}
           scriptList={scriptList}
         />
-        <MainPage page={selectedPage} selectedScript={selectedScript} />
+        <MainPage page={selectedPage} selectedScript={scriptList[selectedScriptIndex]} />
       </div>
     );
   }
