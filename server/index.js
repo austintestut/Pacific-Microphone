@@ -11,6 +11,7 @@ const DB = require('../database/index');
 const SA = require('./speechAnalysis.js');
 const TA = require('./textToneConfig.js');
 const LP = require('./livePerformance.js');
+const AT = require('./audioToText.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -36,6 +37,8 @@ app.get('/', (req, res) => {
 app.post('/speechAnalysisClip', SA.sendClip);
 
 app.post('/textToneAnalysis', TA.getTextToneAnalysis);
+
+app.post('/audioToText', AT.getTextFromAudio);
 
 app.get('/google', auth.authScope);
 

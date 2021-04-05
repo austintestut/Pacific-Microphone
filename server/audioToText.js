@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
-    apikey: `${process.env.WATSON_SPEECH_TO_TEXT}`,
+    apikey: process.env.WATSON_SPEECH_TO_TEXT,
   }),
   serviceUrl: process.env.WATSON_SPEECH_TO_TEXT_URL,
 });
@@ -22,7 +22,7 @@ const getTextFromAudio = (req, res) => {
 
   const params = {
     audio: fs.createReadStream(`${__dirname}/test.flac`),
-    settings: settings,
+    settings,
     headers: {transferEncoding: 'chunked'}
   };
 
@@ -32,24 +32,22 @@ const getTextFromAudio = (req, res) => {
 
   recognizeStream.on('data', (event) => {
     onEvent('Data:', event);
+    res.status(200).send(`${event}`);
   });
   recognizeStream.on('error', (event) => {
     onEvent('Error:', event);
+    res.status(500).send(JSON.stringify(event, null, 2))
   });
   recognizeStream.on('close', (event) => {
     onEvent('Close:', event);
   });
 }
 
-getTextFromAudio();
-
-
   // Displays events on the console.
   function onEvent(name, event) {
     console.log(name, JSON.stringify(event, null, 2));
+    console.log(`${event}`)
   }
-
-
 
   module.exports = {
     getTextFromAudio,
