@@ -8,7 +8,16 @@ class AppHeader extends React.Component {
 
   render() {
     const { user } = this.props;
-    return <div id="appHeader">Welcome, {user}</div>;
+    return (
+      <>
+        <div id="appHeader">
+          Welcome, {user}
+          <button type="button">
+            <a href="/logout">Logout</a>
+          </button>
+        </div>
+      </>
+    );
   }
 }
 
