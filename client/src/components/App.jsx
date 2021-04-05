@@ -11,12 +11,45 @@ class App extends React.Component {
       user: '',
       userId: '',
       scriptList: [],
+      audioPaths: [],
     };
     this.login = this.login.bind(this);
   }
 
   componentDidMount() {
     this.login();
+    axios
+      .get('./livePerformance', {
+        params: {
+          script: JSON.stringify({
+            title: 'booktitle',
+            author: 'Bobby',
+            talkingBlocks: [
+              {
+                character: 'Sam',
+                text: 'hello',
+              },
+              {
+                character: 'Chandler',
+                text: 'hi',
+              },
+              {
+                character: 'Sam',
+                text: 'Hello I am Sam',
+              },
+            ],
+          }),
+          userCharacter: 'Chandler',
+        },
+      })
+      .then((result) => {
+        this.setState({
+          audioPaths: result.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   login() {
@@ -51,7 +84,7 @@ class App extends React.Component {
         )}
         {authenticated && (
           <div>
-            <AppHeader user={user}/>
+            <AppHeader user={user} />
             <AppBody scriptList={scriptList} />
           </div>
         )}
