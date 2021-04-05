@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import AppHeader from './AppHeader';
 import AppBody from './AppBody';
+import LivePerformance from './LivePerformance';
 
 class App extends React.Component {
   constructor() {
@@ -14,42 +15,6 @@ class App extends React.Component {
       audioPaths: [],
     };
     this.login = this.login.bind(this);
-  }
-
-  componentDidMount() {
-    this.login();
-    axios
-      .get('./livePerformance', {
-        params: {
-          script: JSON.stringify({
-            title: 'booktitle',
-            author: 'Bobby',
-            talkingBlocks: [
-              {
-                character: 'Sam',
-                text: 'hello',
-              },
-              {
-                character: 'Chandler',
-                text: 'hi',
-              },
-              {
-                character: 'Sam',
-                text: 'Hello I am Sam',
-              },
-            ],
-          }),
-          userCharacter: 'Chandler',
-        },
-      })
-      .then((result) => {
-        this.setState({
-          audioPaths: result.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   login() {
@@ -88,6 +53,7 @@ class App extends React.Component {
             <AppBody scriptList={scriptList} />
           </div>
         )}
+        <LivePerformance />
       </div>
     );
   }

@@ -17,26 +17,23 @@ const watsonGetAudio = (text, title, index) => {
     accept: 'audio/wav',
   };
 
-  return (
-    textToSpeech
-      .synthesize(params)
-      .then((response) => {
-        const audio = response.result;
-        return textToSpeech.repairWavHeaderStream(audio);
-      })
-      .then((repairedFile) => {
-        const filePath = `${__dirname}/../public/livePerformanceAudio/${
-          title + index
-        }.wav`;
-        fs.writeFileSync(filePath, repairedFile);
-        console.log('audio.wav written with a corrected wav header');
-        return filePath;
-      })
-      //grab audio file)
-      .catch((err) => {
-        // console.log('watson err: ', err);
-      })
-  );
+  return textToSpeech
+    .synthesize(params)
+    .then((response) => {
+      const audio = response.result;
+      return textToSpeech.repairWavHeaderStream(audio);
+    })
+    .then((repairedFile) => {
+      const filePath = `${__dirname}/../public/livePerformanceAudio/${
+        title + index
+      }.wav`;
+      fs.writeFileSync(filePath, repairedFile);
+      console.log('audio.wav written with a corrected wav header');
+      return filePath;
+    })
+    .catch((err) => {
+      console.log('watson err: ', err);
+    });
 };
 
 // const UserSchema = mongoose.Schema({
@@ -54,24 +51,9 @@ const watsonGetAudio = (text, title, index) => {
 
 const getAudio = (req, res) => {
   debugger;
-  // retrieve req.query.title, req.query.userCharacter, req.query.userName or googleId
-  // find user database with userName or id
-  // find the script with scriptName
 
-  // const ScriptSchema = mongoose.Schema({
-  //   title: String,
-  //   author: String,
-  //   talkingBlocks: [
-  //     {
-  //       character: String,
-  //       text: String
-  //     }
-  //   ]
-  // })
   const script = JSON.parse(req.query.script);
-  // console.log('------REQ.QUERY----- : ', script);
   let talkingBlockPromises = [];
-  // const { talkingBlocks } = req.query;
   for (let i = 0; i < script.talkingBlocks.length; i += 1) {
     if (script.talkingBlocks[i].character !== req.query.userCharacter) {
       talkingBlockPromises.push(
@@ -80,37 +62,9 @@ const getAudio = (req, res) => {
     }
   }
   return Promise.all(talkingBlockPromises).then((response) => {
-    console.log('Promise.all responce: ', response);
+    // console.log('Promise.all responce: ', response);
+    res.send(response);
   });
-
-  // get parsed script from the database based on scriptName
-
-  // get rid of text blocks for userActor
-
-  //  [ {
-  //     "_id": "6068c058618ca4309f7be00d",
-  //     "talkingBlocks": [
-  //         [
-  //             {
-  //                 "_id": "6068c058618ca4309f7be00f",
-  //                 "character": "sma",
-  //                 "text": "hello world"
-  //             }
-  //         ]
-  //     ]
-  // } ]
-
-  // let talkingBlockPromises = []
-  // iterate over talkingBlock
-  // at each element if talkingBlock[i].character !== userCharacter
-  // talkingBlockPromises.push(watsonGetAudio(talkingBlock[i].text))
-  // Promise.all(talkingBlockPromises)
-  //  -> [audio, audio, audio]
-
-  // watsonTextToSpeechPromises = []
-  // push all queries you want to preform into watsonTextToSpeechPromises
-  // Promise.all(watsonTextToSpeechPromises)
-  // ->returnedArry = [result for first element, resutlt from second element, ....]
 };
 
 module.exports = {
