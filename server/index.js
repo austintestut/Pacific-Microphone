@@ -5,7 +5,7 @@ require('dotenv').config();
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const auth = require('./authentication');
-const { scriptFetcher } = require('./scripts.js');
+const { scriptFetcher, makeTextBlocks } = require('./scripts.js');
 
 const DB = require('../database/index');
 const SA = require('./speechAnalysis.js');
@@ -36,6 +36,8 @@ app.get('/', (req, res) => {
 app.post('/speechAnalysisClip', SA.sendClip);
 
 app.post('/textToneAnalysis', TA.getTextToneAnalysis);
+
+app.post('/uploadScript', makeTextBlocks);
 
 app.get('/google', auth.authScope);
 
