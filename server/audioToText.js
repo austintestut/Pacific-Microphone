@@ -13,12 +13,12 @@ const speechToText = new SpeechToTextV1({
 
 const getTextFromAudio = (req, res) => {
 
-  const settings = RecognitionSettings({
+  const settings = {
     contentType: 'application/octet-stream',
     objectMode: true,
     timestamps: true,
     wordconfidence: true
-  });
+  };
 
   const params = {
     audio: fs.createReadStream(`${__dirname}/test.flac`),
@@ -28,7 +28,7 @@ const getTextFromAudio = (req, res) => {
 
   const recognizeStream = speechToText.recognizeUsingWebSocket(params);
 
-  fs.createReadStream(`${__dirname  }/test.flac`).pipe(recognizeStream);
+  fs.createReadStream(`${__dirname }/test.flac`).pipe(recognizeStream);
 
   recognizeStream.on('data', (event) => {
     onEvent('Data:', event);
@@ -41,11 +41,15 @@ const getTextFromAudio = (req, res) => {
   });
 }
 
+getTextFromAudio();
+
 
   // Displays events on the console.
   function onEvent(name, event) {
     console.log(name, JSON.stringify(event, null, 2));
   }
+
+
 
   module.exports = {
     getTextFromAudio,
