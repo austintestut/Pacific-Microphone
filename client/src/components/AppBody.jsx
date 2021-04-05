@@ -7,7 +7,7 @@ class AppBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedPage: 'scriptAnalyzer',
+      selectedPage: 'toneAnalyzer',
       selectedScript: null,
     };
 
