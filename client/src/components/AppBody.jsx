@@ -19,9 +19,10 @@ class AppBody extends React.Component {
     this.setState({ selectedPage: page, selectedScript: null });
   }
 
-  changeSelectedScript(script) {
+  changeSelectedScript(index) {
     const { scriptList } = this.props;
-    this.setState({ selectedScript: script.title });
+    // Will need change this to display the script in the appropriate format on the page
+    this.setState({ selectedScript: scriptList[index].title });
   }
 
   render() {
