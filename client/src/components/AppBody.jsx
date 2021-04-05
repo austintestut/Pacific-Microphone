@@ -2,6 +2,7 @@
 import React from 'react';
 import SidePanel from './SidePanel';
 import MainPage from './MainPage';
+import VoiceAnalysisChart from './VoiceAnalysisChart';
 
 class AppBody extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class AppBody extends React.Component {
           scriptList={scriptList}
         />
         <MainPage page={selectedPage} selectedScript={scriptList[selectedScriptIndex]} />
+        <VoiceAnalysisChart />
       </div>
     );
   }
