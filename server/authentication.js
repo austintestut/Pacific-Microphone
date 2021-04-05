@@ -17,6 +17,7 @@ const homeRedirect = (req, res) => {
 };
 const logout = (req, res) => {
   req.logout();
+  req.session = null;
   res.redirect('/');
 };
 const authCheck = (req, res, next) => {
