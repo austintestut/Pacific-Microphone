@@ -2,9 +2,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import VoiceAnalysisChart from './VoiceAnalysisChart';
-import VoiceTextComparisonChart from './VoiceTextComparisonChart';
 import LivePerformance from './LivePerformance';
 import VoiceAnalyzer from './VoiceAnalyzer';
+import TextAnalysisChart from './TextAnalysisChart';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -18,12 +18,16 @@ class MainPage extends React.Component {
       <div id="mainPage">
         <h2>Page: {page}</h2>
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
-        <VoiceAnalysisChart />
-        {/* <VoiceTextComparisonChart /> */}
         {page === 'toneAnalyzer' ? (
+          <>
           <div>Tone Analyzer</div>
-        ) : page === 'voiceAnalyzer' ? (
-          <VoiceAnalyzer />
+          <TextAnalysisChart />
+          </>
+          ) : page === 'voiceAnalyzer' ? (
+            <>
+            <VoiceAnalyzer />
+            <VoiceAnalysisChart />
+            </>
         ) : page === 'livePractice' ? (
           <LivePerformance />
         ) : (
