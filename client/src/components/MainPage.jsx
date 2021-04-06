@@ -1,5 +1,8 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import LivePerformance from './LivePerformance';
+import VoiceAnalyzer from './VoiceAnalyzer';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -13,6 +16,15 @@ class MainPage extends React.Component {
       <div id="mainPage">
         <h2>Page: {page}</h2>
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
+        {page === 'toneAnalyzer' ? (
+          <div>Tone Analyzer</div>
+        ) : page === 'voiceAnalyzer' ? (
+          <VoiceAnalyzer />
+        ) : page === 'livePractice' ? (
+          <LivePerformance />
+        ) : (
+          <div>Loading Screen</div>
+        )}
       </div>
     );
   }

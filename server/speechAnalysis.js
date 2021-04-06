@@ -1,9 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
-
-const data = new FormData();
-data.append('apikey', process.env.WEB_EMPATH);
+const Mp32Wav = require('mp3-to-wav');
 
 // The audio data that can be analyzed by the API has to respect the following specifications:
 // ・PCM WAVE format, 16bit
@@ -14,22 +12,36 @@ data.append('apikey', process.env.WEB_EMPATH);
 // ・Number of channels : 1 (monophonic sound)
 
 const sendClip = (req, res) => {
-  data.append('wav', fs.createReadStream(`${__dirname}/test.wav`));
+  const data = new FormData();
+  data.append('apikey', process.env.WEB_EMPATH);
+  const file = req.files.mp3;
 
-  axios({
-    method: 'post',
-    url: process.env.WEB_EMPATH_URL,
-    headers: {
-      ...data.getHeaders(),
-    },
-    data,
-  })
-    .then((response) => {
-      res.status(201).send(response.data);
-    })
-    .catch((err) => {
-      res.status(501).send(err);
-    });
+  file.mv(`${__dirname}/test.mp3`, () => {
+    const mp32Wav = new Mp32Wav(`${__dirname}/test.mp3`);
+    mp32Wav
+      .decodeMp3(`${__dirname}/test.mp3`)
+      .then((dat) => mp32Wav.saveForWav(dat.data, __dirname, 'test', 11025, 1))
+      .then((filePath) => {
+        data.append('wav', fs.createReadStream(filePath));
+        axios({
+          method: 'post',
+          url: process.env.WEB_EMPATH_URL,
+          headers: {
+            ...data.getHeaders(),
+          },
+          data,
+        })
+          .then((response) => {
+            res.status(201).send(response.data);
+          })
+          .catch((err) => {
+            res.status(501).send(err);
+          });
+      })
+      .catch((err) => {
+        res.status(501).send(err);
+      });
+  });
 };
 
 module.exports = {
