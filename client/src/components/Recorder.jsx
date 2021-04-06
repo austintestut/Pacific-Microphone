@@ -5,27 +5,111 @@ import FormData from 'form-data';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { ReactMic } from 'react-mic';
 
-const Mp3Recorder = new MicRecorder({ bitRate: 128 });
+const Mp3Recorder = new MicRecorder({ bitRate: 128, sampleRate: 11025 });
 
 class Recorder extends React.Component {
   constructor() {
     super();
     this.state = {
       record: false,
-      pause: false,
       isBlocked: false,
       blobURL: '',
+      sent: 0,
+      recieved: [],
     };
 
-    // this.handleDataRecord = this.handleDataRecord.bind(this);
-    // this.handleEndRecord = this.handleEndRecord.bind(this);
+    this.handleEndRecord = this.handleEndRecord.bind(this);
     this.handlePlay = this.handlePlay.bind(this);
-    this.handlePause = this.handlePause.bind(this);
+    this.checkPerms = this.checkPerms.bind(this);
+    this.handleStartRecord = this.handleStartRecord.bind(this);
+    this.handleSendSegment = this.handleSendSegment.bind(this);
   }
 
   componentDidMount() {
+    this.checkPerms();
+  }
+
+  handlePlay(e) {
+    e.preventDefault();
+    const { record, isBlocked } = this.state;
+
+    if (isBlocked) {
+      console.log('Permission Denied');
+      this.checkPerms();
+    } else if (record) {
+      this.setState({
+        record: false,
+      });
+    } else {
+      this.handleStartRecord();
+    }
+  }
+
+  handleStartRecord() {
+    Mp3Recorder.start()
+      .then(() => {
+        this.setState({ record: true });
+        setTimeout(this.handleSendSegment, 4900);
+      })
+      .catch((err) => console.error(err));
+  }
+
+  handleSendSegment() {
+    const { sent, recieved, record } = this.state;
+    Mp3Recorder.stop()
+      .getMp3()
+      .then(([buffer, blob]) => {
+        const data = new FormData();
+        const blobURL = URL.createObjectURL(blob);
+
+        this.setState({ blobURL, sent: sent + 1 });
+        data.append(
+          'mp3',
+          new File(buffer, 'file.mp3', {
+            type: blob.type,
+            lastModified: Date.now(),
+          })
+        );
+        axios({
+          method: 'post',
+          url: '/speechAnalysisClip',
+          data,
+        })
+          .then((response) => {
+            console.log(response);
+            recieved.push(response.data);
+            this.setState(
+              {
+                recieved: recieved,
+              },
+              this.handleEndRecord
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => console.error(err));
+    if (record) {
+      this.handleStartRecord();
+    }
+  }
+
+  handleEndRecord() {
+    const { sent, record, recieved } = this.state;
+    const { sendDataToMainPage } = this.props;
+    if (sent === recieved.length && record === false) {
+      sendDataToMainPage(recieved);
+      this.setState({
+        sent: 0,
+        recieved: [],
+      });
+    }
+  }
+
+  checkPerms() {
     navigator.getUserMedia(
-      { audio: true },
+      { audio: { sampleRate: 11025 } },
       () => {
         console.log('Permission Granted');
         this.setState({ isBlocked: false });
@@ -35,67 +119,6 @@ class Recorder extends React.Component {
         this.setState({ isBlocked: true });
       }
     );
-  }
-
-  // handleEndRecord(e) {
-  //   // debugger
-  //   console.log(e);
-  // }
-
-  // handleDataRecord(e) {
-  //   // debugger;
-  //   console.log(e);
-  // }
-
-  handlePlay(e) {
-    e.preventDefault();
-    const { record, isBlocked } = this.state;
-
-    if (isBlocked) {
-      console.log('Permission Denied');
-    } else if (record) {
-      Mp3Recorder.stop()
-        .getMp3()
-        .then(([buffer, blob]) => {
-          const data = new FormData();
-          const blobURL = URL.createObjectURL(blob);
-
-          this.setState({ blobURL, record: false });
-          data.append(
-            'mp3',
-            new File(buffer, 'file.mp3', {
-              type: blob.type,
-              lastModified: Date.now(),
-            })
-          );
-          axios({
-            method: 'post',
-            url: '/speechAnalysisClip',
-            data,
-          })
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      Mp3Recorder.start()
-        .then(() => {
-          this.setState({ record: true });
-        })
-        .catch((err) => console.error(err));
-    }
-  }
-
-  handlePause(e) {
-    e.preventDefault();
-    const { pause } = this.state;
-    this.setState({
-      pause: !pause,
-    });
   }
 
   render() {
@@ -126,10 +149,7 @@ class Recorder extends React.Component {
         >
           {record ? 'Stop' : 'Record'}
         </button>
-        <button type="submit" onClick={this.handlePause} value="Pause">
-          Pause
-        </button>
-        <audio src={blobURL} controls="controls" />
+        {/* <audio src={blobURL} controls="controls" /> */}
       </div>
     );
   }
