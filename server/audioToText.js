@@ -6,23 +6,18 @@ require('dotenv').config();
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
-    apikey: 'axCJE3qhN00Ztj7vf0pnLNlRDGGuwWxyLZF6k81xK3A3',
+    apikey: process.env.WATSON_SPEECH_TO_TEXT,
   }),
   serviceUrl: process.env.WATSON_SPEECH_TO_TEXT_URL,
 });
 
 const getTextFromAudio = (req, res) => {
 
-  const settings = {
+  const params = {
     contentType: 'application/octet-stream',
     objectMode: true,
     timestamps: true,
-    wordconfidence: true
-  };
-
-  const params = {
-    audio: fs.createReadStream(`${__dirname}/test.flac`),
-    settings,
+    wordconfidence: true,
     headers: {transferEncoding: 'chunked'}
   };
 
@@ -32,7 +27,7 @@ const getTextFromAudio = (req, res) => {
 
   recognizeStream.on('data', (event) => {
     onEvent('Data:', event);
-    res.status(200).send(`${event}`);
+    res.status(200).send(JSON.stringify(event, null, 2));
     // We are not getting back the timestamps
   });
   recognizeStream.on('error', (event) => {
