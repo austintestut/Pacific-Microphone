@@ -37,15 +37,15 @@ class Recorder extends React.Component {
     );
   }
 
-  handleEndRecord(e) {
-    // debugger;
-    console.log(e);
-  }
+  // handleEndRecord(e) {
+  //   // debugger;
+  //   console.log(e);
+  // }
 
-  handleDataRecord(e) {
-    // debugger;
-    console.log(e);
-  }
+  // handleDataRecord(e) {
+  //   // debugger;
+  //   console.log(e);
+  // }
 
   handlePlay(e) {
     e.preventDefault();
