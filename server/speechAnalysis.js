@@ -1,8 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
-const Mp32Wav = require('mp3-to-wav');
-var sox = require('sox');
+const sox = require('sox');
 
 // these apps need to be installed as well
 // sudo apt install sox
@@ -29,7 +28,6 @@ const sendClip = (req, res) => {
         sampleRate: 11025,
         format: 'wav',
         channelCount: 1,
-        // compressionQuality: 5, // see `man soxformat` search for '-C' for more info
       }
     );
     job.on('error', (err) => {
@@ -81,41 +79,6 @@ const sendClip = (req, res) => {
       console.log('all done');
     });
     job.start();
-    // const mp32Wav = new Mp32Wav(`${__dirname}/test.mp3`);
-    // debugger;
-    // mp32Wav
-    //   .decodeMp3(`${__dirname}/test.mp3`)
-    //   .then((dat) => {
-    //     debugger;
-    //     return mp32Wav.saveForWav(
-    //       dat.data,
-    //       __dirname,
-    //       'test',
-    //       dat.sampleRate,
-    //       1
-    //     );
-    //   })
-    //   .then((filePath) => {
-
-    // data.append('wav', fs.createReadStream(filePath));
-    // axios({
-    //   method: 'post',
-    //   url: process.env.WEB_EMPATH_URL,
-    //   headers: {
-    //     ...data.getHeaders(),
-    //   },
-    //   data,
-    // })
-    //   .then((response) => {
-    //     res.status(201).send(response.data);
-    //   })
-    //   .catch((err) => {
-    //     res.status(501).send(err);
-    //   });
-    //   })
-    //   .catch((err) => {
-    //     res.status(501).send(err);
-    //   });
   });
 };
 
