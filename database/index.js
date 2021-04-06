@@ -6,6 +6,7 @@ mongoose.connect(process.env.DBTOKEN);
 const ScriptSchema = mongoose.Schema({
   title: { type: String, unique: true },
   author: String,
+  characterList: [String],
   talkingBlocks: [
     {
       character: String,
