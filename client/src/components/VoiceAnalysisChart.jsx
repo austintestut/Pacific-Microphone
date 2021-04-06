@@ -11,48 +11,63 @@ class VoiceAnalysisChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      empathScores: {
-        5: {
-          Anger: 60,
-          Sadness: 20,
-          Confidence: 30,
-          Joy: 40,
-          Energy: 50,
+      // hard coded
+      empathScores: [
+        {
+          anger: 60,
+          sadness: 20,
+          confidence: 30,
+          joy: 40,
+          energy: 50,
         },
-        10: {
-          Anger: 10,
-          Sadness: 20,
-          Confidence: 30,
-          Joy: 40,
-          Energy: 50,
+        {
+          anger: 10,
+          sadness: 20,
+          confidence: 30,
+          joy: 40,
+          energy: 50,
         },
-        15: {
-          Anger: 14,
-          Sadness: 62,
-          Confidence: 73,
-          Joy: 14,
-          Energy: 53,
+        {
+          anger: 14,
+          sadness: 62,
+          confidence: 73,
+          joy: 14,
+          energy: 53,
         },
-        20: {
-          Anger: 32,
-          Sadness: 4,
-          Confidence: 20,
-          Joy: 4,
-          Energy: 78,
+        {
+          anger: 32,
+          sadness: 4,
+          confidence: 20,
+          joy: 4,
+          energy: 78,
         },
-        25: {
-          Anger: 62,
-          Sadness: 3,
-          Confidence: 26,
-          Joy: 53,
-          Energy: 28,
+        {
+          anger: 62,
+          sadness: 3,
+          confidence: 26,
+          joy: 53,
+          energy: 28,
         },
-      },
+      ],
     };
   }
 
   render() {
+    let timestamp = 0;
     const { empathScores } = this.state;
+    const angerData = [];
+    const sadnessData = [];
+    const confidenceData = [];
+    const joyData = [];
+    const energyData = [];
+    empathScores.map((scoreSnapshot) => {
+      timestamp += 5;
+      angerData.push({ x: timestamp, y: scoreSnapshot.anger });
+      sadnessData.push({ x: timestamp, y: scoreSnapshot.sadness });
+      confidenceData.push({ x: timestamp, y: scoreSnapshot.confidence });
+      joyData.push({ x: timestamp, y: scoreSnapshot.joy });
+      energyData.push({ x: timestamp, y: scoreSnapshot.energy });
+    });
     return (
       <div id="VoiceAnalysisChart">
         Voice Analysis
@@ -101,14 +116,7 @@ class VoiceAnalysisChart extends Component {
               duration: 2000,
               onLoad: { duration: 1000 },
             }}
-            data={[
-              // conditionally rendered depending on length of clip
-              { x: 5, y: empathScores[5].Anger },
-              { x: 10, y: empathScores[10].Anger },
-              { x: 15, y: empathScores[15].Anger },
-              { x: 20, y: empathScores[20].Anger },
-              { x: 25, y: empathScores[25].Anger },
-            ]}
+            data={angerData}
           />
           <VictoryLine
             interpolation="natural"
@@ -120,14 +128,7 @@ class VoiceAnalysisChart extends Component {
               duration: 2000,
               onLoad: { duration: 1000 },
             }}
-            data={[
-              // conditionally rendered depending on length of clip
-              { x: 5, y: empathScores[5].Sadness },
-              { x: 10, y: empathScores[10].Sadness },
-              { x: 15, y: empathScores[15].Sadness },
-              { x: 20, y: empathScores[20].Sadness },
-              { x: 25, y: empathScores[25].Sadness },
-            ]}
+            data={sadnessData}
           />
           <VictoryLine
             interpolation="natural"
@@ -139,14 +140,7 @@ class VoiceAnalysisChart extends Component {
               duration: 2000,
               onLoad: { duration: 1000 },
             }}
-            data={[
-              // conditionally rendered depending on length of clip
-              { x: 5, y: empathScores[5].Confidence },
-              { x: 10, y: empathScores[10].Confidence },
-              { x: 15, y: empathScores[15].Confidence },
-              { x: 20, y: empathScores[20].Confidence },
-              { x: 25, y: empathScores[25].Confidence },
-            ]}
+            data={confidenceData}
           />
           <VictoryLine
             interpolation="natural"
@@ -159,14 +153,7 @@ class VoiceAnalysisChart extends Component {
               duration: 2000,
               onLoad: { duration: 1000 },
             }}
-            data={[
-              // conditionally rendered depending on length of clip
-              { x: 5, y: empathScores[5].Joy },
-              { x: 10, y: empathScores[10].Joy },
-              { x: 15, y: empathScores[15].Joy },
-              { x: 20, y: empathScores[20].Joy },
-              { x: 25, y: empathScores[25].Joy },
-            ]}
+            data={joyData}
           />
           <VictoryLine
             interpolation="natural"
@@ -179,14 +166,7 @@ class VoiceAnalysisChart extends Component {
               duration: 2000,
               onLoad: { duration: 1000 },
             }}
-            data={[
-              // conditionally rendered depending on length of clip
-              { x: 5, y: empathScores[5].Energy },
-              { x: 10, y: empathScores[10].Energy },
-              { x: 15, y: empathScores[15].Energy },
-              { x: 20, y: empathScores[20].Energy },
-              { x: 25, y: empathScores[25].Energy },
-            ]}
+            data={energyData}
           />
         </VictoryChart>
       </div>
