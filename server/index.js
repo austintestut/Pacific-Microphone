@@ -48,7 +48,6 @@ app.post('/audioToText', AT.getTextFromAudio);
 
 app.post('/uploadScript', makeTextBlocks);
 
-
 app.get('/google', auth.authScope);
 
 app.get('/google/callback', auth.googleAuth, auth.loggedinRedirect);
