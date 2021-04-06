@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   res.send("Ahoy Matey's");
 });
 
-// app.get('/livePerformance', LP.getAudio);
+app.get('/livePerformance', LP.getAudio);
 
 app.post('/speechAnalysisClip', SA.sendClip);
 
