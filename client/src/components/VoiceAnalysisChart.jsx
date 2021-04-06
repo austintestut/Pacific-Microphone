@@ -1,41 +1,24 @@
-import React from 'react';
-import { Line, Bar, defaults } from 'react-chartjs-2';
+import React, { Component } from 'react';
+import { VictoryChart, VictoryLine, VictoryAxis } from 'victory';
 
-Bar.defaults = defaults;
-
-class VoiceAnalysisChart extends React.Component {
+class VoiceAnalysisChart extends Component {
   constructor(props) {
     super(props);
-    this.data = {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [
-        {
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-          ],
-          borderWidth: 1,
+    this.state = {
+      empathScores: {
+        5: {
+          Anger: 60,
+          Sadness: 20,
+          Confidence: 30,
+          Joy: 40,
+          Energy: 50,
         },
-      ],
-    };
-    this.options = {
-      scales: {
-        y: {
-          beginAtZero: true,
+        10: {
+          Anger: 10,
+          Sadness: 20,
+          Confidence: 30,
+          Joy: 40,
+          Energy: 50,
         },
       },
     };
@@ -43,14 +26,50 @@ class VoiceAnalysisChart extends React.Component {
 
   render() {
     return (
-      <div>
-        <Bar
-          data={this.data}
-          width={100}
-          height={50}
-          options={{}}
+      <VictoryChart height={200} width={400}>
+        <VictoryAxis
+          dependentAxis
+          orientation="left"
+          label="Score"
+          style={{
+            tickLabels: { fontSize: 5 },
+            labels: { fontSize: 12 },
+          }}
+          domain={[0, 100]}
+          standalone={false}
         />
-      </div>
+        <VictoryAxis
+          orientation="bottom"
+          style={{
+            tickLabels: { fontSize: 5 },
+          }}
+          label="Time in seconds"
+          standalone={false}
+        />
+        <VictoryLine
+          interpolation="natural"
+          style={{
+            data: { stroke: '#662d91' },
+            parent: { border: '1px solid #ccc' },
+            tickLabels: { fontSize: 5 },
+          }}
+          animate={{
+            duration: 2000,
+            onLoad: { duration: 1000 },
+          }}
+          data={[
+            // conditionally rendered depending on length of clip
+            { x: 5, y: this.state.empathScores[5].Anger },
+            { x: 10, y: this.state.empathScores[10].Anger },
+            { x: 15, y: 80 },
+            { x: 20, y: 70 },
+            { x: 25, y: 90 },
+            { x: 30, y: 90 },
+            { x: 35, y: 90 },
+            { x: 40, y: 90 },
+          ]}
+        />
+      </VictoryChart>
     );
   }
 }
