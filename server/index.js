@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const fileUpload = require('express-fileupload');
 const auth = require('./authentication');
 const { scriptFetcher, makeTextBlocks } = require('./scripts.js');
 
@@ -27,6 +28,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload());
 
 app.get('/', (req, res) => {
   res.send("Ahoy Matey's");
@@ -38,6 +40,9 @@ app.post('/speechAnalysisClip', SA.sendClip);
 
 app.post('/textToneAnalysis', TA.getTextToneAnalysis);
 
+app.post('/audioToText', AT.getTextFromAudio);
+
+app.post('/uploadScript', makeTextBlocks);
 
 app.post('/audioToText', AT.getTextFromAudio);
 
