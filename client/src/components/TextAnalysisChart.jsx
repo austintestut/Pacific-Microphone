@@ -7,21 +7,44 @@ class TextAnalysisChart extends React.Component {
     this.state = {
       watsonScores: {
         // hard coded
-        categories: ['Joy', 'Fear'],
+        categories: [
+          'Anger',
+          'Joy',
+          'Fear',
+          'Sadness',
+          'Analytical',
+          'Confident',
+          'Tentative',
+        ],
         values: {
+          Anger: 3,
           Joy: 63,
           Fear: 14,
-
+          Sadness: 36,
+          Analytical: 99,
+          Confident: 25,
+          Tentative: 69,
         },
       },
+    };
+    this.toneColors = {
+      Anger: '#d10e00',
+      Joy: '#75ffe1',
+      Fear: '#ed7300',
+      Sadness: '#0074cc',
+      Analytical: '#29dfff',
+      Confident: '#662d91',
+      Tentative: '#fcba03',
     };
   }
 
   render() {
     const { watsonScores } = this.state;
-    const data = watsonScores.categories.map((category) => {
-      return { x: category, y: watsonScores.values[category] };
-    });
+    const data = watsonScores.categories.map((category) => ({
+      x: category,
+      y: watsonScores.values[category],
+      fill: this.toneColors[category],
+    }));
     return (
       <div id="TextAnalysisChart">
         Text Analysis
@@ -29,13 +52,16 @@ class TextAnalysisChart extends React.Component {
           padding={100}
           theme={VictoryTheme.material}
           width={600}
-          domainPadding={{ x: 250 }}
+          domainPadding={{ x: 100 }}
         >
           <VictoryAxis
             dependentAxis
             orientation="left"
             label="Score"
             style={{
+              data: {
+                fill: ({ datum }) => this.toneColors[datum.x],
+              },
               tickLabels: { fontSize: 10 },
             }}
             domain={[0, 100]}
@@ -49,7 +75,14 @@ class TextAnalysisChart extends React.Component {
             }}
             standalone={false}
           />
-          <VictoryBar data={data} />
+          <VictoryBar
+            data={data}
+            style={{
+              data: {
+                fill: ({ datum }) => this.toneColors[datum.x],
+              },
+            }}
+          />
         </VictoryChart>
       </div>
     );
