@@ -8,10 +8,11 @@ class VoiceAnalyzer extends React.Component {
   }
 
   render() {
+    const { sendDataToMainPage } = this.props;
     return (
       <div>
         VoiceAnalyzer is working
-        <Recorder />
+        <Recorder sendDataToMainPage={sendDataToMainPage} />
       </div>
     );
   }

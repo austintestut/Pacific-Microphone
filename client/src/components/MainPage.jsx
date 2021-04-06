@@ -10,6 +10,13 @@ class MainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.addDataForVoiceAnalysis = this.addDataForVoiceAnalysis.bind(this);
+  }
+
+  addDataForVoiceAnalysis(data) {
+    this.setState({
+      voiceAnalysisData: data,
+    });
   }
 
   render() {
@@ -20,14 +27,14 @@ class MainPage extends React.Component {
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
         {page === 'toneAnalyzer' ? (
           <>
-          <div>Tone Analyzer</div>
-          <TextAnalysisChart />
+            <div>Tone Analyzer</div>
+            <TextAnalysisChart />
           </>
-          ) : page === 'voiceAnalyzer' ? (
-            <>
-            <VoiceAnalyzer />
+        ) : page === 'voiceAnalyzer' ? (
+          <>
+            <VoiceAnalyzer sendDataToMainPage={this.addDataForVoiceAnalysis} />
             <VoiceAnalysisChart />
-            </>
+          </>
         ) : page === 'livePractice' ? (
           <LivePerformance />
         ) : (
