@@ -52,7 +52,7 @@ class TextAnalysisChart extends React.Component {
           padding={100}
           theme={VictoryTheme.material}
           width={600}
-          domainPadding={{ x: 100 }}
+          domainPadding={{ x: 75 }}
         >
           <VictoryAxis
             dependentAxis
@@ -81,6 +81,10 @@ class TextAnalysisChart extends React.Component {
               data: {
                 fill: ({ datum }) => this.toneColors[datum.x],
               },
+            }}
+            animate={{
+              duration: 1000,
+              onLoad: { duration: 500 }
             }}
           />
         </VictoryChart>
