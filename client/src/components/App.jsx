@@ -3,7 +3,6 @@ import React from 'react';
 import axios from 'axios';
 import AppHeader from './AppHeader';
 import AppBody from './AppBody';
-import Recorder from './Recorder';
 import LivePerformance from './LivePerformance';
 
 class App extends React.Component {
@@ -82,7 +81,6 @@ class App extends React.Component {
           </div>
         )}
         <LivePerformance />
-        <Recorder />
       </div>
     );
   }

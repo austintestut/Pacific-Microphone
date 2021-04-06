@@ -17,8 +17,8 @@ class Recorder extends React.Component {
       blobURL: '',
     };
 
-    this.handleDataRecord = this.handleDataRecord.bind(this);
-    this.handleEndRecord = this.handleEndRecord.bind(this);
+    // this.handleDataRecord = this.handleDataRecord.bind(this);
+    // this.handleEndRecord = this.handleEndRecord.bind(this);
     this.handlePlay = this.handlePlay.bind(this);
     this.handlePause = this.handlePause.bind(this);
   }
