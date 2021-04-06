@@ -13,16 +13,11 @@ const speechToText = new SpeechToTextV1({
 
 const getTextFromAudio = (req, res) => {
 
-  const settings = {
+  const params = {
     contentType: 'application/octet-stream',
     objectMode: true,
     timestamps: true,
-    wordconfidence: true
-  };
-
-  const params = {
-    audio: fs.createReadStream(`${__dirname}/test.flac`),
-    settings,
+    wordconfidence: true,
     headers: {transferEncoding: 'chunked'}
   };
 
@@ -32,7 +27,8 @@ const getTextFromAudio = (req, res) => {
 
   recognizeStream.on('data', (event) => {
     onEvent('Data:', event);
-    res.status(200).send(`${event}`);
+    res.status(200).send(JSON.stringify(event, null, 2));
+    // We are not getting back the timestamps
   });
   recognizeStream.on('error', (event) => {
     onEvent('Error:', event);
