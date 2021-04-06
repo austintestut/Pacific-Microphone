@@ -40,11 +40,13 @@ app.post('/speechAnalysisClip', SA.sendClip);
 
 app.post('/textToneAnalysis', TA.getTextToneAnalysis);
 
-
 app.post('/audioToText', AT.getTextFromAudio);
 
 app.post('/uploadScript', makeTextBlocks);
 
+app.post('/audioToText', AT.getTextFromAudio);
+
+app.post('/uploadScript', makeTextBlocks);
 
 app.get('/google', auth.authScope);
 
