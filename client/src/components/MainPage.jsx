@@ -8,6 +8,13 @@ class MainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.addDataForVoiceAnalysis = this.addDataForVoiceAnalysis.bind(this);
+  }
+
+  addDataForVoiceAnalysis(data) {
+    this.setState({
+      voiceAnalysisData: data,
+    });
   }
 
   render() {
@@ -19,7 +26,7 @@ class MainPage extends React.Component {
         {page === 'toneAnalyzer' ? (
           <div>Tone Analyzer</div>
         ) : page === 'voiceAnalyzer' ? (
-          <VoiceAnalyzer />
+          <VoiceAnalyzer sendDataToMainPage={this.addDataForVoiceAnalysis} />
         ) : page === 'livePractice' ? (
           <LivePerformance />
         ) : (
