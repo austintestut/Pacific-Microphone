@@ -9,6 +9,7 @@ const loggedinRedirect = (req, res) => {
   res.redirect('/loggedin');
 };
 const sendUser = (req, res) => {
+  // eslint-disable-next-line no-underscore-dangle
   res.send({ userName: req.user.userName, _id: req.user._id });
 };
 const homeRedirect = (req, res) => {
@@ -16,6 +17,7 @@ const homeRedirect = (req, res) => {
 };
 const logout = (req, res) => {
   req.logout();
+  req.session = null;
   res.redirect('/');
 };
 const authCheck = (req, res, next) => {

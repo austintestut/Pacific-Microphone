@@ -37,7 +37,8 @@
     "passport-google-oauth20": "^2.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-mic": "^12.4.6"
+    "react-mic": "^12.4.6",
+    "react-modal": "^3.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
