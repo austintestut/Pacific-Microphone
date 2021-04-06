@@ -38,7 +38,7 @@ class Recorder extends React.Component {
   }
 
   // handleEndRecord(e) {
-  //   // debugger;
+  //   // debugger
   //   console.log(e);
   // }
 
