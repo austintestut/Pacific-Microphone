@@ -12,51 +12,36 @@ const Mp32Wav = require('mp3-to-wav');
 // ・Number of channels : 1 (monophonic sound)
 
 const sendClip = (req, res) => {
-  debugger;
   const data = new FormData();
   data.append('apikey', process.env.WEB_EMPATH);
   const file = req.files.mp3;
-  file.mv(`${__dirname}/test.mp3`);
 
-  const mp32Wav = new Mp32Wav(`${__dirname}/test.mp3`, `${__dirname}/test.wav`);
-  debugger;
-
-  mp32Wav
-    .decodeMp3()
-    .then((data) => {
-      debugger;
-    })
-    .catch((err) => {
-      debugger;
-    });
-
-  // const filed = new File(file.data, 'file.mp3', {
-  //   type: file.data.type,
-  //   lastModified: Date.now(),
-  // });
-  // debugger;
-  // mp32Wav.then((data) => {
-  //   debugger;
-  // });
-
-  // data.append('wav', fs.createReadStream(mp32Wav));
-  // // data.append('wav', file);
-  // debugger;
-  // axios({
-  //   method: 'post',
-  //   url: process.env.WEB_EMPATH_URL,
-  //   headers: {
-  //     ...data.getHeaders(),
-  //   },
-  //   data,
-  // })
-  //   .then((response) => {
-  //     res.status(201).send(response.data);
-  //   })
-  //   .catch((err) => {
-  //     debugger;
-  //     res.status(501).send(err);
-  //   });
+  file.mv(`${__dirname}/test.mp3`, () => {
+    const mp32Wav = new Mp32Wav(`${__dirname}/test.mp3`);
+    mp32Wav
+      .decodeMp3(`${__dirname}/test.mp3`)
+      .then((dat) => mp32Wav.saveForWav(dat.data, __dirname, 'test', 11025, 1))
+      .then((filePath) => {
+        data.append('wav', fs.createReadStream(filePath));
+        axios({
+          method: 'post',
+          url: process.env.WEB_EMPATH_URL,
+          headers: {
+            ...data.getHeaders(),
+          },
+          data,
+        })
+          .then((response) => {
+            res.status(201).send(response.data);
+          })
+          .catch((err) => {
+            res.status(501).send(err);
+          });
+      })
+      .catch((err) => {
+        res.status(501).send(err);
+      });
+  });
 };
 
 module.exports = {

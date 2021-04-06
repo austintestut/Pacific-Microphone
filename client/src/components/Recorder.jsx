@@ -59,7 +59,7 @@ class Recorder extends React.Component {
         .then(([buffer, blob]) => {
           const data = new FormData();
           const blobURL = URL.createObjectURL(blob);
-          debugger;
+
           this.setState({ blobURL, record: false });
           data.append(
             'mp3',
@@ -68,17 +68,16 @@ class Recorder extends React.Component {
               lastModified: Date.now(),
             })
           );
-          debugger;
           axios({
             method: 'post',
             url: '/speechAnalysisClip',
             data,
           })
             .then((response) => {
-              debugger;
+              console.log(response);
             })
             .catch((err) => {
-              debugger;
+              console.log(err);
             });
         })
         .catch((err) => console.error(err));
