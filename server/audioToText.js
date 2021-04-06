@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
-    apikey: process.env.WATSON_SPEECH_TO_TEXT,
+    apikey: 'axCJE3qhN00Ztj7vf0pnLNlRDGGuwWxyLZF6k81xK3A3',
   }),
   serviceUrl: process.env.WATSON_SPEECH_TO_TEXT_URL,
 });
@@ -33,6 +33,7 @@ const getTextFromAudio = (req, res) => {
   recognizeStream.on('data', (event) => {
     onEvent('Data:', event);
     res.status(200).send(`${event}`);
+    // We are not getting back the timestamps
   });
   recognizeStream.on('error', (event) => {
     onEvent('Error:', event);
