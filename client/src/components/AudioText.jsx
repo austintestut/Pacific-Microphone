@@ -6,7 +6,7 @@ const AudioText = function ({ data, blobURL, buffer, blob  }) {
 
   if(data !== null) {
 
-    let data1 = data.get('mp3')
+    // let data1 = data.get('mp3')
 
     axios({
       method: 'post',

@@ -68,6 +68,7 @@ class AppBody extends React.Component {
               <input
                 type="text"
                 id="modalTitleInput"
+                required
                 onChange={(e) => this.setState({ title: e.target.value })}
               />
             </div>
@@ -76,6 +77,7 @@ class AppBody extends React.Component {
               <input
                 type="text"
                 id="modalAuthorInput"
+                required
                 onChange={(e) => this.setState({ author: e.target.value })}
               />
             </div>
@@ -83,6 +85,7 @@ class AppBody extends React.Component {
               <label htmlFor="modalScriptInput">Script</label>
               <textarea
                 id="modalScriptInput"
+                required
                 onChange={(e) => this.setState({ scriptBody: e.target.value })}
               />
             </div>
