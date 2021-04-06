@@ -4,6 +4,7 @@ import axios from 'axios';
 import FormData from 'form-data';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { ReactMic } from 'react-mic';
+import AudioText from './AudioText.jsx';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -15,6 +16,8 @@ class Recorder extends React.Component {
       pause: false,
       isBlocked: false,
       blobURL: '',
+      buffer: [],
+      data: null
     };
 
     // this.handleDataRecord = this.handleDataRecord.bind(this);
@@ -60,19 +63,20 @@ class Recorder extends React.Component {
           const data = new FormData();
           const blobURL = URL.createObjectURL(blob);
 
-          this.setState({ blobURL, record: false });
           data.append(
             'mp3',
             new File(buffer, 'file.mp3', {
               type: blob.type,
               lastModified: Date.now(),
             })
-          );
-          axios({
-            method: 'post',
-            url: '/speechAnalysisClip',
-            data,
-          })
+            );
+            console.log('DATA2', data)
+            this.setState({ data, buffer, blob, blobURL, record: false });
+            axios({
+              method: 'post',
+              url: '/speechAnalysisClip',
+              data,
+            })
             .then((response) => {
               console.log(response);
             })
@@ -102,6 +106,8 @@ class Recorder extends React.Component {
     const { record, blobURL } = this.state;
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
+      <>
+      <div><AudioText data={this.state.data} blob={this.state.blob} buffer={this.state.buffer} blobURL={this.state.blobURL}/></div>
       <div id="mic">
         {/* <ReactMic
            record={record} // defaults -> false.  Set to true to begin recording
@@ -131,6 +137,7 @@ class Recorder extends React.Component {
         </button>
         <audio src={blobURL} controls="controls" />
       </div>
+      </>
     );
   }
 }

@@ -11,10 +11,14 @@ const speechToText = new SpeechToTextV1({
   serviceUrl: process.env.WATSON_SPEECH_TO_TEXT_URL,
 });
 
+
+
 const getTextFromAudio = (req, res) => {
+debugger;
+  fs.writeFileSync('audioToText.mp3', req.body.data);
 
   const params = {
-    contentType: 'application/octet-stream',
+    contentType: 'audio/mp3',
     objectMode: true,
     timestamps: true,
     wordconfidence: true,
@@ -23,7 +27,7 @@ const getTextFromAudio = (req, res) => {
 
   const recognizeStream = speechToText.recognizeUsingWebSocket(params);
 
-  fs.createReadStream(`${__dirname }/test.flac`).pipe(recognizeStream);
+  fs.createReadStream('./audioToText.mp3').pipe(recognizeStream);
 
   recognizeStream.on('data', (event) => {
     onEvent('Data:', event);
