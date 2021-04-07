@@ -130,7 +130,6 @@ class Recorder extends React.Component {
 
   render() {
     const { record, blobURL } = this.state;
-    // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
       <div id="mic">
         <ReactMic
