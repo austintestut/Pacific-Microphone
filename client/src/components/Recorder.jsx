@@ -4,6 +4,7 @@ import axios from 'axios';
 import FormData from 'form-data';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { ReactMic } from 'react-mic';
+import AudioText from './AudioText.jsx';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128, sampleRate: 11025 });
 
@@ -111,6 +112,7 @@ class Recorder extends React.Component {
   handleEndRecordFull(data) {
     this.setState({
       blobURL: data.blobURL,
+      fullBlob: data
     });
   }
 
@@ -129,9 +131,11 @@ class Recorder extends React.Component {
   }
 
   render() {
-    const { record, blobURL } = this.state;
+    const { record, blobURL, fullBlob } = this.state;
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
+      <>
+      <AudioText blobURL={blobURL} fullBlob={fullBlob}/>
       <div id="mic">
         <ReactMic
           record={record} // defaults -> false.  Set to true to begin recording
@@ -157,6 +161,7 @@ class Recorder extends React.Component {
         </button>
         <audio src={blobURL} controls="controls" />
       </div>
+      </>
     );
   }
 }

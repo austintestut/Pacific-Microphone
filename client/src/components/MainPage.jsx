@@ -7,7 +7,9 @@ import VoiceAnalyzer from './VoiceAnalyzer';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      voiceAnalysisData: []
+    };
     this.addDataForVoiceAnalysis = this.addDataForVoiceAnalysis.bind(this);
   }
 
