@@ -9,7 +9,7 @@ import TextAnalysisChart from './TextAnalysisChart';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { voiceAnalysisData: [] };
     this.addDataForVoiceAnalysis = this.addDataForVoiceAnalysis.bind(this);
   }
 
@@ -21,6 +21,7 @@ class MainPage extends React.Component {
 
   render() {
     const { page, selectedScript } = this.props;
+    const { voiceAnalysisData } = this.state;
     return (
       <div id="mainPage">
         <h2>Page: {page}</h2>
@@ -33,7 +34,7 @@ class MainPage extends React.Component {
         ) : page === 'voiceAnalyzer' ? (
           <>
             <VoiceAnalyzer sendDataToMainPage={this.addDataForVoiceAnalysis} />
-            <VoiceAnalysisChart />
+            <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData}/>
           </>
         ) : page === 'livePractice' ? (
           <LivePerformance />
