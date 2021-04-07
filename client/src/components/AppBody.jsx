@@ -39,7 +39,7 @@ class AppBody extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { userId } = this.props;
+    const { userId, getScripts } = this.props;
     const { title, author, scriptBody } = this.state;
     const objScript = {
       userId,
@@ -49,7 +49,10 @@ class AppBody extends React.Component {
     };
     axios
       .post('/uploadScript', objScript)
-      .then((result) => console.log(result))
+      .then((result) => {
+        getScripts();
+        console.log(result);
+      })
       .catch((error) => console.error(error));
 
     this.toggleModal();
