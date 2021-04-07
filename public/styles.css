@@ -78,4 +78,19 @@ body {
 
 .playButton {
   position: absolute;
+.recorder {
+  height: 300px;
+}
+
+#newScriptButton {
+  margin-top: auto;
+}
+
+#newScriptModal {
+  top: '50%';
+  left: '50%';
+  right: 'auto';
+  bottom: 'auto';
+  margin-right: '-50%';
+  transform: 'translate(-50%, -50%)';
 }

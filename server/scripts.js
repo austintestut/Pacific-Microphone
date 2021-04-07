@@ -1,4 +1,5 @@
 /* eslint-disable no-plusplus */
+const axios = require('axios');
 const DB = require('../database/index');
 
 const scriptFetcher = (req, res) => {
@@ -12,49 +13,63 @@ const scriptFetcher = (req, res) => {
 };
 
 const addScriptToDB = (userId, scriptObj, res) => {
-  //pushes script todatabase
-  DB.Users.update({_id: userId}, {$push: {listScripts: scriptObj}}, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
+  DB.Users.update(
+    { _id: userId },
+    { $push: { listScripts: scriptObj } },
+    (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(data);
+      }
     }
-  })
-}
+  );
+};
 
 const makeTextBlocks = (req, res) => {
-  //separates script into text blocks by character
+  const { userId, title, author, scriptBody } = req.body;
 
-  const {userId, title, author, scriptBody} = req.body
+  const text = `\n${scriptBody}`;
 
-  const text = `\n${  scriptBody}`
+  const charList = new Set();
+  const blocks = [];
+  let rawScript = '';
 
-  const regex = /\n ?[A-Z\d]+ ?\n/g
-  const arrOfCharacters = text.match(regex)
-  const arrOfDialogue = text.split(regex)
+  const regex = /\n ?[A-Z\d ]+ ?\n/g;
+  if (!regex.test(text)) {
+    charList.add('SPEAKER');
+    rawScript += text;
+    blocks.push({
+      character: 'SPEAKER',
+      text: text.trim(),
+    });
+  } else {
+    const arrOfCharacters = text.match(regex);
+    const arrOfDialogue = text.split(regex);
+    rawScript += arrOfDialogue.join(' ');
 
-  if (arrOfDialogue[0] === '') arrOfDialogue.shift()
+    if (arrOfDialogue[0] === '') arrOfDialogue.shift();
 
-  const blocks = []
-
-  for (let i = 0; i < arrOfCharacters.length; i++) {
+    for (let i = 0; i < arrOfCharacters.length; i++) {
+      charList.add(arrOfCharacters[i].trim());
       blocks.push({
-          character: arrOfCharacters[i].trim(),
-          text: arrOfDialogue[i].trim()
-      })
+        character: arrOfCharacters[i].trim(),
+        text: arrOfDialogue[i].trim(),
+      });
+    }
   }
 
   const newScriptObj = {
     title,
     author,
-    talkingBlocks: blocks
-  }
+    characterList: [...charList],
+    talkingBlocks: blocks,
+  };
 
-  addScriptToDB(userId, newScriptObj, res)
-
-}
+  addScriptToDB(userId, newScriptObj, res);
+};
 
 module.exports = {
   scriptFetcher,
-  makeTextBlocks
-}
+  makeTextBlocks,
+};

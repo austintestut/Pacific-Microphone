@@ -3,7 +3,6 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 const fs = require('fs');
 require('dotenv').config();
 
-
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
     apikey: process.env.WATSON_SPEECH_TO_TEXT,
@@ -12,45 +11,38 @@ const speechToText = new SpeechToTextV1({
 });
 
 const getTextFromAudio = (req, res) => {
-
-  const settings = {
+  const params = {
     contentType: 'application/octet-stream',
     objectMode: true,
     timestamps: true,
-    wordconfidence: true
-  };
-
-  const params = {
-    audio: fs.createReadStream(`${__dirname}/test.flac`),
-    settings,
-    headers: {transferEncoding: 'chunked'}
+    wordconfidence: true,
+    headers: { transferEncoding: 'chunked' },
   };
 
   const recognizeStream = speechToText.recognizeUsingWebSocket(params);
 
-  fs.createReadStream(`${__dirname }/test.flac`).pipe(recognizeStream);
+  fs.createReadStream(`${__dirname}/test.flac`).pipe(recognizeStream);
 
   recognizeStream.on('data', (event) => {
     onEvent('Data:', event);
-    res.status(200).send(`${event}`);
+    res.status(200).send(JSON.stringify(event, null, 2));
+    // We are not getting back the timestamps
   });
   recognizeStream.on('error', (event) => {
     onEvent('Error:', event);
-    res.status(500).send(JSON.stringify(event, null, 2))
+    res.status(500).send(JSON.stringify(event, null, 2));
   });
   recognizeStream.on('close', (event) => {
     onEvent('Close:', event);
   });
+};
+
+// Displays events on the console.
+function onEvent(name, event) {
+  console.log(name, JSON.stringify(event, null, 2));
+  console.log(`${event}`);
 }
 
-  // Displays events on the console.
-  function onEvent(name, event) {
-    console.log(name, JSON.stringify(event, null, 2));
-    console.log(`${event}`)
-  }
-
-  module.exports = {
-    getTextFromAudio,
-  };
-
-
+module.exports = {
+  getTextFromAudio,
+};

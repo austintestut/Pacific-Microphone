@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
 import AppHeader from './AppHeader';
@@ -74,7 +75,7 @@ class App extends React.Component {
         {authenticated && (
           <div>
             <AppHeader user={user} />
-            <AppBody scriptList={scriptList} />
+            <AppBody scriptList={scriptList} userId={userId} />
           </div>
         )}
       </div>
