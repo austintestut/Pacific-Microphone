@@ -153,7 +153,7 @@ class Recorder extends React.Component {
 
   checkPerms() {
     navigator.getUserMedia(
-      { audio: { sampleRate: 11025 } },
+      { audio: true },
       () => {
         console.log('Permission Granted');
         this.setState({ isBlocked: false });
