@@ -24,9 +24,9 @@ class AppBody extends React.Component {
         },
         {
           score: 1,
-          tone_id: "joy",
-          tone_name: "Joy"
-          }
+          tone_id: 'joy',
+          tone_name: 'Joy',
+        },
       ],
     };
 
@@ -54,9 +54,12 @@ class AppBody extends React.Component {
     this.toggleModal();
   }
 
-  toggleModal() {
-    const { showModal } = this.state;
-    this.setState({ showModal: !showModal });
+  // to be used as an onClick for each sentence on text analysis page
+  getClickedSentenceTone(selectedSentence) {
+    const { watsonAnalysis } = this.state;
+    this.setState({
+      currentSentenceTones: watsonAnalysis[selectedSentence],
+    });
   }
 
   changeSelectedPage(page) {
@@ -68,11 +71,9 @@ class AppBody extends React.Component {
     this.setState({ selectedScriptIndex: index });
   }
 
-  // to be used as an onClick for each sentence on text analysis page
-  getClickedSentenceTone(selectedSentence) {
-    this.setState({
-      currentSentenceTones: this.state.watsonAnalysis[selectedSentence],
-    });
+  toggleModal() {
+    const { showModal } = this.state;
+    this.setState({ showModal: !showModal });
   }
 
   render() {
