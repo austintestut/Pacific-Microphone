@@ -11,8 +11,7 @@ class VoiceAnalyzer extends React.Component {
   render() {
     const { sendDataToMainPage, audioToText } = this.props;
     return (
-      <div>
-        VoiceAnalyzer is working
+      <div className="voiceRecorderAndTextContainer">
         <Recorder sendDataToMainPage={sendDataToMainPage} />
         <AudioText audioToText={audioToText} />
       </div>

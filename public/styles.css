@@ -22,14 +22,14 @@ body {
   right: 45%;
   height: 100px;
   width: 200px;
-  background-image:linear-gradient(#deb4ff, #ffffff);
+  background-image: linear-gradient(#deb4ff, #ffffff);
   font-size: 20px;
   border-radius: 10px;
 }
 
-#LoginButton:hover{
-cursor: pointer;
-background-image:linear-gradient(#ffffff, #deb4ff);
+#LoginButton:hover {
+  cursor: pointer;
+  background-image: linear-gradient(#ffffff, #deb4ff);
 }
 
 #appHeader {
@@ -107,6 +107,7 @@ background-image:linear-gradient(#ffffff, #deb4ff);
 
 .recorder {
   height: 300px;
+  width: 30vw;
 }
 
 #newScriptButton {
@@ -130,4 +131,22 @@ background-image:linear-gradient(#ffffff, #deb4ff);
 #TextAnalysisChart {
   height: 400px;
   width: 800px;
+}
+
+.voiceRecorderAndTextContainer {
+  display: flex;
+  width: 75vw;
+}
+
+#mic {
+  width: 30vw;
+  background-color: aliceblue;
+}
+
+#audioTextDisplay {
+  color: black;
+  width: 45vw;
+  text-align: center;
+  overflow-y: scroll;
+  background-color: aqua;
 }
