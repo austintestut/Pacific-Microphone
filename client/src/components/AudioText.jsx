@@ -34,8 +34,6 @@ const AudioText = ({ fullBlob, blobURL, sendDataToMainPage, sendDataToRecorder, 
         })
 
       })
-
-
   }
 
   return (
