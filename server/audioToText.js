@@ -13,7 +13,7 @@ const speechToText = new SpeechToTextV1({
 
 
 const getTextFromAudio = (req, res) => {
-debugger;
+
   fs.writeFileSync('audioToText.mp3', req.body.data);
 
   const params = {

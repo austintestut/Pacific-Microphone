@@ -2,22 +2,27 @@ import React from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
 
-const AudioText = function ({ data, blobURL, buffer, blob  }) {
+const AudioText = ({ fullBlob, blobURL }) => {
 
-  if(data !== null) {
+  if (fullBlob) {
+    const data = new FormData()
+    data.append(
+      'mp3',
+      blobURL
+    );
 
-    // let data1 = data.get('mp3')
 
     axios({
       method: 'post',
       url: '/audioToText',
-      data: {data: data1 },
-      // contentType: 'application/octet-stream',
+      data,
     })
     .then(response => {
+      debugger;
       console.log(response)
     })
     .catch(error => {
+      debugger;
       console.error(error)
     })
 
