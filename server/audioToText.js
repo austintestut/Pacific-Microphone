@@ -2,6 +2,7 @@ const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const fs = require('fs');
 require('dotenv').config();
+const sox = require('sox');
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
@@ -10,11 +11,9 @@ const speechToText = new SpeechToTextV1({
   serviceUrl: process.env.WATSON_SPEECH_TO_TEXT_URL,
 });
 
-
-
 const getTextFromAudio = (req, res) => {
 
-  fs.writeFileSync('audioToText.mp3', req.body.data);
+  fs.writeFileSync('audioToText.mp3', req.files.mp3.data);
 
   const params = {
     contentType: 'audio/mp3',
