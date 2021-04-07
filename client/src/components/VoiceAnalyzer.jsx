@@ -1,5 +1,6 @@
 import React from 'react';
 import Recorder from './Recorder';
+import AudioText from './AudioText';
 
 class VoiceAnalyzer extends React.Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class VoiceAnalyzer extends React.Component {
     return (
       <div>
         VoiceAnalyzer is working
-        <Recorder sendDataToMainPage={sendDataToMainPage} audioToText={audioToText}/>
+        <Recorder sendDataToMainPage={sendDataToMainPage} />
+        <AudioText audioToText={audioToText} />
       </div>
     );
   }

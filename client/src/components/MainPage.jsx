@@ -91,7 +91,10 @@ class MainPage extends React.Component {
           </>
         ) : page === 'voiceAnalyzer' ? (
           <>
-            <VoiceAnalyzer sendDataToMainPage={this.sendDataToMainPage} audioToText={audioToText}/>
+            <VoiceAnalyzer
+              sendDataToMainPage={this.sendDataToMainPage}
+              audioToText={audioToText}
+            />
             <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData} />
           </>
         ) : page === 'livePractice' ? (
