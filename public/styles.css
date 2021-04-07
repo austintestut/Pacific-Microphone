@@ -64,11 +64,13 @@ body {
 .scriptDisplay {
   text-align: center;
   overflow-y: scroll;
-  height: 400px;
+  max-height: 530px;
 }
 
 .talkingBlock {
   margin: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .title,

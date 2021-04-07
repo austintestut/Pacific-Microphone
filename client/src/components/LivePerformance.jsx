@@ -8,7 +8,8 @@ class LivePerformance extends React.Component {
     super(props);
     this.state = {
       audios: [],
-      pointer: 0,
+      audioIndexes: [],
+      pointer: -1,
     };
 
     this.playNext = this.playNext.bind(this);
@@ -31,9 +32,19 @@ class LivePerformance extends React.Component {
       })
       .then((result) => {
         const audioPaths = result.data;
-        const audios = audioPaths.map((path) => new Audio(path));
+        // create index array ['audio0.wav']
+        // audio.Paths.map()
+        // [0,2,4,6,8,10]
+        // ['audio0','audio2','audio4'...]
+        // [{path: 'audio0.wav', index: 0}]
+        const audioIndexes = [];
+        const audios = audioPaths.map((path) => {
+          audioIndexes.push(path.audioIndex);
+          return new Audio(path.path);
+        });
         this.setState({
           audios,
+          audioIndexes,
         });
       })
       .catch((err) => {
@@ -43,10 +54,13 @@ class LivePerformance extends React.Component {
 
   playNext() {
     const { audios, pointer } = this.state;
-    audios[pointer].play();
+    const nextPointer = pointer + 1;
+    audios[nextPointer].play();
     this.setState({
-      pointer: pointer + 1,
+      pointer: nextPointer,
     });
+    var elmnt = document.getElementById('highLighted');
+    elmnt.scrollIntoView();
   }
 
   playPrevious() {
@@ -54,15 +68,16 @@ class LivePerformance extends React.Component {
     const previousPointer = pointer - 1;
     audios[previousPointer].play();
     this.setState({ pointer: previousPointer });
+    var elmnt = document.getElementById('highLighted');
+    elmnt.scrollIntoView(false);
   }
 
   render() {
-    const { audios, pointer } = this.state;
+    const { audios, pointer, audioIndexes } = this.state;
     const { script } = this.props;
-
     return (
       <div className="livePerformanceContainer">
-        <ScriptDisplay script={script} />
+        <ScriptDisplay script={script} currentIndex={audioIndexes[pointer]} />
         <LPPlayButtons
           audiosLength={audios.length}
           pointer={pointer}
