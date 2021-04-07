@@ -61,6 +61,23 @@ body {
   flex-direction: column;
 }
 
+.scriptDisplay {
+  text-align: center;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.talkingBlock {
+  margin: 25px;
+}
+
+.title,
+.author {
+  font-weight: bold;
+}
+
+.playButton {
+  position: absolute;
 .recorder {
   height: 300px;
 }
