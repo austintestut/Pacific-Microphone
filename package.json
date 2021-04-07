@@ -29,6 +29,7 @@
     "form-data": "^2.3.3",
     "ibm-watson": "^6.0.3",
     "jest": "^26.6.3",
+    "lodash": "^4.17.21",
     "mic-recorder-to-mp3": "^2.2.2",
     "mongo": "^0.1.0",
     "mongoose": "^5.12.3",
@@ -38,10 +39,10 @@
     "passport-google-oauth20": "^2.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "victory": "^35.4.13",
     "react-mic": "^12.4.6",
     "react-modal": "^3.12.1",
-    "sox": "^0.1.0"
+    "sox": "^0.1.0",
+    "victory": "^35.4.13"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

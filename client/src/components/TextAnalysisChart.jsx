@@ -1,32 +1,11 @@
-import React, { Component } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import { VictoryChart, VictoryBar, VictoryAxis, VictoryTheme } from 'victory';
 
 class TextAnalysisChart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      watsonScores: {
-        // hard coded
-        categories: [
-          'Anger',
-          'Joy',
-          'Fear',
-          'Sadness',
-          'Analytical',
-          'Confident',
-          'Tentative',
-        ],
-        values: {
-          Anger: 3,
-          Joy: 63,
-          Fear: 14,
-          Sadness: 36,
-          Analytical: 99,
-          Confident: 25,
-          Tentative: 69,
-        },
-      },
-    };
+    this.state = {};
     this.toneColors = {
       Anger: '#d10e00',
       Joy: '#75ffe1',
@@ -37,13 +16,29 @@ class TextAnalysisChart extends React.Component {
       Tentative: '#fcba03',
     };
   }
+  /*
+        // hard coded
+      // value of current sentence will be sent here (as props?)
+      sentenceTones: [
+        {
+          score: 0.895415,
+          tone_id: 'analytical',
+          tone_name: 'Analytical',
+        },
+        {
+          score: 0.895415,
+          tone_id: 'analytical',
+          tone_name: 'Analytical',
+        },
+      ],
+  */
 
   render() {
-    const { watsonScores } = this.state;
-    const data = watsonScores.categories.map((category) => ({
-      x: category,
-      y: watsonScores.values[category],
-      fill: this.toneColors[category],
+    const { currentSentenceTones } = this.props;
+    const data = currentSentenceTones.map((tone) => ({
+      x: tone.tone_name,
+      y: tone.score * 100,
+      fill: this.toneColors[tone.tone_name],
     }));
     return (
       <div id="TextAnalysisChart">

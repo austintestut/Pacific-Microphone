@@ -4,7 +4,6 @@ import axios from 'axios';
 import FormData from 'form-data';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { ReactMic } from 'react-mic';
-import AudioText from './AudioText.jsx';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128, sampleRate: 11025 });
 
@@ -25,6 +24,7 @@ class Recorder extends React.Component {
     this.checkPerms = this.checkPerms.bind(this);
     this.handleStartRecord = this.handleStartRecord.bind(this);
     this.handleSendSegment = this.handleSendSegment.bind(this);
+    this.sendDataToRecorder = this.sendDataToRecorder.bind(this);
   }
 
   componentDidMount() {
@@ -82,7 +82,7 @@ class Recorder extends React.Component {
             recieved.push(response.data);
             this.setState(
               {
-                recieved: recieved,
+                recieved,
                 buffer,
               },
               this.handleEndRecord
@@ -102,19 +102,53 @@ class Recorder extends React.Component {
     const { sent, record, recieved } = this.state;
     const { sendDataToMainPage } = this.props;
     if (sent === recieved.length && record === false) {
-      sendDataToMainPage(recieved);
-      this.setState({
-        sent: 0,
-        recieved: [],
-      });
+      setTimeout(() => {
+        if (sent === this.state.sent) {
+          sendDataToMainPage(recieved, 'voiceAnalysisData');
+          this.setState({
+            sent: 0,
+            recieved: [],
+          });
+        }
+      }, 5000);
     }
   }
 
-  handleEndRecordFull(data) {
-    this.setState({
-      blobURL: data.blobURL,
-      fullBlob: data,
-    });
+  handleEndRecordFull(datar) {
+    this.setState(
+      {
+        blobURL: datar.blobURL,
+        fullBlob: datar,
+      },
+      () => {
+        const { blobURL } = this.state;
+        const { sendDataToMainPage } = this.props;
+        fetch(blobURL)
+          .then((res) => res.blob())
+          .then((buffer) => {
+            const data = new FormData();
+            data.append(
+              'webm',
+              new File([buffer], 'AudioToText.webm', {
+                type: 'audio/webm',
+                enctype: 'multipart/form-data',
+                lastModified: Date.now(),
+              })
+            );
+            axios({
+              method: 'post',
+              url: '/audioToText',
+              data,
+            })
+              .then((response) => {
+                sendDataToMainPage(response, 'audioToText');
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          });
+      }
+    );
   }
 
   checkPerms() {
@@ -131,12 +165,17 @@ class Recorder extends React.Component {
     );
   }
 
+  sendDataToRecorder(data, name) {
+    this.setState({
+      [name]: data,
+    });
+  }
+
   render() {
-    const { record, blobURL, buffer } = this.state;
+    const { record, blobURL } = this.state;
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
       <>
-        <AudioText buffer={buffer} />
         <div id="mic">
           <ReactMic
             record={record} // defaults -> false.  Set to true to begin recording
