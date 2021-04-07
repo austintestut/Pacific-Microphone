@@ -33,9 +33,14 @@ class AppBody extends React.Component {
       author,
       scriptBody,
     };
+
     axios
       .post('/uploadScript', objScript)
-      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+
+    axios
+      .post('/textToneAnalysis', {text: scriptBody, title, userId})
+      .then(data => console.log(data))
       .catch((error) => console.error(error));
 
     this.toggleModal();
