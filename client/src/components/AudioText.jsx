@@ -2,39 +2,46 @@ import React from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
 
-const AudioText = ({ buffer }) => {
-  if (buffer) {
-    // debugger;
-    const data = new FormData()
-    data.append(
-      'mp3',
-      new File(buffer, 'AudioToText.mp3', {
-        type: 'audio/mpeg',
-        enctype: "multipart/form-data",
-        lastModified: Date.now(),
+const AudioText = ({ fullBlob, blobURL, sendDataToMainPage, sendDataToRecorder, audioToText }) => {
+  if (fullBlob) {
+
+    fetch(blobURL)
+    .then(res => {
+      return res.blob()
+    })
+      .then(buffer => {
+
+        const data = new FormData()
+        data.append(
+          'webm',
+          new File([buffer], 'AudioToText.webm', {
+            type: 'audio/webm',
+            enctype: "multipart/form-data",
+            lastModified: Date.now(),
+          })
+        );
+        axios({
+          method: 'post',
+          url: '/audioToText',
+          data,
+        })
+        .then(response => {
+          sendDataToMainPage(response, 'audioToText');
+          sendDataToRecorder(null, 'fullBlob');
+        })
+        .catch(error => {
+          console.error(error)
+        })
+
       })
-    );
-    // debugger;
-    axios({
-      method: 'post',
-      url: '/audioToText',
-      data,
-    })
-    .then(response => {
-      // debugger;
-      console.log(response)
-    })
-    .catch(error => {
-      // debugger;
-      console.error(error)
-    })
+
 
   }
 
   return (
-    <div>Audio Text Output Here</div>
+    <div>{'this'}</div>
+    //audioToText.data.results[0].transcript
   )
-
 }
 
 export default AudioText;

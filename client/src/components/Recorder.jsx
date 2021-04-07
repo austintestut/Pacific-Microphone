@@ -14,7 +14,7 @@ class Recorder extends React.Component {
     this.state = {
       record: false,
       isBlocked: false,
-      blobURL: '',
+    blobURL: '',
       sent: 0,
       recieved: [],
     };
@@ -25,6 +25,7 @@ class Recorder extends React.Component {
     this.checkPerms = this.checkPerms.bind(this);
     this.handleStartRecord = this.handleStartRecord.bind(this);
     this.handleSendSegment = this.handleSendSegment.bind(this);
+    this.sendDataToRecorder = this.sendDataToRecorder.bind(this);
   }
 
   componentDidMount() {
@@ -102,15 +103,19 @@ class Recorder extends React.Component {
     const { sent, record, recieved } = this.state;
     const { sendDataToMainPage } = this.props;
     if (sent === recieved.length && record === false) {
-      sendDataToMainPage(recieved);
-      this.setState({
-        sent: 0,
-        recieved: [],
-      });
+      setTimeout((() => {
+        if(sent === this.state.sent) {
+          sendDataToMainPage(recieved, 'voiceAnalysisData');
+          this.setState({
+            sent: 0,
+            recieved: [],
+          });
+        }
+      }).bind(this), 5000)
     }
   }
 
-  handleEndRecordFull(data) {
+  handleEndRecordFull(data,) {
     this.setState({
       blobURL: data.blobURL,
       fullBlob: data,
@@ -131,12 +136,19 @@ class Recorder extends React.Component {
     );
   }
 
+  sendDataToRecorder(data, name) {
+    this.setState({
+      [name]: data,
+    });
+  }
+
   render() {
-    const { record, blobURL, buffer } = this.state;
+    const { record, blobURL, fullBlob } = this.state;
+    const { sendDataToMainPage, audioToText } = this.props;
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
       <>
-      <AudioText buffer={buffer}/>
+      <AudioText blobURL={blobURL} fullBlob={fullBlob} sendDataToRecorder={this.sendDataToRecorder} sendDataToMainPage={sendDataToMainPage} audioToText={audioToText}/>
       <div id="mic">
         <ReactMic
           record={record} // defaults -> false.  Set to true to begin recording
