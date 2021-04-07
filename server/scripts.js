@@ -1,4 +1,5 @@
 /* eslint-disable no-plusplus */
+const axios = require('axios');
 const DB = require('../database/index');
 
 const scriptFetcher = (req, res) => {
@@ -32,10 +33,12 @@ const makeTextBlocks = (req, res) => {
 
   const charList = new Set();
   const blocks = [];
+  let rawScript = '';
 
   const regex = /\n ?[A-Z\d ]+ ?\n/g;
   if (!regex.test(text)) {
     charList.add('SPEAKER');
+    rawScript += text;
     blocks.push({
       character: 'SPEAKER',
       text: text.trim(),
@@ -43,6 +46,7 @@ const makeTextBlocks = (req, res) => {
   } else {
     const arrOfCharacters = text.match(regex);
     const arrOfDialogue = text.split(regex);
+    rawScript += arrOfDialogue.join(' ');
 
     if (arrOfDialogue[0] === '') arrOfDialogue.shift();
 
