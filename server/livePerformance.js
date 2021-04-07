@@ -29,25 +29,12 @@ const watsonGetAudio = (text, title, index) => {
       }.wav`;
       fs.writeFileSync(filePath, repairedFile);
       console.log('audio.wav written with a corrected wav header');
-      return filePath;
+      return `./livePerformanceAudio/${title + index}.wav`;
     })
     .catch((err) => {
       console.log('watson err: ', err);
     });
 };
-
-// const UserSchema = mongoose.Schema({
-//   userName: String,
-//   googleId: String,
-//   listScripts: [
-//     ScriptSchema
-//   ]
-// });
-
-// user1 'story1' -> contents1
-// user2 'story1' -> contents2
-
-// users -> script from list -> grab
 
 const getAudio = (req, res) => {
   debugger;
@@ -62,7 +49,6 @@ const getAudio = (req, res) => {
     }
   }
   return Promise.all(talkingBlockPromises).then((response) => {
-    // console.log('Promise.all responce: ', response);
     res.send(response);
   });
 };

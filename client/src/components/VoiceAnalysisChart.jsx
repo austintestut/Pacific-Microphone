@@ -17,33 +17,22 @@ class VoiceAnalysisChart extends Component {
     let timestamp = 0;
     const { voiceAnalysisData } = this.props;
     if (voiceAnalysisData[0]?.error !== 0) {
-      return (
-        <div>
-          Record to graph voice analysis data
-        </div>
-      );
+      return <div>Record to graph voice analysis data</div>;
     }
-    const angerData = [{x: 0, y: 0}];
-    const sadnessData = [{x: 0, y: 0}];
-    const calmData = [{x: 0, y: 0}];
-    const joyData = [{x: 0, y: 0}];
-    const energyData = [{x: 0, y: 0}];
+    const angerData = [{ x: 0, y: 0 }];
+    const sadnessData = [{ x: 0, y: 0 }];
+    const calmData = [{ x: 0, y: 0 }];
+    const joyData = [{ x: 0, y: 0 }];
+    const energyData = [{ x: 0, y: 0 }];
     const ticks = [5];
     voiceAnalysisData.map((scoreSnapshot) => {
-
       timestamp += 5;
       ticks.push(timestamp + 5);
-      console.log('snapshot', scoreSnapshot)
       angerData.push({ x: timestamp, y: scoreSnapshot.anger });
       sadnessData.push({ x: timestamp, y: scoreSnapshot.sorrow });
       calmData.push({ x: timestamp, y: scoreSnapshot.calm });
       joyData.push({ x: timestamp, y: scoreSnapshot.joy });
       energyData.push({ x: timestamp, y: scoreSnapshot.energy });
-      console.log(angerData)
-      console.log(sadnessData)
-      console.log(calmData)
-      console.log(joyData)
-      console.log(energyData)
     });
     return (
       <div id="VoiceAnalysisChart">

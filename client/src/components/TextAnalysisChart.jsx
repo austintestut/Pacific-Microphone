@@ -84,7 +84,7 @@ class TextAnalysisChart extends React.Component {
             }}
             animate={{
               duration: 1000,
-              onLoad: { duration: 500 }
+              onLoad: { duration: 500 },
             }}
           />
         </VictoryChart>

@@ -3,7 +3,6 @@ import React from 'react';
 import axios from 'axios';
 import AppHeader from './AppHeader';
 import AppBody from './AppBody';
-import LivePerformance from './LivePerformance';
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +12,6 @@ class App extends React.Component {
       user: '',
       userId: '',
       scriptList: [],
-      audioPaths: [],
     };
     this.login = this.login.bind(this);
   }
@@ -80,7 +78,6 @@ class App extends React.Component {
             <AppBody scriptList={scriptList} userId={userId} />
           </div>
         )}
-        <LivePerformance />
       </div>
     );
   }
