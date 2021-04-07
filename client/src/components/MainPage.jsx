@@ -11,11 +11,8 @@ class MainPage extends React.Component {
     super(props);
     this.state = {
       voiceAnalysisData: [],
-<<<<<<< HEAD
       audioToText: '',
-=======
       clickedSentence: '',
->>>>>>> 172010f08481ad14b2e5d9207e10f9d08df5628a
     };
     this.sendDataToMainPage = this.sendDataToMainPage.bind(this);
   }
