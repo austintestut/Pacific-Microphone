@@ -16,6 +16,7 @@ class AppBody extends React.Component {
       title: '',
       author: '',
       scriptBody: '',
+      // hard coded
       currentSentenceTones: [
         {
           score: 0.895415,
