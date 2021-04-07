@@ -118,8 +118,8 @@ class Recorder extends React.Component {
   }
 
   checkPerms() {
-    navigator.getUserMedia(
-      { audio: { sampleRate: 11025 } },
+    navigator.mediaDevices.getUserMedia(
+      { audio: true },
       () => {
         console.log('Permission Granted');
         this.setState({ isBlocked: false });
@@ -136,32 +136,32 @@ class Recorder extends React.Component {
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
       <>
-      <AudioText buffer={buffer}/>
-      <div id="mic">
-        <ReactMic
-          record={record} // defaults -> false.  Set to true to begin recording
-          pause={false} // defaults -> false (available in React-Mic-Gold)
-          visualSetting="frequencyBars" // defaults -> "sinewave".  Other option is "frequencyBars"
-          className="recorder" // provide css class name
-          onStop={this.handleEndRecordFull} // required - called when audio stops recording
-          strokeColor="purple" // sinewave or frequency bar color
-          backgroundColor="white" // background color
-          mimeType="audio/mp3" // defaults -> "audio/webm".  Set to "audio/wav" for WAV or "audio/mp3" for MP3 audio format (available in React-Mic-Gold)
-          echoCancellation // defaults -> false
-          autoGainControl // defaults -> false
-          noiseSuppression // defaults -> false
-          channelCount={1} // defaults -> 2 (stereo).  Specify 1 for mono.
-          timeSlice={4999} // defaults -> 4000 milliseconds.  The interval at which captured audio is returned to onData callback (available in React-Mic-Gold).
-        />
-        <button
-          type="submit"
-          onClick={this.handlePlay}
-          value={record ? 'Stop' : 'Record'}
-        >
-          {record ? 'Stop' : 'Record'}
-        </button>
-        <audio src={blobURL} controls="controls" />
-      </div>
+        <AudioText buffer={buffer} />
+        <div id="mic">
+          <ReactMic
+            record={record} // defaults -> false.  Set to true to begin recording
+            pause={false} // defaults -> false (available in React-Mic-Gold)
+            visualSetting="frequencyBars" // defaults -> "sinewave".  Other option is "frequencyBars"
+            className="recorder" // provide css class name
+            onStop={this.handleEndRecordFull} // required - called when audio stops recording
+            strokeColor="purple" // sinewave or frequency bar color
+            backgroundColor="white" // background color
+            mimeType="audio/mp3" // defaults -> "audio/webm".  Set to "audio/wav" for WAV or "audio/mp3" for MP3 audio format (available in React-Mic-Gold)
+            echoCancellation // defaults -> false
+            autoGainControl // defaults -> false
+            noiseSuppression // defaults -> false
+            channelCount={1} // defaults -> 2 (stereo).  Specify 1 for mono.
+            timeSlice={4999} // defaults -> 4000 milliseconds.  The interval at which captured audio is returned to onData callback (available in React-Mic-Gold).
+          />
+          <button
+            type="submit"
+            onClick={this.handlePlay}
+            value={record ? 'Stop' : 'Record'}
+          >
+            {record ? 'Stop' : 'Record'}
+          </button>
+          <audio src={blobURL} controls="controls" />
+        </div>
       </>
     );
   }
