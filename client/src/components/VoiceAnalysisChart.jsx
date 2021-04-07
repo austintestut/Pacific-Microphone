@@ -10,63 +10,40 @@ import {
 class VoiceAnalysisChart extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // hard coded
-      empathScores: [
-        {
-          anger: 60,
-          sadness: 20,
-          confidence: 30,
-          joy: 40,
-          energy: 50,
-        },
-        {
-          anger: 10,
-          sadness: 20,
-          confidence: 30,
-          joy: 40,
-          energy: 50,
-        },
-        {
-          anger: 14,
-          sadness: 62,
-          confidence: 73,
-          joy: 14,
-          energy: 53,
-        },
-        {
-          anger: 32,
-          sadness: 4,
-          confidence: 20,
-          joy: 4,
-          energy: 78,
-        },
-        {
-          anger: 62,
-          sadness: 3,
-          confidence: 26,
-          joy: 53,
-          energy: 28,
-        },
-      ],
-    };
+    this.state = {};
   }
 
   render() {
     let timestamp = 0;
-    const { empathScores } = this.state;
-    const angerData = [];
-    const sadnessData = [];
-    const confidenceData = [];
-    const joyData = [];
-    const energyData = [];
-    empathScores.map((scoreSnapshot) => {
+    const { voiceAnalysisData } = this.props;
+    if (voiceAnalysisData[0]?.error !== 0) {
+      return (
+        <div>
+          Record to graph voice analysis data
+        </div>
+      );
+    }
+    const angerData = [{x: 0, y: 0}];
+    const sadnessData = [{x: 0, y: 0}];
+    const calmData = [{x: 0, y: 0}];
+    const joyData = [{x: 0, y: 0}];
+    const energyData = [{x: 0, y: 0}];
+    const ticks = [5];
+    voiceAnalysisData.map((scoreSnapshot) => {
+
       timestamp += 5;
+      ticks.push(timestamp + 5);
+      console.log('snapshot', scoreSnapshot)
       angerData.push({ x: timestamp, y: scoreSnapshot.anger });
-      sadnessData.push({ x: timestamp, y: scoreSnapshot.sadness });
-      confidenceData.push({ x: timestamp, y: scoreSnapshot.confidence });
+      sadnessData.push({ x: timestamp, y: scoreSnapshot.sorrow });
+      calmData.push({ x: timestamp, y: scoreSnapshot.calm });
       joyData.push({ x: timestamp, y: scoreSnapshot.joy });
       energyData.push({ x: timestamp, y: scoreSnapshot.energy });
+      console.log(angerData)
+      console.log(sadnessData)
+      console.log(calmData)
+      console.log(joyData)
+      console.log(energyData)
     });
     return (
       <div id="VoiceAnalysisChart">
@@ -82,7 +59,7 @@ class VoiceAnalysisChart extends Component {
             data={[
               { name: 'Anger', symbol: { fill: '#d10e00' } },
               { name: 'Sadness', symbol: { fill: '#0074cc' } },
-              { name: 'Confidence', symbol: { fill: '#662d91' } },
+              { name: 'Calmness', symbol: { fill: '#662d91' } },
               { name: 'Joy', symbol: { fill: '#75ffe1' } },
               { name: 'Energy', symbol: { fill: '#008c1e' } },
             ]}
@@ -102,7 +79,7 @@ class VoiceAnalysisChart extends Component {
             style={{
               tickLabels: { fontSize: 10 },
             }}
-            tickValues={[5, 10, 15, 20]}
+            tickValues={ticks}
             label="Time in seconds"
             standalone={false}
           />
@@ -140,7 +117,7 @@ class VoiceAnalysisChart extends Component {
               duration: 2000,
               onLoad: { duration: 1000 },
             }}
-            data={confidenceData}
+            data={calmData}
           />
           <VictoryLine
             interpolation="natural"
