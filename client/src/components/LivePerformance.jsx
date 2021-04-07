@@ -76,7 +76,7 @@ class LivePerformance extends React.Component {
     const { audios, pointer, audioIndexes } = this.state;
     const { script } = this.props;
     return (
-      <div className="livePerformanceContainer">
+      <div id="livePerformance">
         <ScriptDisplay script={script} currentIndex={audioIndexes[pointer]} />
         <LPPlayButtons
           audiosLength={audios.length}

@@ -70,6 +70,30 @@ class MainPage extends React.Component {
           text:
             'Why yes my fine fellow! That sounds like an positively delightful idea!',
         },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
       ],
     };
     const userCharacter = 'CHANDLER';

@@ -61,10 +61,14 @@ body {
   flex-direction: column;
 }
 
+#livePerformance {
+  height: 100%;
+}
+
 .scriptDisplay {
   text-align: center;
   overflow-y: scroll;
-  max-height: 530px;
+  height: 87%;
 }
 
 .talkingBlock {
