@@ -61,6 +61,25 @@ body {
   flex-direction: column;
 }
 
+.scriptDisplay {
+  text-align: center;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.talkingBlock {
+  margin: 25px;
+}
+
+.title,
+.author {
+  font-weight: bold;
+}
+
+.playButton {
+  position: absolute;
+}
+
 .recorder {
   height: 300px;
 }
@@ -76,4 +95,14 @@ body {
   bottom: 'auto';
   margin-right: '-50%';
   transform: 'translate(-50%, -50%)';
+}
+
+#VoiceAnalysisChart {
+  height: 400px;
+  width: 800px;
+}
+
+#TextAnalysisChart {
+  height: 400px;
+  width: 800px;
 }

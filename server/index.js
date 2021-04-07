@@ -7,6 +7,8 @@ const cookieSession = require('cookie-session');
 const fileUpload = require('express-fileupload');
 const auth = require('./authentication');
 const { scriptFetcher, makeTextBlocks } = require('./scripts.js');
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 const DB = require('../database/index');
 const SA = require('./speechAnalysis.js');
@@ -40,11 +42,7 @@ app.post('/speechAnalysisClip', SA.sendClip);
 
 app.post('/textToneAnalysis', TA.getTextToneAnalysis);
 
-app.post('/audioToText', AT.getTextFromAudio);
-
-app.post('/uploadScript', makeTextBlocks);
-
-app.post('/audioToText', AT.getTextFromAudio);
+app.post('/audioToText', upload.single('audioToText.mp3'), AT.getTextFromAudio);
 
 app.post('/uploadScript', makeTextBlocks);
 
