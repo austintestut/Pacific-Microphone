@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import AppHeader from './AppHeader';
 import AppBody from './AppBody';
+import LoginPage from './LoginPage';
 
 class App extends React.Component {
   constructor() {
@@ -65,12 +66,7 @@ class App extends React.Component {
     return (
       <div id="App">
         {!authenticated && (
-          <div>
-            <button type="button">
-              <a href="/google">Log in with Google</a>
-            </button>
-            <br />
-          </div>
+          <LoginPage />
         )}
         {authenticated && (
           <div>

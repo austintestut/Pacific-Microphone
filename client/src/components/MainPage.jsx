@@ -11,7 +11,11 @@ class MainPage extends React.Component {
     super(props);
     this.state = {
       voiceAnalysisData: [],
+<<<<<<< HEAD
       audioToText: '',
+=======
+      clickedSentence: '',
+>>>>>>> 172010f08481ad14b2e5d9207e10f9d08df5628a
     };
     this.sendDataToMainPage = this.sendDataToMainPage.bind(this);
   }
@@ -77,8 +81,8 @@ class MainPage extends React.Component {
     };
     const userCharacter = 'CHANDLER';
 
-    const { page, selectedScript } = this.props;
-    const { voiceAnalysisData, audioToText } = this.state;
+    const { page, selectedScript, currentSentenceTones } = this.props;
+    const { voiceAnalysisData, clickedSentence, audioToText} = this.state;
     return (
       <div id="mainPage">
         <h2>Page: {page}</h2>
@@ -87,7 +91,7 @@ class MainPage extends React.Component {
         {page === 'toneAnalyzer' ? (
           <>
             <div>Tone Analyzer</div>
-            <TextAnalysisChart />
+            <TextAnalysisChart currentSentenceTones={currentSentenceTones}/>
           </>
         ) : page === 'voiceAnalyzer' ? (
           <>

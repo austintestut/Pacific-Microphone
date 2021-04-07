@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import {
   VictoryChart,
   VictoryLine,
@@ -7,7 +8,7 @@ import {
   VictoryLegend,
 } from 'victory';
 
-class VoiceAnalysisChart extends Component {
+class VoiceAnalysisChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -24,15 +25,16 @@ class VoiceAnalysisChart extends Component {
     const calmData = [{ x: 0, y: 0 }];
     const joyData = [{ x: 0, y: 0 }];
     const energyData = [{ x: 0, y: 0 }];
-    const ticks = [5];
+    const ticks = [];
+    // eslint-disable-next-line array-callback-return
     voiceAnalysisData.map((scoreSnapshot) => {
       timestamp += 5;
-      ticks.push(timestamp + 5);
-      angerData.push({ x: timestamp, y: scoreSnapshot.anger });
-      sadnessData.push({ x: timestamp, y: scoreSnapshot.sorrow });
-      calmData.push({ x: timestamp, y: scoreSnapshot.calm });
-      joyData.push({ x: timestamp, y: scoreSnapshot.joy });
-      energyData.push({ x: timestamp, y: scoreSnapshot.energy });
+      ticks.push(timestamp);
+      angerData.push({ x: timestamp, y: scoreSnapshot.anger * 2 });
+      sadnessData.push({ x: timestamp, y: scoreSnapshot.sorrow * 2});
+      calmData.push({ x: timestamp, y: scoreSnapshot.calm * 2});
+      joyData.push({ x: timestamp, y: scoreSnapshot.joy * 2});
+      energyData.push({ x: timestamp, y: scoreSnapshot.energy * 2});
     });
     return (
       <div id="VoiceAnalysisChart">
