@@ -78,6 +78,8 @@ body {
 
 .playButton {
   position: absolute;
+}
+
 .recorder {
   height: 300px;
 }
@@ -93,4 +95,14 @@ body {
   bottom: 'auto';
   margin-right: '-50%';
   transform: 'translate(-50%, -50%)';
+}
+
+#VoiceAnalysisChart {
+  height: 400px;
+  width: 800px;
+}
+
+#TextAnalysisChart {
+  height: 400px;
+  width: 800px;
 }
