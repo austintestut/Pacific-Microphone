@@ -8,7 +8,7 @@ class MainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      voiceAnalysisData: []
+      voiceAnalysisData: [],
     };
     this.addDataForVoiceAnalysis = this.addDataForVoiceAnalysis.bind(this);
   }
@@ -30,11 +30,11 @@ class MainPage extends React.Component {
         },
         {
           character: 'CHANDLER',
-          text: 'hi',
+          text: 'Hi',
         },
         {
           character: 'SAM',
-          text: 'Hello I am Sam I am sam the man yeah I am Sam',
+          text: 'Hello I am Sam. I am Sam the man! Yeah I am Sam',
         },
         {
           character: 'CHANDLER',
@@ -46,27 +46,29 @@ class MainPage extends React.Component {
         },
         {
           character: 'CHANDLER',
-          text: 'Hello',
+          text: 'I enjoy green eggs and ham',
         },
         {
           character: 'SAM',
-          text: 'Hi',
+          text: 'Sam I am',
         },
         {
           character: 'CHANDLER',
-          text: 'Hello',
+          text: 'Do you like green eggs and ham?',
         },
         {
           character: 'SAM',
-          text: 'Hi',
+          text: 'I do like green eggs and ham! Sam I am!',
         },
         {
           character: 'CHANDLER',
-          text: 'Hello',
+          text:
+            'Wonderful! Shall we head to the nearest green eggs and ham establishment?',
         },
         {
           character: 'SAM',
-          text: 'Hi',
+          text:
+            'Why yes my fine fellow! That sounds like an positively delightful idea!',
         },
       ],
     };
