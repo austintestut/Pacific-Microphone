@@ -16,11 +16,25 @@ class AppBody extends React.Component {
       title: '',
       author: '',
       scriptBody: '',
+      // hard coded
+      currentSentenceTones: [
+        {
+          score: 0.895415,
+          tone_id: 'analytical',
+          tone_name: 'Analytical',
+        },
+        {
+          score: 1,
+          tone_id: 'joy',
+          tone_name: 'Joy',
+        },
+      ],
     };
 
     this.changeSelectedPage = this.changeSelectedPage.bind(this);
     this.changeSelectedScript = this.changeSelectedScript.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.getClickedSentenceTone = this.getClickedSentenceTone.bind(this);
   }
 
   handleSubmit(e) {
@@ -46,9 +60,12 @@ class AppBody extends React.Component {
     this.toggleModal();
   }
 
-  toggleModal() {
-    const { showModal } = this.state;
-    this.setState({ showModal: !showModal });
+  // to be used as an onClick for each sentence on text analysis page
+  getClickedSentenceTone(selectedSentence) {
+    const { watsonAnalysis } = this.state;
+    this.setState({
+      currentSentenceTones: watsonAnalysis[selectedSentence],
+    });
   }
 
   changeSelectedPage(page) {
@@ -60,8 +77,18 @@ class AppBody extends React.Component {
     this.setState({ selectedScriptIndex: index });
   }
 
+  toggleModal() {
+    const { showModal } = this.state;
+    this.setState({ showModal: !showModal });
+  }
+
   render() {
-    const { selectedPage, selectedScriptIndex, showModal } = this.state;
+    const {
+      selectedPage,
+      selectedScriptIndex,
+      showModal,
+      currentSentenceTones,
+    } = this.state;
     const { scriptList } = this.props;
     return (
       <div id="appBody">
@@ -109,6 +136,7 @@ class AppBody extends React.Component {
         <MainPage
           page={selectedPage}
           selectedScript={scriptList[selectedScriptIndex]}
+          currentSentenceTones={currentSentenceTones}
         />
       </div>
     );

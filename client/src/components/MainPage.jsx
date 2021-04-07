@@ -11,13 +11,15 @@ class MainPage extends React.Component {
     super(props);
     this.state = {
       voiceAnalysisData: [],
+      audioToText: '',
+      clickedSentence: '',
     };
-    this.addDataForVoiceAnalysis = this.addDataForVoiceAnalysis.bind(this);
+    this.sendDataToMainPage = this.sendDataToMainPage.bind(this);
   }
 
-  addDataForVoiceAnalysis(data) {
+  sendDataToMainPage(data, name) {
     this.setState({
-      voiceAnalysisData: data,
+      [name]: data,
     });
   }
 
@@ -76,8 +78,8 @@ class MainPage extends React.Component {
     };
     const userCharacter = 'CHANDLER';
 
-    const { page, selectedScript } = this.props;
-    const { voiceAnalysisData } = this.state;
+    const { page, selectedScript, currentSentenceTones } = this.props;
+    const { voiceAnalysisData, clickedSentence, audioToText} = this.state;
     return (
       <div id="mainPage">
         <h2>Page: {page}</h2>
@@ -86,11 +88,14 @@ class MainPage extends React.Component {
         {page === 'toneAnalyzer' ? (
           <>
             <div>{`${selectedScript?.watsonAnalysis}`}</div>
-            <TextAnalysisChart />
+            <TextAnalysisChart currentSentenceTones={currentSentenceTones}/>
           </>
         ) : page === 'voiceAnalyzer' ? (
           <>
-            <VoiceAnalyzer sendDataToMainPage={this.addDataForVoiceAnalysis} />
+            <VoiceAnalyzer
+              sendDataToMainPage={this.sendDataToMainPage}
+              audioToText={audioToText}
+            />
             <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData} />
           </>
         ) : page === 'livePractice' ? (
