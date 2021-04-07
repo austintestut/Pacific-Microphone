@@ -5,9 +5,11 @@ import FormData from 'form-data';
 const AudioText = ({ audioToText }) => (
     audioToText && (
       <div>
+        <div>
         {audioToText.data.results.map(result => (
-           <div>{result.alternatives[0].transcript}</div>
+           {result.alternatives[0].transcript}
           ))}
+        </div>
       </div>
     )
   );
