@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import {
   VictoryChart,
   VictoryLine,
@@ -7,7 +8,7 @@ import {
   VictoryLegend,
 } from 'victory';
 
-class VoiceAnalysisChart extends Component {
+class VoiceAnalysisChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,6 +26,7 @@ class VoiceAnalysisChart extends Component {
     const joyData = [{ x: 0, y: 0 }];
     const energyData = [{ x: 0, y: 0 }];
     const ticks = [];
+    // eslint-disable-next-line array-callback-return
     voiceAnalysisData.map((scoreSnapshot) => {
       timestamp += 5;
       ticks.push(timestamp);
