@@ -118,7 +118,7 @@ class Recorder extends React.Component {
   }
 
   checkPerms() {
-    navigator.mediaDevices.getUserMedia(
+    navigator.getUserMedia(
       { audio: true },
       () => {
         console.log('Permission Granted');
