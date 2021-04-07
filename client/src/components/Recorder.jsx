@@ -64,7 +64,7 @@ class Recorder extends React.Component {
         const data = new FormData();
         const blobURL = URL.createObjectURL(blob);
 
-        this.setState({ sent: sent + 1 });
+        this.setState({ sent: sent + 1, buffer });
         data.append(
           'mp3',
           new File(buffer, 'file.mp3', {
@@ -83,6 +83,7 @@ class Recorder extends React.Component {
             this.setState(
               {
                 recieved: recieved,
+                buffer,
               },
               this.handleEndRecord
             );
@@ -112,7 +113,7 @@ class Recorder extends React.Component {
   handleEndRecordFull(data) {
     this.setState({
       blobURL: data.blobURL,
-      fullBlob: data
+      fullBlob: data,
     });
   }
 
@@ -131,11 +132,11 @@ class Recorder extends React.Component {
   }
 
   render() {
-    const { record, blobURL, fullBlob } = this.state;
+    const { record, blobURL, buffer } = this.state;
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
       <>
-      <AudioText blobURL={blobURL} fullBlob={fullBlob}/>
+      <AudioText buffer={buffer}/>
       <div id="mic">
         <ReactMic
           record={record} // defaults -> false.  Set to true to begin recording

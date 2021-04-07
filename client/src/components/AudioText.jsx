@@ -2,27 +2,30 @@ import React from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
 
-const AudioText = ({ fullBlob, blobURL }) => {
-
-  if (fullBlob) {
+const AudioText = ({ buffer }) => {
+  if (buffer) {
+    // debugger;
     const data = new FormData()
     data.append(
       'mp3',
-      blobURL
+      new File(buffer, 'AudioToText.mp3', {
+        type: 'audio/mpeg',
+        enctype: "multipart/form-data",
+        lastModified: Date.now(),
+      })
     );
-
-
+    // debugger;
     axios({
       method: 'post',
       url: '/audioToText',
       data,
     })
     .then(response => {
-      debugger;
+      // debugger;
       console.log(response)
     })
     .catch(error => {
-      debugger;
+      // debugger;
       console.error(error)
     })
 
