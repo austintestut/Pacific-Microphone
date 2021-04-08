@@ -35,6 +35,7 @@ class AppBody extends React.Component {
     this.changeSelectedScript = this.changeSelectedScript.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.getClickedSentenceTone = this.getClickedSentenceTone.bind(this);
+    this.deleteScript = this.deleteScript.bind(this);
   }
 
   handleSubmit(e) {
@@ -70,6 +71,28 @@ class AppBody extends React.Component {
     this.setState({
       currentSentenceTones: watsonAnalysis[selectedSentence],
     });
+  }
+
+  deleteScript() {
+    console.log('in body function');
+    const { selectedScriptIndex } = this.state;
+    const { scriptList, userId, getScripts } = this.props;
+    if (selectedScriptIndex === null) {
+      return;
+    }
+    const scriptObj = scriptList[selectedScriptIndex];
+    axios
+      .post('/scripts/delete', {
+        scriptObj,
+        userId,
+      })
+      .then(() => {
+        getScripts();
+        this.setState({
+          selectedScriptIndex: null,
+        });
+      })
+      .catch((err) => console.error(err));
   }
 
   changeSelectedPage(page) {
@@ -136,6 +159,8 @@ class AppBody extends React.Component {
           changeSelectedScript={this.changeSelectedScript}
           scriptList={scriptList}
           toggleModal={this.toggleModal}
+          deleteScript={this.deleteScript}
+          selectedScriptIndex={selectedScriptIndex}
         />
         <MainPage
           page={selectedPage}

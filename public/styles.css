@@ -111,6 +111,8 @@ background-image:linear-gradient(#ffffff, #deb4ff);
 
 #deleteScriptButton {
   margin-top: auto;
+  background-color: #910000;
+  color: white;
 }
 
 #newScriptButton {
