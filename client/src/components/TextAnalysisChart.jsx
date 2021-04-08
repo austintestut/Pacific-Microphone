@@ -16,25 +16,12 @@ class TextAnalysisChart extends React.Component {
       Tentative: '#fcba03',
     };
   }
-  /*
-        // hard coded
-      // value of current sentence will be sent here (as props?)
-      sentenceTones: [
-        {
-          score: 0.895415,
-          tone_id: 'analytical',
-          tone_name: 'Analytical',
-        },
-        {
-          score: 0.895415,
-          tone_id: 'analytical',
-          tone_name: 'Analytical',
-        },
-      ],
-  */
 
   render() {
     const { currentSentenceTones } = this.props;
+    if (currentSentenceTones?.length === 0 || currentSentenceTones === undefined) {
+      return <div id="TextAnalysisChart">No analysis data</div>;
+    }
     const data = currentSentenceTones.map((tone) => ({
       x: tone.tone_name,
       y: tone.score * 100,
@@ -46,8 +33,8 @@ class TextAnalysisChart extends React.Component {
         <VictoryChart
           padding={100}
           theme={VictoryTheme.material}
-          width={600}
-          domainPadding={{ x: 75 }}
+          width={400}
+          domainPadding={{ x: 50 }}
         >
           <VictoryAxis
             dependentAxis
@@ -57,6 +44,7 @@ class TextAnalysisChart extends React.Component {
               data: {
                 fill: ({ datum }) => this.toneColors[datum.x],
               },
+              axisLabel: { fontSize: 15, padding: 30, fontWeight: 600 },
               tickLabels: { fontSize: 10 },
             }}
             domain={[0, 100]}
@@ -66,6 +54,7 @@ class TextAnalysisChart extends React.Component {
             orientation="bottom"
             label="Tone"
             style={{
+              axisLabel: { fontSize: 15, padding: 30, fontWeight: 600 },
               tickLabels: { fontSize: 10 },
             }}
             standalone={false}
@@ -77,6 +66,7 @@ class TextAnalysisChart extends React.Component {
                 fill: ({ datum }) => this.toneColors[datum.x],
               },
             }}
+            barWidth={20}
             animate={{
               duration: 1000,
               onLoad: { duration: 500 },
