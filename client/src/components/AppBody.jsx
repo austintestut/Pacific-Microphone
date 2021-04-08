@@ -16,6 +16,8 @@ class AppBody extends React.Component {
       title: '',
       author: '',
       scriptBody: '',
+      showLPModal: false,
+      userCharacter: '',
       // hard coded
       currentSentenceTones: [
         {
@@ -35,11 +37,12 @@ class AppBody extends React.Component {
     this.changeSelectedScript = this.changeSelectedScript.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.getClickedSentenceTone = this.getClickedSentenceTone.bind(this);
+    this.deleteScript = this.deleteScript.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { userId } = this.props;
+    const { userId, getScripts } = this.props;
     const { title, author, scriptBody } = this.state;
     const objScript = {
       userId,
@@ -47,9 +50,18 @@ class AppBody extends React.Component {
       author,
       scriptBody,
     };
+
     axios
       .post('/uploadScript', objScript)
-      .then((result) => console.log(result))
+      .then(() => getScripts())
+      .catch((error) => console.error(error));
+
+    axios
+      .post('/textToneAnalysis', { text: scriptBody, title, userId })
+      .then((data) => {
+        getScripts();
+        console.log(data);
+      })
       .catch((error) => console.error(error));
 
     this.toggleModal();
@@ -61,6 +73,33 @@ class AppBody extends React.Component {
     this.setState({
       currentSentenceTones: watsonAnalysis[selectedSentence],
     });
+  }
+
+  deleteScript() {
+    console.log('in body function');
+    const { selectedScriptIndex } = this.state;
+    const { scriptList, userId, getScripts } = this.props;
+    if (selectedScriptIndex === null) {
+      return;
+    }
+    const scriptObj = scriptList[selectedScriptIndex];
+    axios
+      .post('/scripts/delete', {
+        scriptObj,
+        userId,
+      })
+      .then(() => {
+        getScripts();
+        this.setState({
+          selectedScriptIndex: null,
+        });
+      })
+      .catch((err) => console.error(err));
+  }
+
+  toggleLPModal() {
+    const { showLPModal } = this.state;
+    this.setState({ showLPModal: !showLPModal });
   }
 
   changeSelectedPage(page) {
@@ -82,9 +121,11 @@ class AppBody extends React.Component {
       selectedPage,
       selectedScriptIndex,
       showModal,
+      showLPModal,
       currentSentenceTones,
     } = this.state;
     const { scriptList } = this.props;
+
     return (
       <div id="appBody">
         <Modal id="newScriptModal" isOpen={showModal}>
@@ -122,11 +163,38 @@ class AppBody extends React.Component {
             </button>
           </form>
         </Modal>
+        {/* <Modal id="livePerformanceModal" isOpen={showLPModal}>
+          <h3>Script name</h3>
+          <form
+            onSubmit={() => {
+              const { tmp } = this.state;
+              this.setState({ userCharacter: tmp });
+            }}
+          >
+            <select
+              onChange={(e) => {
+                this.setState({
+                  tmp: e.target.value,
+                });
+              }}
+            >
+              {scriptList[selectedScriptIndex].characterList.map(
+                (character) => (
+                  <option value={character}>{character}</option>
+                )
+              )}
+            </select>
+            <button type="submit">Submit</button>
+          </form>
+        </Modal> */}
         <SidePanel
           changeSelectedPage={this.changeSelectedPage}
           changeSelectedScript={this.changeSelectedScript}
           scriptList={scriptList}
           toggleModal={this.toggleModal}
+          deleteScript={this.deleteScript}
+          selectedScriptIndex={selectedScriptIndex}
+          selectedPage={selectedPage}
         />
         <MainPage
           page={selectedPage}

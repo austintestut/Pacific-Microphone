@@ -4,6 +4,8 @@ import React from 'react';
 import LivePerformance from './LivePerformance';
 import VoiceAnalyzer from './VoiceAnalyzer';
 import TextAnalysisChart from './TextAnalysisChart';
+import ScriptAnalyzer from './ScriptAnalyzer';
+
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -73,9 +75,33 @@ class MainPage extends React.Component {
           text:
             'Why yes my fine fellow! That sounds like an positively delightful idea!',
         },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
       ],
     };
-    const userCharacter = 'CHANDLER';
+    const userCharacter = 'SAM';
 
     const { page, selectedScript, currentSentenceTones } = this.props;
     const { voiceAnalysisData, clickedSentence, audioToText} = this.state;
@@ -86,7 +112,7 @@ class MainPage extends React.Component {
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
         {page === 'toneAnalyzer' ? (
           <>
-            <div>Tone Analyzer</div>
+            {selectedScript && <ScriptAnalyzer script={selectedScript}/>}
             <TextAnalysisChart currentSentenceTones={currentSentenceTones}/>
           </>
         ) : page === 'voiceAnalyzer' ? (
@@ -97,7 +123,10 @@ class MainPage extends React.Component {
             />
           </>
         ) : page === 'livePractice' ? (
-          <LivePerformance script={dummyScript} userCharacter={userCharacter} />
+          <LivePerformance
+            script={selectedScript}
+            userCharacter={userCharacter}
+          />
         ) : (
           <div>Loading Screen</div>
         )}

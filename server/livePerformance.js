@@ -29,7 +29,11 @@ const watsonGetAudio = (text, title, index) => {
       }.wav`;
       fs.writeFileSync(filePath, repairedFile);
       console.log('audio.wav written with a corrected wav header');
-      return `./livePerformanceAudio/${title + index}.wav`;
+      console.log(`./livePerformanceAudio/${title + index}.wav`);
+      return {
+        path: `./livePerformanceAudio/${title + index}.wav`,
+        audioIndex: index,
+      };
     })
     .catch((err) => {
       console.log('watson err: ', err);

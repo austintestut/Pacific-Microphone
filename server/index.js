@@ -6,7 +6,7 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const fileUpload = require('express-fileupload');
 const auth = require('./authentication');
-const { scriptFetcher, makeTextBlocks } = require('./scripts.js');
+const { scriptFetcher, makeTextBlocks, removeScriptFromDb } = require('./scripts.js');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 
@@ -45,6 +45,8 @@ app.post('/textToneAnalysis', TA.getTextToneAnalysis);
 app.post('/audioToText', upload.single('audioToText.mp3'), AT.getTextFromAudio);
 
 app.post('/uploadScript', makeTextBlocks);
+
+app.post('/scripts/delete', removeScriptFromDb)
 
 app.get('/google', auth.authScope);
 
