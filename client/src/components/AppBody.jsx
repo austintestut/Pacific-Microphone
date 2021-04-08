@@ -47,11 +47,17 @@ class AppBody extends React.Component {
       author,
       scriptBody,
     };
+
     axios
       .post('/uploadScript', objScript)
-      .then((result) => {
+      .then(() => getScripts())
+      .catch((error) => console.error(error));
+
+    axios
+      .post('/textToneAnalysis', { text: scriptBody, title, userId })
+      .then((data) => {
         getScripts();
-        console.log(result);
+        console.log(data);
       })
       .catch((error) => console.error(error));
 
