@@ -12,9 +12,14 @@ class App extends React.Component {
       authenticated: false,
       user: '',
       userId: '',
-      scriptList: [],
+      scriptList: [
+        {
+          characterList: [''],
+        },
+      ],
     };
     this.login = this.login.bind(this);
+    this.getScripts = this.getScripts.bind(this);
   }
 
   componentDidMount() {
@@ -65,13 +70,15 @@ class App extends React.Component {
     const { authenticated, user, scriptList, userId } = this.state;
     return (
       <div id="App">
-        {!authenticated && (
-          <LoginPage />
-        )}
+        {!authenticated && <LoginPage />}
         {authenticated && (
           <div>
             <AppHeader user={user} />
-            <AppBody scriptList={scriptList} userId={userId} />
+            <AppBody
+              scriptList={scriptList}
+              userId={userId}
+              getScripts={this.getScripts}
+            />
           </div>
         )}
       </div>

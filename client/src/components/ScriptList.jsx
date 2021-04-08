@@ -8,18 +8,29 @@ class ScriptList extends React.Component {
   }
 
   render() {
-    const { scriptList, changeSelectedScript, toggleModal } = this.props;
+    const {
+      scriptList,
+      changeSelectedScript,
+      toggleModal,
+      deleteScript,
+      selectedScriptIndex,
+    } = this.props;
     return (
       <div id="scriptList">
-        {scriptList.map((s) => (
+        {scriptList.map((s, idx) => (
           <button
             type="button"
-            key={s.title}
+            key={idx}
             onClick={() => changeSelectedScript(scriptList.indexOf(s))}
           >
             {s.title}
           </button>
         ))}
+        {selectedScriptIndex !== null && (
+          <button id="deleteScriptButton" type="button" onClick={deleteScript}>
+            Delete Selected Script
+          </button>
+        )}
         <button id="newScriptButton" type="button" onClick={toggleModal}>
           + Add New Script
         </button>

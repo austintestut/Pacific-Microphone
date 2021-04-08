@@ -76,9 +76,33 @@ class MainPage extends React.Component {
           text:
             'Why yes my fine fellow! That sounds like an positively delightful idea!',
         },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
       ],
     };
-    const userCharacter = 'CHANDLER';
+    const userCharacter = 'SAM';
 
     const { page, selectedScript, currentSentenceTones } = this.props;
     const { voiceAnalysisData, clickedSentence, audioToText} = this.state;
@@ -101,7 +125,10 @@ class MainPage extends React.Component {
             <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData} />
           </>
         ) : page === 'livePractice' ? (
-          <LivePerformance script={dummyScript} userCharacter={userCharacter} />
+          <LivePerformance
+            script={selectedScript}
+            userCharacter={userCharacter}
+          />
         ) : (
           <div>Loading Screen</div>
         )}
