@@ -11,9 +11,8 @@ const toneAnalyzer = new ToneAnalyzerV3({
 });
 
 const getTextToneAnalysis = (req, res) => {
-
-  let {text, title, userId} = req.body
-  text = '\n' + text
+  let { text, title, userId } = req.body;
+  text = '\n' + text;
   let rawScript = '';
   const regex = /\n ?[A-Z\d ]+ ?\n/g;
   if (!regex.test(text)) {
@@ -24,38 +23,42 @@ const getTextToneAnalysis = (req, res) => {
   }
 
   const toneParams = {
-    toneInput: {text: rawScript},
+    toneInput: { text: rawScript },
     contentType: 'application/json',
   };
 
-  const reshapeSentences = (obj) => {
-    const reshaped = {}
-    const sentences = obj.result.sentences_tone
+  const reshapeSentences = (obj, rawScriptIn) => {
+    const reshaped = {};
+    const sentences = obj.result.sentences_tone;
     if (sentences) {
-      sentences.forEach(s => {reshaped[s.text] = s.tones})
+      sentences.forEach((s) => {
+        reshaped[s.text] = s.tones;
+      });
+    } else {
+      reshaped[rawScriptIn.trim()] = obj.result.document_tone.tones;
     }
     return reshaped;
-  }
+  };
 
   const addAnalysisToDB = (obj, resIn) => {
     DB.Users.update(
-      { _id: userId},
+      { _id: userId },
       {
-        $set: { "listScripts.$[elem].watsonAnalysis" : obj}
+        $set: { 'listScripts.$[elem].watsonAnalysis': obj },
       },
       {
-        arrayFilters: [{"elem.title" : title}]
+        arrayFilters: [{ 'elem.title': title }],
       }
     )
-    .then(data => resIn.status(200).send(data))
-    .catch(error => resIn.status(500).send(error))
-  }
+      .then((data) => resIn.status(200).send(data))
+      .catch((error) => resIn.status(500).send(error));
+  };
 
   return toneAnalyzer
     .tone(toneParams)
     .then((toneAnalysis) => JSON.stringify(toneAnalysis, null, 2))
-    .then(results => reshapeSentences(JSON.parse(results)))
-    .then(results => addAnalysisToDB(JSON.stringify(results), res))
+    .then((results) => reshapeSentences(JSON.parse(results), rawScript))
+    .then((results) => addAnalysisToDB(JSON.stringify(results), res));
 };
 
 module.exports = {

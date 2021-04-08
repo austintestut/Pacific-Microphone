@@ -17,10 +17,10 @@ class ScriptList extends React.Component {
     } = this.props;
     return (
       <div id="scriptList">
-        {scriptList.map((s) => (
+        {scriptList.map((s, idx) => (
           <button
             type="button"
-            key={s.title}
+            key={idx}
             onClick={() => changeSelectedScript(scriptList.indexOf(s))}
           >
             {s.title}
