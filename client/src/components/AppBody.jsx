@@ -39,11 +39,12 @@ class AppBody extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleLPModal = this.toggleLPModal.bind(this);
     this.getClickedSentenceTone = this.getClickedSentenceTone.bind(this);
+    this.deleteScript = this.deleteScript.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { userId } = this.props;
+    const { userId, getScripts } = this.props;
     const { title, author, scriptBody } = this.state;
     const objScript = {
       userId,
@@ -54,11 +55,15 @@ class AppBody extends React.Component {
 
     axios
       .post('/uploadScript', objScript)
+      .then(() => getScripts())
       .catch((error) => console.error(error));
 
     axios
       .post('/textToneAnalysis', { text: scriptBody, title, userId })
-      .then((data) => console.log(data))
+      .then((data) => {
+        getScripts();
+        console.log(data);
+      })
       .catch((error) => console.error(error));
 
     this.toggleModal();
@@ -70,6 +75,28 @@ class AppBody extends React.Component {
     this.setState({
       currentSentenceTones: watsonAnalysis[selectedSentence],
     });
+  }
+
+  deleteScript() {
+    console.log('in body function');
+    const { selectedScriptIndex } = this.state;
+    const { scriptList, userId, getScripts } = this.props;
+    if (selectedScriptIndex === null) {
+      return;
+    }
+    const scriptObj = scriptList[selectedScriptIndex];
+    axios
+      .post('/scripts/delete', {
+        scriptObj,
+        userId,
+      })
+      .then(() => {
+        getScripts();
+        this.setState({
+          selectedScriptIndex: null,
+        });
+      })
+      .catch((err) => console.error(err));
   }
 
   toggleLPModal() {
@@ -102,6 +129,7 @@ class AppBody extends React.Component {
       showModal,
       showLPModal,
       currentSentenceTones,
+      userCharacter,
     } = this.state;
     const { scriptList } = this.props;
 
@@ -144,7 +172,7 @@ class AppBody extends React.Component {
         </Modal>
         {selectedScriptIndex !== null && (
           <Modal id="livePerformanceModal" isOpen={showLPModal}>
-            <h3>Script name</h3>
+            <h3>Script: {scriptList[selectedScriptIndex].title}</h3>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -160,6 +188,7 @@ class AppBody extends React.Component {
                   });
                 }}
               >
+                <option>Select your role</option>
                 {scriptList[selectedScriptIndex].characterList.map(
                   (character) => (
                     <option value={character}>{character}</option>
@@ -175,13 +204,15 @@ class AppBody extends React.Component {
           changeSelectedScript={this.changeSelectedScript}
           scriptList={scriptList}
           toggleModal={this.toggleModal}
-          toggleLPModal={this.toggleLPModal}
+          deleteScript={this.deleteScript}
+          selectedScriptIndex={selectedScriptIndex}
           selectedPage={selectedPage}
         />
         <MainPage
           page={selectedPage}
           selectedScript={scriptList[selectedScriptIndex]}
           currentSentenceTones={currentSentenceTones}
+          userCharacter={userCharacter}
         />
       </div>
     );

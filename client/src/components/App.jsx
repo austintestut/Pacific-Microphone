@@ -15,6 +15,7 @@ class App extends React.Component {
       scriptList: [],
     };
     this.login = this.login.bind(this);
+    this.getScripts = this.getScripts.bind(this);
   }
 
   componentDidMount() {
@@ -69,7 +70,11 @@ class App extends React.Component {
         {authenticated && (
           <div>
             <AppHeader user={user} />
-            <AppBody scriptList={scriptList} userId={userId} />
+            <AppBody
+              scriptList={scriptList}
+              userId={userId}
+              getScripts={this.getScripts}
+            />
           </div>
         )}
       </div>

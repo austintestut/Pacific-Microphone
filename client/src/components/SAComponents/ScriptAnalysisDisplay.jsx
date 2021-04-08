@@ -3,21 +3,24 @@ import React from 'react';
 const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
   const { title, author, talkingBlocks, watsonAnalysis } = script;
 
-  const regex = /[\w- ]+[.?!] /g
+  const regex = /[\w-,;_%''""$&#@* ]+[.?!] ?/g;
+  console.log('SAD: ', script);
 
   return (
     <div className="scriptDisplay">
       <div className="title">{title}</div>
       <div className="author">By: {author}</div>
-      {talkingBlocks.map((talkingBlock) => (
-        <>
-        <div>{talkingBlock.character}</div>
-        {talkingBlock.text.match(regex).map(s => (
-          <>
-          {s && <div onClick={() => displayWatsonAnalysis(s.trim())}>{s}</div>}
-          </>
-        ))}
-        </>
+      {talkingBlocks.map((talkingBlock, idx) => (
+        <div key={idx}>
+          <div>{talkingBlock.character}</div>
+          {talkingBlock.text.match(regex).map((s, idx) => (
+            <span key={idx}>
+              {s && (
+                <span onClick={() => displayWatsonAnalysis(s.trim())}>{s}</span>
+              )}
+            </span>
+          ))}
+        </div>
       ))}
     </div>
   );

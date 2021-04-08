@@ -3,7 +3,7 @@ body {
 }
 
 #app {
-   display: flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -22,14 +22,14 @@ body {
   right: 45%;
   height: 100px;
   width: 200px;
-  background-image:linear-gradient(#deb4ff, #ffffff);
+  background-image: linear-gradient(#deb4ff, #ffffff);
   font-size: 20px;
   border-radius: 10px;
 }
 
-#LoginButton:hover{
-cursor: pointer;
-background-image:linear-gradient(#ffffff, #deb4ff);
+#LoginButton:hover {
+  cursor: pointer;
+  background-image: linear-gradient(#ffffff, #deb4ff);
 }
 
 #appHeader {
@@ -111,8 +111,19 @@ background-image:linear-gradient(#ffffff, #deb4ff);
   position: absolute;
 }
 
+mark {
+  background-color: white;
+  color: purple;
+}
+
 .recorder {
   height: 300px;
+}
+
+#deleteScriptButton {
+  margin-top: auto;
+  background-color: #910000;
+  color: white;
 }
 
 #newScriptButton {

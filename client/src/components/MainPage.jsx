@@ -25,9 +25,12 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const userCharacter = null;
-
-    const { page, selectedScript, currentSentenceTones } = this.props;
+    const {
+      page,
+      selectedScript,
+      currentSentenceTones,
+      userCharacter,
+    } = this.props;
     const { voiceAnalysisData, clickedSentence, audioToText } = this.state;
     return (
       <div id="mainPage">
