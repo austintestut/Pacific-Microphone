@@ -45,10 +45,18 @@ class App extends React.Component {
       .get('/user')
       .then((user) => {
         if (user.data.userName !== undefined) {
+          let uppercaseUser = '';
+          for (let i = 0; i < user.data.userName.length; i += 1) {
+            if (i === 0 || user.data.userName[i-1] === ' ') {
+              uppercaseUser += user.data.userName[i].toUpperCase();
+            } else {
+              uppercaseUser += user.data.userName[i]
+            }
+          }
           this.setState(
             {
               authenticated: true,
-              user: user.data.userName,
+              user: uppercaseUser,
               // eslint-disable-next-line no-underscore-dangle
               userId: user.data._id,
             },
@@ -68,6 +76,7 @@ class App extends React.Component {
 
   render() {
     const { authenticated, user, scriptList, userId } = this.state;
+
     return (
       <div id="App">
         {!authenticated && <LoginPage />}

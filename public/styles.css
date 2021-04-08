@@ -1,7 +1,7 @@
 :root {
-  --main: #662D91; /* Script analysis */
-  --accent: #52E5E6; /* Voice Analysis */
-  --secondAccent: #A580F2; /* Live Practice */
+  --main: #662d91; /* Script analysis */
+  --accent: #52e5e6; /* Voice Analysis */
+  --secondAccent: #a580f2; /* Live Practice */
 }
 
 body {
@@ -42,14 +42,45 @@ body {
   box-sizing: border-box;
   width: 100vw;
   height: 10vh;
-  background-image: linear-gradient(var(--main), var(--secondAccent));
+  background-image: linear-gradient(var(--secondAccent), white);
   border-bottom: 2px solid black;
-  color: white;
+  color: var(--main);
 }
 
 #headerLogo {
-  width: 50px;
-  height: 50px;
+  height: 100%;
+}
+
+#username {
+  font-family: 'Avenir Next Regular', sans-serif;
+  font-size: 100%;
+  text-align: center;
+  position: relative;
+  bottom: 40%;
+}
+
+#logoutButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8vw;
+  height: 2vw;
+  background: none;
+  color: white;
+  border: none;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+#logoutButton:hover {
+  cursor: pointer;
+  background: #ac8cf0;
+}
+
+#appTitle {
+  height: 100%;
+  padding-left: 25%;
+  padding-right: 25%;
 }
 
 #appBody {
@@ -104,8 +135,10 @@ body {
 
 .scriptDisplay {
   text-align: center;
-  overflow-y: scroll;
-  height: 85%;
+  float: right;
+  padding-right: 5%;
+  height: 75%;
+  max-width: 60%;
 }
 
 .talkingBlock {
@@ -166,6 +199,7 @@ body {
   grid-row-end: 3;
   grid-column-start: 1;
   grid-column-end: 2;
+  float: left;
 }
 
 .voiceRecorderAndTextContainer {
