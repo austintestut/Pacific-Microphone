@@ -4,7 +4,6 @@ import axios from 'axios';
 import FormData from 'form-data';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { ReactMic } from 'react-mic';
-import AudioText from './AudioText.jsx';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128, sampleRate: 11025 });
 
@@ -82,7 +81,7 @@ class Recorder extends React.Component {
             recieved.push(response.data);
             this.setState(
               {
-                recieved: recieved,
+                recieved,
                 buffer,
               },
               this.handleEndRecord
@@ -102,24 +101,58 @@ class Recorder extends React.Component {
     const { sent, record, recieved } = this.state;
     const { sendDataToMainPage } = this.props;
     if (sent === recieved.length && record === false) {
-      sendDataToMainPage(recieved);
-      this.setState({
-        sent: 0,
-        recieved: [],
-      });
+      setTimeout(() => {
+        if (sent === this.state.sent) {
+          sendDataToMainPage(recieved, 'voiceAnalysisData');
+          this.setState({
+            sent: 0,
+            recieved: [],
+          });
+        }
+      }, 5000);
     }
   }
 
-  handleEndRecordFull(data) {
-    this.setState({
-      blobURL: data.blobURL,
-      fullBlob: data,
-    });
+  handleEndRecordFull(datar) {
+    this.setState(
+      {
+        blobURL: datar.blobURL,
+        fullBlob: datar,
+      },
+      () => {
+        const { blobURL } = this.state;
+        const { sendDataToMainPage } = this.props;
+        fetch(blobURL)
+          .then((res) => res.blob())
+          .then((buffer) => {
+            const data = new FormData();
+            data.append(
+              'webm',
+              new File([buffer], 'AudioToText.webm', {
+                type: 'audio/webm',
+                enctype: 'multipart/form-data',
+                lastModified: Date.now(),
+              })
+            );
+            axios({
+              method: 'post',
+              url: '/audioToText',
+              data,
+            })
+              .then((response) => {
+                sendDataToMainPage(response, 'audioToText');
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          });
+      }
+    );
   }
 
   checkPerms() {
     navigator.getUserMedia(
-      { audio: { sampleRate: 11025 } },
+      { audio: true },
       () => {
         console.log('Permission Granted');
         this.setState({ isBlocked: false });
@@ -132,36 +165,35 @@ class Recorder extends React.Component {
   }
 
   render() {
-    const { record, blobURL, buffer } = this.state;
+    const { record, blobURL } = this.state;
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
       <>
-      <AudioText buffer={buffer}/>
-      <div id="mic">
-        <ReactMic
-          record={record} // defaults -> false.  Set to true to begin recording
-          pause={false} // defaults -> false (available in React-Mic-Gold)
-          visualSetting="frequencyBars" // defaults -> "sinewave".  Other option is "frequencyBars"
-          className="recorder" // provide css class name
-          onStop={this.handleEndRecordFull} // required - called when audio stops recording
-          strokeColor="purple" // sinewave or frequency bar color
-          backgroundColor="white" // background color
-          mimeType="audio/mp3" // defaults -> "audio/webm".  Set to "audio/wav" for WAV or "audio/mp3" for MP3 audio format (available in React-Mic-Gold)
-          echoCancellation // defaults -> false
-          autoGainControl // defaults -> false
-          noiseSuppression // defaults -> false
-          channelCount={1} // defaults -> 2 (stereo).  Specify 1 for mono.
-          timeSlice={4999} // defaults -> 4000 milliseconds.  The interval at which captured audio is returned to onData callback (available in React-Mic-Gold).
-        />
-        <button
-          type="submit"
-          onClick={this.handlePlay}
-          value={record ? 'Stop' : 'Record'}
-        >
-          {record ? 'Stop' : 'Record'}
-        </button>
-        <audio src={blobURL} controls="controls" />
-      </div>
+        <div id="mic">
+          <ReactMic
+            record={record} // defaults -> false.  Set to true to begin recording
+            pause={false} // defaults -> false (available in React-Mic-Gold)
+            visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
+            className="recorder" // provide css class name
+            onStop={this.handleEndRecordFull} // required - called when audio stops recording
+            strokeColor="purple" // sinewave or frequency bar color
+            backgroundColor="white" // background color
+            mimeType="audio/mp3" // defaults -> "audio/webm".  Set to "audio/wav" for WAV or "audio/mp3" for MP3 audio format (available in React-Mic-Gold)
+            echoCancellation // defaults -> false
+            autoGainControl // defaults -> false
+            noiseSuppression // defaults -> false
+            channelCount={1} // defaults -> 2 (stereo).  Specify 1 for mono.
+            timeSlice={4999} // defaults -> 4000 milliseconds.  The interval at which captured audio is returned to onData callback (available in React-Mic-Gold).
+          />
+          <button
+            type="submit"
+            onClick={this.handlePlay}
+            value={record ? 'Stop' : 'Record'}
+          >
+            {record ? 'Stop' : 'Record'}
+          </button>
+          <audio src={blobURL} controls="controls" />
+        </div>
       </>
     );
   }

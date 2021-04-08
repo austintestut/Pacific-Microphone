@@ -12,11 +12,10 @@ const speechToText = new SpeechToTextV1({
 });
 
 const getTextFromAudio = (req, res) => {
-
-  fs.writeFileSync('audioToText.mp3', req.files.mp3.data);
+  fs.writeFileSync('audioToText.webm', req.files.webm.data);
 
   const params = {
-    contentType: 'audio/mp3',
+    contentType: 'audio/webm',
     objectMode: true,
     timestamps: true,
     wordconfidence: true,
@@ -25,7 +24,7 @@ const getTextFromAudio = (req, res) => {
 
   const recognizeStream = speechToText.recognizeUsingWebSocket(params);
 
-  fs.createReadStream('./audioToText.mp3').pipe(recognizeStream);
+  fs.createReadStream('./audioToText.webm').pipe(recognizeStream);
 
   recognizeStream.on('data', (event) => {
     onEvent('Data:', event);
@@ -44,7 +43,7 @@ const getTextFromAudio = (req, res) => {
 // Displays events on the console.
 function onEvent(name, event) {
   console.log(name, JSON.stringify(event, null, 2));
-  console.log(`${event}`);
+  // console.log(`${event}`);
 }
 
 module.exports = {

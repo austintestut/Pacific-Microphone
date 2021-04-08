@@ -1,32 +1,11 @@
-import React, { Component } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import { VictoryChart, VictoryBar, VictoryAxis, VictoryTheme } from 'victory';
 
 class TextAnalysisChart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      watsonScores: {
-        // hard coded
-        categories: [
-          'Anger',
-          'Joy',
-          'Fear',
-          'Sadness',
-          'Analytical',
-          'Confident',
-          'Tentative',
-        ],
-        values: {
-          Anger: 3,
-          Joy: 63,
-          Fear: 14,
-          Sadness: 36,
-          Analytical: 99,
-          Confident: 25,
-          Tentative: 69,
-        },
-      },
-    };
+    this.state = {};
     this.toneColors = {
       Anger: '#d10e00',
       Joy: '#75ffe1',
@@ -39,11 +18,14 @@ class TextAnalysisChart extends React.Component {
   }
 
   render() {
-    const { watsonScores } = this.state;
-    const data = watsonScores.categories.map((category) => ({
-      x: category,
-      y: watsonScores.values[category],
-      fill: this.toneColors[category],
+    const { currentSentenceTones } = this.props;
+    if (currentSentenceTones?.length === 0 || currentSentenceTones === undefined) {
+      return <div id="TextAnalysisChart">No analysis data</div>;
+    }
+    const data = currentSentenceTones.map((tone) => ({
+      x: tone.tone_name,
+      y: tone.score * 100,
+      fill: this.toneColors[tone.tone_name],
     }));
     return (
       <div id="TextAnalysisChart">
@@ -51,8 +33,8 @@ class TextAnalysisChart extends React.Component {
         <VictoryChart
           padding={100}
           theme={VictoryTheme.material}
-          width={600}
-          domainPadding={{ x: 75 }}
+          width={400}
+          domainPadding={{ x: 50 }}
         >
           <VictoryAxis
             dependentAxis
@@ -62,6 +44,7 @@ class TextAnalysisChart extends React.Component {
               data: {
                 fill: ({ datum }) => this.toneColors[datum.x],
               },
+              axisLabel: { fontSize: 15, padding: 30, fontWeight: 600 },
               tickLabels: { fontSize: 10 },
             }}
             domain={[0, 100]}
@@ -71,6 +54,7 @@ class TextAnalysisChart extends React.Component {
             orientation="bottom"
             label="Tone"
             style={{
+              axisLabel: { fontSize: 15, padding: 30, fontWeight: 600 },
               tickLabels: { fontSize: 10 },
             }}
             standalone={false}
@@ -82,6 +66,7 @@ class TextAnalysisChart extends React.Component {
                 fill: ({ datum }) => this.toneColors[datum.x],
               },
             }}
+            barWidth={20}
             animate={{
               duration: 1000,
               onLoad: { duration: 500 },

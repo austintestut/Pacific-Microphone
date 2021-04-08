@@ -1,3 +1,6 @@
+# Bundle
+/public/bundle.js
+
 # Logs
 logs
 *.log
@@ -102,3 +105,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+*.mp3
+*.flac
+*.webm
+*.wav
+*.pem

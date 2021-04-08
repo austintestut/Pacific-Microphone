@@ -1,3 +1,9 @@
+:root {
+  --main: #662D91; /* Script analysis */
+  --accent: #52E5E6; /* Voice Analysis */
+  --secondAccent: #A580F2; /* Live Practice */
+}
+
 body {
   margin: 0;
 }
@@ -7,12 +13,43 @@ body {
   flex-direction: column;
 }
 
+#LoginPage {
+  background-image: linear-gradient(var(--main), #b99bd0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#LoginButton {
+  position: absolute;
+  top: 45%;
+  bottom: 45%;
+  left: 45%;
+  right: 45%;
+  height: 100px;
+  width: 200px;
+  background-image: linear-gradient(#deb4ff, #ffffff);
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+#LoginButton:hover {
+  cursor: pointer;
+  background-image: linear-gradient(#ffffff, #deb4ff);
+}
+
 #appHeader {
   box-sizing: border-box;
   width: 100vw;
   height: 10vh;
-  background-color: rgb(141, 141, 141);
+  background-image: linear-gradient(var(--main), var(--secondAccent));
   border-bottom: 2px solid black;
+  color: white;
+}
+
+#headerLogo {
+  width: 50px;
+  height: 50px;
 }
 
 #appBody {
@@ -61,14 +98,20 @@ body {
   flex-direction: column;
 }
 
+#livePerformance {
+  height: 100%;
+}
+
 .scriptDisplay {
   text-align: center;
   overflow-y: scroll;
-  height: 400px;
+  height: 85%;
 }
 
 .talkingBlock {
   margin: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .title,
@@ -81,7 +124,16 @@ body {
 }
 
 .recorder {
-  height: 300px;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 0;
+  grid-column-end: 2;
+}
+
+#deleteScriptButton {
+  margin-top: auto;
+  background-color: #910000;
+  color: white;
 }
 
 #newScriptButton {
@@ -99,10 +151,50 @@ body {
 
 #VoiceAnalysisChart {
   height: 400px;
-  width: 800px;
+  width: 40vw;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
 }
 
 #TextAnalysisChart {
   height: 400px;
-  width: 800px;
+  min-width: 400px;
+  width: 40vw;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.voiceRecorderAndTextContainer {
+  display: grid;
+  grid-template-columns: 40vw 40vw;
+  grid-template-rows: 10vh 50vh 10vh;
+  width: 80vw;
+}
+
+#mic {
+  width: 70vw;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 0;
+  grid-column-end: 2;
+}
+
+#audioTextDisplay {
+  color: black;
+  text-align: center;
+  overflow-y: scroll;
+  /* position */
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+#scriptAnalyzerContainer {
+  display: flex;
+  height: 100%;
 }

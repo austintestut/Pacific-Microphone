@@ -29,6 +29,7 @@
     "form-data": "^2.3.3",
     "ibm-watson": "^6.0.3",
     "jest": "^26.6.3",
+    "lodash": "^4.17.21",
     "mic-recorder-to-mp3": "^2.2.2",
     "mongo": "^0.1.0",
     "mongoose": "^5.12.3",
@@ -41,6 +42,10 @@
     "react-mic": "^12.4.6",
     "react-modal": "^3.12.1",
     "sox": "^0.1.0",
+<<<<<<< HEAD
+=======
+    "url-loader": "^4.1.1",
+>>>>>>> 01cd44408254bd7da86f7c6ee58637d23c1254d2
     "victory": "^35.4.13"
   },
   "devDependencies": {
