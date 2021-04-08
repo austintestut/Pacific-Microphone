@@ -20,6 +20,9 @@ class ScriptList extends React.Component {
             {s.title}
           </button>
         ))}
+        <button id="deleteScriptButton" type="button">
+          Delete Selected Script
+        </button>
         <button id="newScriptButton" type="button" onClick={toggleModal}>
           + Add New Script
         </button>

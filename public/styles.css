@@ -109,6 +109,10 @@ background-image:linear-gradient(#ffffff, #deb4ff);
   height: 300px;
 }
 
+#deleteScriptButton {
+  margin-top: auto;
+}
+
 #newScriptButton {
   margin-top: auto;
 }
