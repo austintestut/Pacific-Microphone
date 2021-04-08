@@ -15,6 +15,8 @@ class SidePanel extends React.Component {
       changeSelectedScript,
       scriptList,
       toggleModal,
+      deleteScript,
+      selectedScriptIndex,
       selectedPage,
     } = this.props;
     return (
@@ -24,6 +26,8 @@ class SidePanel extends React.Component {
           changeSelectedScript={changeSelectedScript}
           scriptList={scriptList}
           toggleModal={toggleModal}
+          deleteScript={deleteScript}
+          selectedScriptIndex={selectedScriptIndex}
           selectedPage={selectedPage}
         />
       </div>
