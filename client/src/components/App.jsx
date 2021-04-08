@@ -12,11 +12,7 @@ class App extends React.Component {
       authenticated: false,
       user: '',
       userId: '',
-      scriptList: [
-        {
-          characterList: [''],
-        },
-      ],
+      scriptList: [],
     };
     this.login = this.login.bind(this);
   }
@@ -69,9 +65,7 @@ class App extends React.Component {
     const { authenticated, user, scriptList, userId } = this.state;
     return (
       <div id="App">
-        {!authenticated && (
-          <LoginPage />
-        )}
+        {!authenticated && <LoginPage />}
         {authenticated && (
           <div>
             <AppHeader user={user} />

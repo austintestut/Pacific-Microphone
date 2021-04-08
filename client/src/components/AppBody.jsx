@@ -17,7 +17,8 @@ class AppBody extends React.Component {
       author: '',
       scriptBody: '',
       showLPModal: false,
-      userCharacter: '',
+      userCharacter: null,
+      tmp: null,
       // hard coded
       currentSentenceTones: [
         {
@@ -36,6 +37,7 @@ class AppBody extends React.Component {
     this.changeSelectedPage = this.changeSelectedPage.bind(this);
     this.changeSelectedScript = this.changeSelectedScript.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.toggleLPModal = this.toggleLPModal.bind(this);
     this.getClickedSentenceTone = this.getClickedSentenceTone.bind(this);
   }
 
@@ -81,7 +83,11 @@ class AppBody extends React.Component {
 
   changeSelectedScript(index) {
     // Will need change this to display the script in the appropriate format on the page
+    const { showLPModal, selectedPage } = this.state;
     this.setState({ selectedScriptIndex: index });
+    if (selectedPage === 'livePractice') {
+      this.toggleLPModal();
+    }
   }
 
   toggleModal() {
@@ -136,35 +142,40 @@ class AppBody extends React.Component {
             </button>
           </form>
         </Modal>
-        <Modal id="livePerformanceModal" isOpen={showLPModal}>
-          <h3>Script name</h3>
-          <form
-            onSubmit={() => {
-              const { tmp } = this.state;
-              this.setState({ userCharacter: tmp });
-            }}
-          >
-            <select
-              onChange={(e) => {
-                this.setState({
-                  tmp: e.target.value,
-                });
+        {selectedScriptIndex !== null && (
+          <Modal id="livePerformanceModal" isOpen={showLPModal}>
+            <h3>Script name</h3>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const { tmp } = this.state;
+                this.setState({ userCharacter: tmp });
+                this.toggleLPModal();
               }}
             >
-              {scriptList[selectedScriptIndex].characterList.map(
-                (character) => (
-                  <option value={character}>{character}</option>
-                )
-              )}
-            </select>
-            <button type="submit">Submit</button>
-          </form>
-        </Modal>
+              <select
+                onChange={(e) => {
+                  this.setState({
+                    tmp: e.target.value,
+                  });
+                }}
+              >
+                {scriptList[selectedScriptIndex].characterList.map(
+                  (character) => (
+                    <option value={character}>{character}</option>
+                  )
+                )}
+              </select>
+              <button type="submit">Submit</button>
+            </form>
+          </Modal>
+        )}
         <SidePanel
           changeSelectedPage={this.changeSelectedPage}
           changeSelectedScript={this.changeSelectedScript}
           scriptList={scriptList}
           toggleModal={this.toggleModal}
+          toggleLPModal={this.toggleLPModal}
           selectedPage={selectedPage}
         />
         <MainPage

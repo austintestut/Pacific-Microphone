@@ -81,7 +81,8 @@ class LivePerformance extends React.Component {
 
   render() {
     const { audios, pointer, audioIndexes } = this.state;
-    const { script } = this.props;
+    const { script, userCharacter } = this.props;
+
     return (
       <div id="livePerformance">
         <ScriptDisplay script={script} currentIndex={audioIndexes[pointer]} />
