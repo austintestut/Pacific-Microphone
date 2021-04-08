@@ -110,6 +110,12 @@ body {
   width: 30vw;
 }
 
+.fullRecorder {
+  height: 300px;
+  width: 75vw;
+  z-index: 1;
+}
+
 #newScriptButton {
   margin-top: auto;
 }
