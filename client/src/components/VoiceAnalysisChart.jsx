@@ -38,7 +38,6 @@ class VoiceAnalysisChart extends React.Component {
     });
     return (
       <div id="VoiceAnalysisChart">
-        Voice Analysis
         <VictoryChart padding={100} theme={VictoryTheme.material} width={600}>
           <VictoryLegend
             x={110}
