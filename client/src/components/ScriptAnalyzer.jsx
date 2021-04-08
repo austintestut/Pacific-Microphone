@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React from 'react';
 import ScriptAnalysisDisplay from './SAComponents/ScriptAnalysisDisplay';
 import TextAnalysisChart from './TextAnalysisChart';
 
@@ -27,9 +27,11 @@ class ScriptAnalyzer extends React.Component {
     const { script } = this.props;
     const { prevScript } = this.state;
     if (script !== prevScript) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         watsonAnalysisObj: JSON.parse(script.watsonAnalysis),
         prevScript: script,
+        currToneArray: [],
       });
     }
   }

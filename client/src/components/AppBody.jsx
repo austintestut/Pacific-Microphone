@@ -107,7 +107,6 @@ class AppBody extends React.Component {
   }
 
   changeSelectedScript(index) {
-    // Will need change this to display the script in the appropriate format on the page
     this.setState({ selectedScriptIndex: index });
   }
 
