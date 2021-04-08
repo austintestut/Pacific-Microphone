@@ -9,17 +9,17 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
     <div className="scriptDisplay">
       <div className="title">{title}</div>
       <div className="author">By: {author}</div>
-      {talkingBlocks.map((talkingBlock) => (
-        <>
+      {talkingBlocks.map((talkingBlock, idx) => (
+        <div key={idx}>
           <div>{talkingBlock.character}</div>
-          {talkingBlock.text.match(regex).map((s) => (
-            <>
+          {talkingBlock.text.match(regex).map((s, idx) => (
+            <div key={idx}>
               {s && (
                 <div onClick={() => displayWatsonAnalysis(s.trim())}>{s}</div>
               )}
-            </>
+            </div>
           ))}
-        </>
+        </div>
       ))}
     </div>
   );
