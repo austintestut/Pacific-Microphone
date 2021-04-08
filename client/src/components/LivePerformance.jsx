@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import ScriptDisplay from './ScriptDisplay';
+import ScriptDisplay from './LPComponents/ScriptDisplay';
 import LPPlayButtons from './LPComponents/LPPlayButtons';
 
 class LivePerformance extends React.Component {
@@ -14,17 +14,26 @@ class LivePerformance extends React.Component {
 
     this.playNext = this.playNext.bind(this);
     this.playPrevious = this.playPrevious.bind(this);
+    this.repeat = this.repeat.bind(this);
+    this.replayScript = this.replayScript.bind(this);
     this.getAudios = this.getAudios.bind(this);
   }
 
   componentDidMount() {
-    this.getAudios();
+    // this.getAudios();
   }
 
   componentDidUpdate(prevProps) {
-    const { script } = this.props;
-    if (prevProps.script !== script) {
+    const { script, userCharacter } = this.props;
+    console.log('preprops: ', prevProps.userCharacter);
+    if (prevProps.userCharacter !== userCharacter) {
+      console.log('Im in!');
+      console.log(script);
+      this.setState({ pointer: -1 });
       this.getAudios();
+    }
+    if (prevProps.script !== script) {
+      this.setState({ pointer: -1 });
     }
   }
 
@@ -38,12 +47,8 @@ class LivePerformance extends React.Component {
         },
       })
       .then((result) => {
+        console.log('result: ', result.data);
         const audioPaths = result.data;
-        // create index array ['audio0.wav']
-        // audio.Paths.map()
-        // [0,2,4,6,8,10]
-        // ['audio0','audio2','audio4'...]
-        // [{path: 'audio0.wav', index: 0}]
         const audioIndexes = [];
         const audios = audioPaths.map((path) => {
           audioIndexes.push(path.audioIndex);
@@ -79,9 +84,19 @@ class LivePerformance extends React.Component {
     elmnt.scrollIntoView(false);
   }
 
+  repeat() {
+    const { audios, pointer } = this.state;
+    audios[pointer].play();
+  }
+
+  replayScript() {
+    this.setState({ pointer: -1 });
+  }
+
   render() {
     const { audios, pointer, audioIndexes } = this.state;
-    const { script } = this.props;
+    const { script, userCharacter } = this.props;
+
     return (
       <div id="livePerformance">
         <ScriptDisplay script={script} currentIndex={audioIndexes[pointer]} />
@@ -90,6 +105,8 @@ class LivePerformance extends React.Component {
           pointer={pointer}
           playNext={this.playNext}
           playPrevious={this.playPrevious}
+          replayScript={this.replayScript}
+          repeat={this.repeat}
         />
       </div>
     );

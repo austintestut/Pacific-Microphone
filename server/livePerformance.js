@@ -41,7 +41,6 @@ const watsonGetAudio = (text, title, index) => {
 };
 
 const getAudio = (req, res) => {
-
   const script = JSON.parse(req.query.script);
   let talkingBlockPromises = [];
   for (let i = 0; i < script.talkingBlocks.length; i += 1) {

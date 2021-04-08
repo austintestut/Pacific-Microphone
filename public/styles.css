@@ -156,6 +156,11 @@ body {
   position: absolute;
 }
 
+mark {
+  background-color: white;
+  color: purple;
+}
+
 .recorder {
   grid-row-start: 3;
   grid-row-end: 4;
