@@ -11,19 +11,32 @@ class AppBody extends React.Component {
     super(props);
     this.state = {
       selectedPage: 'toneAnalyzer',
-      selectedScriptIndex: 0,
+      selectedScriptIndex: null,
       showModal: false,
       title: '',
       author: '',
       scriptBody: '',
       showLPModal: false,
       userCharacter: '',
-      tmp: '',
+      // hard coded
+      currentSentenceTones: [
+        {
+          score: 0.895415,
+          tone_id: 'analytical',
+          tone_name: 'Analytical',
+        },
+        {
+          score: 1,
+          tone_id: 'joy',
+          tone_name: 'Joy',
+        },
+      ],
     };
 
     this.changeSelectedPage = this.changeSelectedPage.bind(this);
     this.changeSelectedScript = this.changeSelectedScript.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.getClickedSentenceTone = this.getClickedSentenceTone.bind(this);
   }
 
   handleSubmit(e) {
@@ -36,17 +49,25 @@ class AppBody extends React.Component {
       author,
       scriptBody,
     };
+
     axios
       .post('/uploadScript', objScript)
-      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+
+    axios
+      .post('/textToneAnalysis', { text: scriptBody, title, userId })
+      .then((data) => console.log(data))
       .catch((error) => console.error(error));
 
     this.toggleModal();
   }
 
-  toggleModal() {
-    const { showModal } = this.state;
-    this.setState({ showModal: !showModal });
+  // to be used as an onClick for each sentence on text analysis page
+  getClickedSentenceTone(selectedSentence) {
+    const { watsonAnalysis } = this.state;
+    this.setState({
+      currentSentenceTones: watsonAnalysis[selectedSentence],
+    });
   }
 
   toggleLPModal() {
@@ -63,12 +84,18 @@ class AppBody extends React.Component {
     this.setState({ selectedScriptIndex: index });
   }
 
+  toggleModal() {
+    const { showModal } = this.state;
+    this.setState({ showModal: !showModal });
+  }
+
   render() {
     const {
       selectedPage,
       selectedScriptIndex,
       showModal,
       showLPModal,
+      currentSentenceTones,
     } = this.state;
     const { scriptList } = this.props;
 
@@ -143,6 +170,7 @@ class AppBody extends React.Component {
         <MainPage
           page={selectedPage}
           selectedScript={scriptList[selectedScriptIndex]}
+          currentSentenceTones={currentSentenceTones}
         />
       </div>
     );
@@ -150,13 +178,3 @@ class AppBody extends React.Component {
 }
 
 export default AppBody;
-
-// // function (
-//   setState({
-//     tmp: e.taget.value
-//   })
-// )
-// // function (
-//   setState
-//   userCharacter: tmp
-// )

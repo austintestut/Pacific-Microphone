@@ -1,21 +1,27 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import VoiceAnalysisChart from './VoiceAnalysisChart';
 import LivePerformance from './LivePerformance';
 import VoiceAnalyzer from './VoiceAnalyzer';
+import TextAnalysisChart from './TextAnalysisChart';
+import ScriptAnalyzer from './ScriptAnalyzer';
+
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       voiceAnalysisData: [],
+      audioToText: '',
+      clickedSentence: '',
     };
-    this.addDataForVoiceAnalysis = this.addDataForVoiceAnalysis.bind(this);
+    this.sendDataToMainPage = this.sendDataToMainPage.bind(this);
   }
 
-  addDataForVoiceAnalysis(data) {
+  sendDataToMainPage(data, name) {
     this.setState({
-      voiceAnalysisData: data,
+      [name]: data,
     });
   }
 
@@ -98,17 +104,26 @@ class MainPage extends React.Component {
     };
     const userCharacter = 'SAM';
 
-    const { page, selectedScript } = this.props;
-
+    const { page, selectedScript, currentSentenceTones } = this.props;
+    const { voiceAnalysisData, clickedSentence, audioToText} = this.state;
     return (
       <div id="mainPage">
         <h2>Page: {page}</h2>
 
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
         {page === 'toneAnalyzer' ? (
-          <div>Tone Analyzer</div>
+          <>
+            {selectedScript && <ScriptAnalyzer script={selectedScript}/>}
+            <TextAnalysisChart currentSentenceTones={currentSentenceTones}/>
+          </>
         ) : page === 'voiceAnalyzer' ? (
-          <VoiceAnalyzer sendDataToMainPage={this.addDataForVoiceAnalysis} />
+          <>
+            <VoiceAnalyzer
+              sendDataToMainPage={this.sendDataToMainPage}
+              audioToText={audioToText}
+            />
+            <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData} />
+          </>
         ) : page === 'livePractice' ? (
           <LivePerformance
             script={selectedScript}

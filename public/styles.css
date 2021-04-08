@@ -7,6 +7,31 @@ body {
   flex-direction: column;
 }
 
+#LoginPage {
+  background-image: linear-gradient(#662d91, #b99bd0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#LoginButton {
+  position: absolute;
+  top: 45%;
+  bottom: 45%;
+  left: 45%;
+  right: 45%;
+  height: 100px;
+  width: 200px;
+  background-image:linear-gradient(#deb4ff, #ffffff);
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+#LoginButton:hover{
+cursor: pointer;
+background-image:linear-gradient(#ffffff, #deb4ff);
+}
+
 #appHeader {
   box-sizing: border-box;
   width: 100vw;
@@ -84,6 +109,8 @@ body {
 
 .playButton {
   position: absolute;
+}
+
 .recorder {
   height: 300px;
 }
@@ -99,4 +126,14 @@ body {
   bottom: 'auto';
   margin-right: '-50%';
   transform: 'translate(-50%, -50%)';
+}
+
+#VoiceAnalysisChart {
+  height: 400px;
+  width: 800px;
+}
+
+#TextAnalysisChart {
+  height: 400px;
+  width: 800px;
 }
