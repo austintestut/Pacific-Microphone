@@ -1,10 +1,8 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import VoiceAnalysisChart from './VoiceAnalysisChart';
 import LivePerformance from './LivePerformance';
 import VoiceAnalyzer from './VoiceAnalyzer';
-import TextAnalysisChart from './TextAnalysisChart';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -72,29 +70,51 @@ class MainPage extends React.Component {
           text:
             'Why yes my fine fellow! That sounds like an positively delightful idea!',
         },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
+        {
+          character: 'CHANDLER',
+          text: 'Hi',
+        },
+        {
+          character: 'SAM',
+          text: 'Hello',
+        },
       ],
     };
-    const userCharacter = 'CHANDLER';
+    const userCharacter = 'SAM';
 
     const { page, selectedScript } = this.props;
-    const { voiceAnalysisData } = this.state;
+    console.log('selectedScript: ', selectedScript);
+
     return (
       <div id="mainPage">
         <h2>Page: {page}</h2>
 
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
         {page === 'toneAnalyzer' ? (
-          <>
-            <div>Tone Analyzer</div>
-            <TextAnalysisChart />
-          </>
+          <div>Tone Analyzer</div>
         ) : page === 'voiceAnalyzer' ? (
-          <>
-            <VoiceAnalyzer sendDataToMainPage={this.addDataForVoiceAnalysis} />
-            <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData} />
-          </>
+          <VoiceAnalyzer sendDataToMainPage={this.addDataForVoiceAnalysis} />
         ) : page === 'livePractice' ? (
-          <LivePerformance script={dummyScript} userCharacter={userCharacter} />
+          <LivePerformance
+            script={selectedScript}
+            userCharacter={userCharacter}
+          />
         ) : (
           <div>Loading Screen</div>
         )}
