@@ -8,7 +8,13 @@ class ScriptList extends React.Component {
   }
 
   render() {
-    const { scriptList, changeSelectedScript, toggleModal } = this.props;
+    const {
+      scriptList,
+      changeSelectedScript,
+      toggleModal,
+      deleteScript,
+      selectedScriptIndex,
+    } = this.props;
     return (
       <div id="scriptList">
         {scriptList.map((s, idx) => (
@@ -20,6 +26,11 @@ class ScriptList extends React.Component {
             {s.title}
           </button>
         ))}
+        {selectedScriptIndex !== null && (
+          <button id="deleteScriptButton" type="button" onClick={deleteScript}>
+            Delete Selected Script
+          </button>
+        )}
         <button id="newScriptButton" type="button" onClick={toggleModal}>
           + Add New Script
         </button>
