@@ -69,7 +69,7 @@ body {
   width: 20%;
   max-width: 300px;
   height: 100%;
-  background-color: var(--main);
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,6 +106,7 @@ body {
   margin-top: 2px;
   margin-bottom: 2px;
   opacity: 0.8;
+  position: static;
 }
 
 .newScriptinSidePanel:hover {
@@ -151,20 +152,27 @@ mark {
 }
 
 #deleteScriptButton {
-  margin-top: auto;
-  background-color: #910000;
-  color: white;
-  margin-top: 0.5px;
-}
-
-#newScriptButton {
-  margin-top: auto;
+  bottom: 2px;
   border-color: var(--main);
   border-radius: 15px;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 1px;
-  text-transform: uppercase;
+  background-color: white;
+  opacity: 0.8;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+#newScriptButton {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 2px;
+  border-color: var(--main);
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 1px;
   background-color: white;
   opacity: 0.8;
 }
