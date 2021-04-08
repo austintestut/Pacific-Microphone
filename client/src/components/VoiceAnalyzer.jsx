@@ -13,10 +13,8 @@ class VoiceAnalyzer extends React.Component {
     const { sendDataToMainPage, audioToText, voiceAnalysisData } = this.props;
     return (
       <div className="voiceRecorderAndTextContainer">
-        <div>
         <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData} />
         <AudioText audioToText={audioToText} />
-        </div>
         <Recorder sendDataToMainPage={sendDataToMainPage} />
       </div>
     );

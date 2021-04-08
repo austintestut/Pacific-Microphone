@@ -40,7 +40,6 @@ class Recorder extends React.Component {
     } else if (record) {
       this.setState({
         record: false,
-        recordedOnce: false,
       });
     } else {
       this.handleStartRecord();
@@ -108,7 +107,6 @@ class Recorder extends React.Component {
           this.setState({
             sent: 0,
             recieved: [],
-            recordedOnce: true,
           });
         }
       }, 5000);
@@ -167,7 +165,7 @@ class Recorder extends React.Component {
   }
 
   render() {
-    const { record, recordedOnce, blobURL } = this.state;
+    const { record, blobURL } = this.state;
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
     return (
       <>
@@ -176,7 +174,7 @@ class Recorder extends React.Component {
             record={record} // defaults -> false.  Set to true to begin recording
             pause={false} // defaults -> false (available in React-Mic-Gold)
             visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
-            className={(record && recordedOnce) || recordedOnce ? "recorder" : "fullRecorder"} // provide css class name
+            className="recorder" // provide css class name
             onStop={this.handleEndRecordFull} // required - called when audio stops recording
             strokeColor="purple" // sinewave or frequency bar color
             backgroundColor="white" // background color
