@@ -42,10 +42,7 @@
     "react-mic": "^12.4.6",
     "react-modal": "^3.12.1",
     "sox": "^0.1.0",
-<<<<<<< HEAD
-=======
     "url-loader": "^4.1.1",
->>>>>>> 01cd44408254bd7da86f7c6ee58637d23c1254d2
     "victory": "^35.4.13"
   },
   "devDependencies": {
