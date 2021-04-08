@@ -26,6 +26,22 @@ const addScriptToDB = (userId, scriptObj, res) => {
   );
 };
 
+const removeScriptFromDb = (req, res) => {
+  console.log('in DB function')
+  const { userId, scriptObj } = req.body;
+  DB.Users.update(
+    { _id: userId },
+    { $pull: { listScripts: scriptObj } },
+    (err, data) => {
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.status(200).send(data);
+      }
+    }
+  );
+};
+
 const makeTextBlocks = (req, res) => {
   const { userId, title, author, scriptBody } = req.body;
 
@@ -72,4 +88,5 @@ const makeTextBlocks = (req, res) => {
 module.exports = {
   scriptFetcher,
   makeTextBlocks,
+  removeScriptFromDb,
 };
