@@ -185,15 +185,17 @@ class Recorder extends React.Component {
             channelCount={1} // defaults -> 2 (stereo).  Specify 1 for mono.
             timeSlice={4999} // defaults -> 4000 milliseconds.  The interval at which captured audio is returned to onData callback (available in React-Mic-Gold).
           />
+          </div>
           <button
             type="submit"
             onClick={this.handlePlay}
             value={record ? 'Stop' : 'Record'}
+            id="va-record-button"
           >
             {record ? 'Stop' : 'Record'}
           </button>
-          <audio src={blobURL} controls="controls" />
-        </div>
+          <audio src={blobURL} controls="controls" id="va-recorder-audio"/>
+
       </>
     );
   }
