@@ -39,7 +39,6 @@ class LivePerformance extends React.Component {
 
   getAudios() {
     const { script, userCharacter } = this.props;
-    console.log('Endpoint inputs: ', script, userCharacter);
     axios
       .get('./livePerformance', {
         params: {
