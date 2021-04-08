@@ -175,7 +175,7 @@ class Recorder extends React.Component {
           <ReactMic
             record={record} // defaults -> false.  Set to true to begin recording
             pause={false} // defaults -> false (available in React-Mic-Gold)
-            visualSetting="frequencyBars" // defaults -> "sinewave".  Other option is "frequencyBars"
+            visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
             className={(record && recordedOnce) || recordedOnce ? "recorder" : "fullRecorder"} // provide css class name
             onStop={this.handleEndRecordFull} // required - called when audio stops recording
             strokeColor="purple" // sinewave or frequency bar color
