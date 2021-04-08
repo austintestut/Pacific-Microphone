@@ -11,11 +11,14 @@ class AppBody extends React.Component {
     super(props);
     this.state = {
       selectedPage: 'toneAnalyzer',
-      selectedScriptIndex: null,
+      selectedScriptIndex: 0,
       showModal: false,
       title: '',
       author: '',
       scriptBody: '',
+      showLPModal: false,
+      userCharacter: '',
+      tmp: '',
     };
 
     this.changeSelectedPage = this.changeSelectedPage.bind(this);
@@ -46,6 +49,11 @@ class AppBody extends React.Component {
     this.setState({ showModal: !showModal });
   }
 
+  toggleLPModal() {
+    const { showLPModal } = this.state;
+    this.setState({ showLPModal: !showLPModal });
+  }
+
   changeSelectedPage(page) {
     this.setState({ selectedPage: page, selectedScriptIndex: null });
   }
@@ -56,8 +64,14 @@ class AppBody extends React.Component {
   }
 
   render() {
-    const { selectedPage, selectedScriptIndex, showModal } = this.state;
+    const {
+      selectedPage,
+      selectedScriptIndex,
+      showModal,
+      showLPModal,
+    } = this.state;
     const { scriptList } = this.props;
+
     return (
       <div id="appBody">
         <Modal id="newScriptModal" isOpen={showModal}>
@@ -95,11 +109,36 @@ class AppBody extends React.Component {
             </button>
           </form>
         </Modal>
+        {/* <Modal id="livePerformanceModal" isOpen={showLPModal}>
+          <h3>Script name</h3>
+          <form
+            onSubmit={() => {
+              const { tmp } = this.state;
+              this.setState({ userCharacter: tmp });
+            }}
+          >
+            <select
+              onChange={(e) => {
+                this.setState({
+                  tmp: e.target.value,
+                });
+              }}
+            >
+              {scriptList[selectedScriptIndex].characterList.map(
+                (character) => (
+                  <option value={character}>{character}</option>
+                )
+              )}
+            </select>
+            <button type="submit">Submit</button>
+          </form>
+        </Modal> */}
         <SidePanel
           changeSelectedPage={this.changeSelectedPage}
           changeSelectedScript={this.changeSelectedScript}
           scriptList={scriptList}
           toggleModal={this.toggleModal}
+          selectedPage={selectedPage}
         />
         <MainPage
           page={selectedPage}
@@ -111,3 +150,13 @@ class AppBody extends React.Component {
 }
 
 export default AppBody;
+
+// // function (
+//   setState({
+//     tmp: e.taget.value
+//   })
+// )
+// // function (
+//   setState
+//   userCharacter: tmp
+// )

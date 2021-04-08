@@ -3,7 +3,7 @@ body {
 }
 
 #app {
-  display: flex;
+   display: flex;
   flex-direction: column;
 }
 
@@ -68,7 +68,7 @@ body {
 .scriptDisplay {
   text-align: center;
   overflow-y: scroll;
-  height: 87%;
+  height: 85%;
 }
 
 .talkingBlock {

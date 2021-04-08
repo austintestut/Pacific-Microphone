@@ -96,7 +96,7 @@ class MainPage extends React.Component {
         },
       ],
     };
-    const userCharacter = 'CHANDLER';
+    const userCharacter = 'SAM';
 
     const { page, selectedScript } = this.props;
 
@@ -110,7 +110,10 @@ class MainPage extends React.Component {
         ) : page === 'voiceAnalyzer' ? (
           <VoiceAnalyzer sendDataToMainPage={this.addDataForVoiceAnalysis} />
         ) : page === 'livePractice' ? (
-          <LivePerformance script={dummyScript} userCharacter={userCharacter} />
+          <LivePerformance
+            script={selectedScript}
+            userCharacter={userCharacter}
+          />
         ) : (
           <div>Loading Screen</div>
         )}

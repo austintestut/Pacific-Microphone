@@ -21,6 +21,13 @@ class LivePerformance extends React.Component {
     this.getAudios();
   }
 
+  componentDidUpdate(prevProps) {
+    const { script } = this.props;
+    if (prevProps.script !== script) {
+      this.getAudios();
+    }
+  }
+
   getAudios() {
     const { script, userCharacter } = this.props;
     axios

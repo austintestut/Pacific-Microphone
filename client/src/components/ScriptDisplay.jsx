@@ -2,7 +2,12 @@ import React from 'react';
 import ScriptTalkingBlock from './ScriptTalkingBlock';
 
 const ScriptDisplay = ({ script, currentIndex }) => {
+  if (!script) {
+    return <div>Loading...</div>;
+  }
   const { title, author, talkingBlocks } = script;
+  // console.log(script)
+
   return (
     <div className="scriptDisplay">
       <div className="title">{title}</div>

@@ -11,7 +11,11 @@ class App extends React.Component {
       authenticated: false,
       user: '',
       userId: '',
-      scriptList: [],
+      scriptList: [
+        {
+          characterList: [''],
+        },
+      ],
     };
     this.login = this.login.bind(this);
   }
