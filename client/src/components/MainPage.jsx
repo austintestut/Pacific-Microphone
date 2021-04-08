@@ -5,6 +5,8 @@ import VoiceAnalysisChart from './VoiceAnalysisChart';
 import LivePerformance from './LivePerformance';
 import VoiceAnalyzer from './VoiceAnalyzer';
 import TextAnalysisChart from './TextAnalysisChart';
+import ScriptAnalyzer from './ScriptAnalyzer';
+
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -87,7 +89,7 @@ class MainPage extends React.Component {
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
         {page === 'toneAnalyzer' ? (
           <>
-            <div>{`${selectedScript?.watsonAnalysis}`}</div>
+            {selectedScript && <ScriptAnalyzer script={selectedScript}/>}
             <TextAnalysisChart currentSentenceTones={currentSentenceTones}/>
           </>
         ) : page === 'voiceAnalyzer' ? (
