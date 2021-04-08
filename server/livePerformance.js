@@ -37,7 +37,6 @@ const watsonGetAudio = (text, title, index) => {
 };
 
 const getAudio = (req, res) => {
-  debugger;
 
   const script = JSON.parse(req.query.script);
   let talkingBlockPromises = [];
