@@ -27,7 +27,6 @@ class ScriptAnalyzer extends React.Component {
   render() {
     const {script} = this.props;
     const {currTone} = this.state
-    console.log(script)
     return (
       <>
       <ScriptAnalysisDisplay script={script} displayWatsonAnalysis={this.displayWatsonAnalysis}/>
