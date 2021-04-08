@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import VoiceAnalysisChart from './VoiceAnalysisChart';
 import LivePerformance from './LivePerformance';
 import VoiceAnalyzer from './VoiceAnalyzer';
 import TextAnalysisChart from './TextAnalysisChart';
@@ -119,9 +118,8 @@ class MainPage extends React.Component {
           <>
             <VoiceAnalyzer
               sendDataToMainPage={this.sendDataToMainPage}
-              audioToText={audioToText}
+              audioToText={audioToText} voiceAnalysisData={voiceAnalysisData}
             />
-            <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData} />
           </>
         ) : page === 'livePractice' ? (
           <LivePerformance

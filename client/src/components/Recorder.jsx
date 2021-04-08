@@ -24,7 +24,6 @@ class Recorder extends React.Component {
     this.checkPerms = this.checkPerms.bind(this);
     this.handleStartRecord = this.handleStartRecord.bind(this);
     this.handleSendSegment = this.handleSendSegment.bind(this);
-    this.sendDataToRecorder = this.sendDataToRecorder.bind(this);
   }
 
   componentDidMount() {
@@ -165,12 +164,6 @@ class Recorder extends React.Component {
     );
   }
 
-  sendDataToRecorder(data, name) {
-    this.setState({
-      [name]: data,
-    });
-  }
-
   render() {
     const { record, blobURL } = this.state;
     // const Mp3Recorder = new MicRecorder({ bitRate: 128 });
@@ -180,7 +173,7 @@ class Recorder extends React.Component {
           <ReactMic
             record={record} // defaults -> false.  Set to true to begin recording
             pause={false} // defaults -> false (available in React-Mic-Gold)
-            visualSetting="frequencyBars" // defaults -> "sinewave".  Other option is "frequencyBars"
+            visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
             className="recorder" // provide css class name
             onStop={this.handleEndRecordFull} // required - called when audio stops recording
             strokeColor="purple" // sinewave or frequency bar color
