@@ -3,10 +3,9 @@ import ScriptTalkingBlock from './ScriptTalkingBlock';
 
 const ScriptDisplay = ({ script, currentIndex }) => {
   if (!script) {
-    return <div>Loading...</div>;
+    return <div>Waiting for script to be selected</div>;
   }
   const { title, author, talkingBlocks } = script;
-  // console.log(script)
 
   return (
     <div className="scriptDisplay">
