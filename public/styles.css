@@ -1,3 +1,9 @@
+:root {
+  --main: #662D91; /* Script analysis */
+  --accent: #52E5E6; /* Voice Analysis */
+  --secondAccent: #A580F2; /* Live Practice */
+}
+
 body {
   margin: 0;
 }
@@ -8,7 +14,7 @@ body {
 }
 
 #LoginPage {
-  background-image: linear-gradient(#662d91, #b99bd0);
+  background-image: linear-gradient(var(--main), #b99bd0);
   position: absolute;
   width: 100%;
   height: 100%;
