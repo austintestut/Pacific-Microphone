@@ -3,7 +3,7 @@ body {
 }
 
 #app {
-  display: flex;
+   display: flex;
   flex-direction: column;
 }
 
@@ -86,14 +86,20 @@ background-image:linear-gradient(#ffffff, #deb4ff);
   flex-direction: column;
 }
 
+#livePerformance {
+  height: 100%;
+}
+
 .scriptDisplay {
   text-align: center;
   overflow-y: scroll;
-  height: 400px;
+  height: 85%;
 }
 
 .talkingBlock {
   margin: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .title,

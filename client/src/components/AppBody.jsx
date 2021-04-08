@@ -16,6 +16,8 @@ class AppBody extends React.Component {
       title: '',
       author: '',
       scriptBody: '',
+      showLPModal: false,
+      userCharacter: '',
       // hard coded
       currentSentenceTones: [
         {
@@ -53,8 +55,8 @@ class AppBody extends React.Component {
       .catch((error) => console.error(error));
 
     axios
-      .post('/textToneAnalysis', {text: scriptBody, title, userId})
-      .then(data => console.log(data))
+      .post('/textToneAnalysis', { text: scriptBody, title, userId })
+      .then((data) => console.log(data))
       .catch((error) => console.error(error));
 
     this.toggleModal();
@@ -66,6 +68,11 @@ class AppBody extends React.Component {
     this.setState({
       currentSentenceTones: watsonAnalysis[selectedSentence],
     });
+  }
+
+  toggleLPModal() {
+    const { showLPModal } = this.state;
+    this.setState({ showLPModal: !showLPModal });
   }
 
   changeSelectedPage(page) {
@@ -87,9 +94,11 @@ class AppBody extends React.Component {
       selectedPage,
       selectedScriptIndex,
       showModal,
+      showLPModal,
       currentSentenceTones,
     } = this.state;
     const { scriptList } = this.props;
+
     return (
       <div id="appBody">
         <Modal id="newScriptModal" isOpen={showModal}>
@@ -127,11 +136,36 @@ class AppBody extends React.Component {
             </button>
           </form>
         </Modal>
+        {/* <Modal id="livePerformanceModal" isOpen={showLPModal}>
+          <h3>Script name</h3>
+          <form
+            onSubmit={() => {
+              const { tmp } = this.state;
+              this.setState({ userCharacter: tmp });
+            }}
+          >
+            <select
+              onChange={(e) => {
+                this.setState({
+                  tmp: e.target.value,
+                });
+              }}
+            >
+              {scriptList[selectedScriptIndex].characterList.map(
+                (character) => (
+                  <option value={character}>{character}</option>
+                )
+              )}
+            </select>
+            <button type="submit">Submit</button>
+          </form>
+        </Modal> */}
         <SidePanel
           changeSelectedPage={this.changeSelectedPage}
           changeSelectedScript={this.changeSelectedScript}
           scriptList={scriptList}
           toggleModal={this.toggleModal}
+          selectedPage={selectedPage}
         />
         <MainPage
           page={selectedPage}
