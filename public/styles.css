@@ -141,5 +141,12 @@ background-image:linear-gradient(#ffffff, #deb4ff);
 
 #TextAnalysisChart {
   height: 400px;
-  width: 800px;
+  width: 20%;
+  min-width: 400px;
+
+}
+
+#scriptAnalyzerContainer {
+  display: flex;
+  height: 100%;
 }
