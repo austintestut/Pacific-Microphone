@@ -49,10 +49,6 @@ body {
   color: var(--main);
 }
 
-#headerLogo {
-  /* height: 100%; */
-}
-
 #username {
   font-family: 'Avenir Next Regular', sans-serif;
   font-size: 100%;
