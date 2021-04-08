@@ -26,7 +26,7 @@ class ScriptList extends React.Component {
             {s.title}
           </button>
         ))}
-        {selectedScriptIndex && (
+        {selectedScriptIndex !== null && (
           <button id="deleteScriptButton" type="button" onClick={deleteScript}>
             Delete Selected Script
           </button>
