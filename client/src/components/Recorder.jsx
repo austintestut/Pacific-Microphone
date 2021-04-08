@@ -24,7 +24,6 @@ class Recorder extends React.Component {
     this.checkPerms = this.checkPerms.bind(this);
     this.handleStartRecord = this.handleStartRecord.bind(this);
     this.handleSendSegment = this.handleSendSegment.bind(this);
-    this.sendDataToRecorder = this.sendDataToRecorder.bind(this);
   }
 
   componentDidMount() {
@@ -165,12 +164,6 @@ class Recorder extends React.Component {
         this.setState({ isBlocked: true });
       }
     );
-  }
-
-  sendDataToRecorder(data, name) {
-    this.setState({
-      [name]: data,
-    });
   }
 
   render() {
