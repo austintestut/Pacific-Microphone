@@ -3,7 +3,7 @@ body {
 }
 
 #app {
-   display: flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -22,14 +22,14 @@ body {
   right: 45%;
   height: 100px;
   width: 200px;
-  background-image:linear-gradient(#deb4ff, #ffffff);
+  background-image: linear-gradient(#deb4ff, #ffffff);
   font-size: 20px;
   border-radius: 10px;
 }
 
-#LoginButton:hover{
-cursor: pointer;
-background-image:linear-gradient(#ffffff, #deb4ff);
+#LoginButton:hover {
+  cursor: pointer;
+  background-image: linear-gradient(#ffffff, #deb4ff);
 }
 
 #appHeader {
@@ -112,7 +112,10 @@ background-image:linear-gradient(#ffffff, #deb4ff);
 }
 
 .recorder {
-  height: 300px;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 0;
+  grid-column-end: 2;
 }
 
 #deleteScriptButton {
@@ -136,10 +139,44 @@ background-image:linear-gradient(#ffffff, #deb4ff);
 
 #VoiceAnalysisChart {
   height: 400px;
-  width: 800px;
+  width: 40vw;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
 }
 
 #TextAnalysisChart {
   height: 400px;
-  width: 800px;
+  width: 40vw;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.voiceRecorderAndTextContainer {
+  display: grid;
+  grid-template-columns: 40vw 40vw;
+  grid-template-rows: 10vh 50vh 10vh;
+  width: 80vw;
+}
+
+#mic {
+  width: 70vw;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 0;
+  grid-column-end: 2;
+}
+
+#audioTextDisplay {
+  color: black;
+  text-align: center;
+  overflow-y: scroll;
+  /* position */
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
 }

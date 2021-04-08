@@ -12,7 +12,6 @@ const speechToText = new SpeechToTextV1({
 });
 
 const getTextFromAudio = (req, res) => {
-// debugger;
   fs.writeFileSync('audioToText.webm', req.files.webm.data);
 
   const params = {
