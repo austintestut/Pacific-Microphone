@@ -13,11 +13,11 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
         <div key={idx}>
           <div>{talkingBlock.character}</div>
           {talkingBlock.text.match(regex).map((s, idx) => (
-            <div key={idx}>
+            <span key={idx}>
               {s && (
-                <div onClick={() => displayWatsonAnalysis(s.trim())}>{s}</div>
+                <span onClick={() => displayWatsonAnalysis(s.trim())}>{s}</span>
               )}
-            </div>
+            </span>
           ))}
         </div>
       ))}
