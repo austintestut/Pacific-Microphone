@@ -3,7 +3,7 @@ import React from 'react';
 const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
   const { title, author, talkingBlocks, watsonAnalysis } = script;
 
-  const regex = /[\w- ]+[.?!] /g
+  const regex = /[\w-, ]+[.?!] ?/g;
 
   return (
     <div className="scriptDisplay">
@@ -11,12 +11,14 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
       <div className="author">By: {author}</div>
       {talkingBlocks.map((talkingBlock) => (
         <>
-        <div>{talkingBlock.character}</div>
-        {talkingBlock.text.match(regex).map(s => (
-          <>
-          {s && <div onClick={() => displayWatsonAnalysis(s.trim())}>{s}</div>}
-          </>
-        ))}
+          <div>{talkingBlock.character}</div>
+          {talkingBlock.text.match(regex).map((s) => (
+            <>
+              {s && (
+                <div onClick={() => displayWatsonAnalysis(s.trim())}>{s}</div>
+              )}
+            </>
+          ))}
         </>
       ))}
     </div>
