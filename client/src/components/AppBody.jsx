@@ -136,7 +136,7 @@ class AppBody extends React.Component {
             </button>
           </form>
         </Modal>
-        {/* <Modal id="livePerformanceModal" isOpen={showLPModal}>
+        <Modal id="livePerformanceModal" isOpen={showLPModal}>
           <h3>Script name</h3>
           <form
             onSubmit={() => {
@@ -159,7 +159,7 @@ class AppBody extends React.Component {
             </select>
             <button type="submit">Submit</button>
           </form>
-        </Modal> */}
+        </Modal>
         <SidePanel
           changeSelectedPage={this.changeSelectedPage}
           changeSelectedScript={this.changeSelectedScript}
