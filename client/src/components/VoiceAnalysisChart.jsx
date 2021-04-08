@@ -59,6 +59,7 @@ class VoiceAnalysisChart extends React.Component {
             orientation="left"
             label="Score"
             style={{
+              axisLabel: {fontSize: 15, padding: 30, fontWeight: 600},
               tickLabels: { fontSize: 10 },
             }}
             domain={[0, 100]}
@@ -67,6 +68,7 @@ class VoiceAnalysisChart extends React.Component {
           <VictoryAxis
             orientation="bottom"
             style={{
+              axisLabel: {fontSize: 15, padding: 30, fontWeight: 600},
               tickLabels: { fontSize: 10 },
             }}
             tickValues={ticks}
