@@ -16,6 +16,7 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      { test: /\.(png|jpeg|jpg)$/, use: 'url-loader' },
     ],
   },
   mode: 'development',

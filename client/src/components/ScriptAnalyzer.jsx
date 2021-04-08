@@ -1,41 +1,59 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ScriptAnalysisDisplay from './SAComponents/ScriptAnalysisDisplay';
+import TextAnalysisChart from './TextAnalysisChart';
 
 class ScriptAnalyzer extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       watsonAnalysisObj: null,
-      currTone: null
-    }
+      currToneArray: [],
+      prevScript: null,
+    };
     this.displayWatsonAnalysis = this.displayWatsonAnalysis.bind(this);
   }
 
   componentDidMount() {
-    const {script} = this.props
-    this.setState({watsonAnalysisObj: JSON.parse(script.watsonAnalysis)})
+    const { script } = this.props;
+    this.setState({
+      watsonAnalysisObj: JSON.parse(script.watsonAnalysis),
+      prevScript: script,
+    });
+  }
+
+  componentDidUpdate() {
+    const { script } = this.props;
+    const { prevScript } = this.state;
+    if (script !== prevScript) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        watsonAnalysisObj: JSON.parse(script.watsonAnalysis),
+        prevScript: script,
+        currToneArray: [],
+      });
+    }
   }
 
   displayWatsonAnalysis(sentence) {
-    const { watsonAnalysisObj }= this.state
-    this.setState({currTone: watsonAnalysisObj[sentence][0].tone_name})
+    const { watsonAnalysisObj } = this.state;
+    this.setState({ currToneArray: watsonAnalysisObj[sentence] });
   }
 
   render() {
-    const {script} = this.props;
-    const {currTone} = this.state
-    console.log(script)
+    const { script } = this.props;
+    const { currToneArray } = this.state;
     return (
-      <>
-      <ScriptAnalysisDisplay script={script} displayWatsonAnalysis={this.displayWatsonAnalysis}/>
-      <div>{currTone}</div>
-      </>
-    )
+      <div id="scriptAnalyzerContainer">
+        <TextAnalysisChart currentSentenceTones={currToneArray} />
+        <ScriptAnalysisDisplay
+          script={script}
+          displayWatsonAnalysis={this.displayWatsonAnalysis}
+        />
+      </div>
+    );
   }
-
 }
 
 export default ScriptAnalyzer;

@@ -3,8 +3,7 @@ import React from 'react';
 const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
   const { title, author, talkingBlocks, watsonAnalysis } = script;
 
-  const regex = /[\w-,;_%''""$&#@* ]+[.?!] ?/g;
-  console.log('SAD: ', script);
+  const regex = /[\w-,;_%''""$&#@*() ]+[.?!] ?/g;
 
   return (
     <div className="scriptDisplay">

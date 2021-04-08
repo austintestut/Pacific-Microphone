@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import VoiceAnalysisChart from './VoiceAnalysisChart';
 import LivePerformance from './LivePerformance';
 import VoiceAnalyzer from './VoiceAnalyzer';
 import TextAnalysisChart from './TextAnalysisChart';
@@ -38,17 +37,14 @@ class MainPage extends React.Component {
 
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
         {page === 'toneAnalyzer' ? (
-          <>
-            {selectedScript && <ScriptAnalyzer script={selectedScript} />}
-            <TextAnalysisChart currentSentenceTones={currentSentenceTones} />
-          </>
+          <>{selectedScript && <ScriptAnalyzer script={selectedScript} />}</>
         ) : page === 'voiceAnalyzer' ? (
           <>
             <VoiceAnalyzer
               sendDataToMainPage={this.sendDataToMainPage}
               audioToText={audioToText}
+              voiceAnalysisData={voiceAnalysisData}
             />
-            <VoiceAnalysisChart voiceAnalysisData={voiceAnalysisData} />
           </>
         ) : page === 'livePractice' ? (
           // if userCharacter does not exist yet,  than pass null as script

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import micImage from '../../../public/images/project_microphone_logo.png';
 
 class AppHeader extends React.Component {
   constructor(props) {
@@ -10,14 +11,13 @@ class AppHeader extends React.Component {
   render() {
     const { user } = this.props;
     return (
-      <>
-        <div id="appHeader">
-          Welcome, {user}
-          <button type="button">
-            <a href="/logout">Logout</a>
-          </button>
-        </div>
-      </>
+      <div id="appHeader">
+        <img id="headerLogo" src={micImage} alt="logo" />
+        Welcome, {user}
+        <button type="button">
+          <a href="/logout">Logout</a>
+        </button>
+      </div>
     );
   }
 }
