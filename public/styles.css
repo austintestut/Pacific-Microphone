@@ -128,7 +128,7 @@ body {
   background-color: white;
   display: flex;
   flex-direction: column;
-  overflow-y:scroll;
+  overflow-y: scroll;
 }
 
 .newScriptinSidePanel {
@@ -145,7 +145,7 @@ body {
 
 .newScriptinSidePanel:hover {
   border-bottom: solid 4px var(--main);
-  opacity: 1.0;
+  opacity: 1;
 }
 
 #livePerformance {
@@ -156,7 +156,6 @@ body {
   text-align: center;
   float: right;
   padding-right: 5%;
-  height: 75%;
   width: 60%;
 }
 
@@ -216,7 +215,7 @@ mark {
 
 #newScriptButton:hover {
   box-shadow: 1px 1px 1px var(--secondAccent);
-  opacity: 1.0;
+  opacity: 1;
 }
 
 #newScriptModal {
@@ -230,7 +229,7 @@ mark {
   justify-content: center;
 }
 
-#modalTitleInput{
+#modalTitleInput {
   width: 500px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -240,7 +239,7 @@ mark {
   box-sizing: border-box;
 }
 
-#modalAuthorInput{
+#modalAuthorInput {
   width: 500px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -250,7 +249,7 @@ mark {
   box-sizing: border-box;
 }
 
-#modalScriptInput{
+#modalScriptInput {
   width: 500px;
   height: 250px;
   padding: 12px 20px;
@@ -314,6 +313,30 @@ mark {
   display: flex;
 }
 
+.pageOption {
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  border: none;
+}
+
+.pageOption:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #662d91;
+  transform-origin: bottom right;
+  transition: transform 0.15s ease-out;
+}
+
+.pageOption:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 #va-record-button {
   font-size: 1em;
 
@@ -383,4 +406,3 @@ mark {
   grid-row-start: 3;
   grid-row-end: 4;
 }
-
