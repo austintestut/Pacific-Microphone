@@ -194,8 +194,7 @@ class Recorder extends React.Component {
           >
             {record ? 'Stop' : 'Record'}
           </button>
-          <audio src={blobURL} controls="controls" id="va-recorder-audio"/>
-
+          <audio src={blobURL} controls="controls" id={blobURL ? "va-recorder-audio-revealed" : "va-recorder-audio-hidden" } />
       </>
     );
   }
