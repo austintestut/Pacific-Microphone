@@ -93,7 +93,7 @@ body {
 
 #appBody {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   display: flex;
 }
 
@@ -237,7 +237,7 @@ mark {
   opacity: 1;
 }
 
-#yourScriptsHeading{
+#yourScriptsHeading {
   margin: 0 auto;
 }
 
@@ -246,11 +246,13 @@ mark {
   justify-content: center;
   align-items: center;
   width: 700px;
-  margin:0 auto;
+  margin: 0 auto;
   box-shadow: -2rem 2rem 2rem grey;
 }
 
-#modalAuthorInput:hover, #modalScriptInput:hover, #modalTitleInput:hover{
+#modalAuthorInput:hover,
+#modalScriptInput:hover,
+#modalTitleInput:hover {
   box-shadow: 1px 1px 1px grey;
   transition: box-shadow 0.4s ease-in-out;
 }
@@ -286,7 +288,7 @@ mark {
   box-sizing: border-box;
 }
 
-.modalButtons{
+.modalButtons {
   border: grey solid 2px;
   text-transform: uppercase;
   background-color: white;
@@ -327,7 +329,7 @@ mark {
 .voiceRecorderAndTextContainer {
   display: grid;
   grid-template-columns: 40vw 40vw;
-  grid-template-rows: 100px 400px 100px;
+  grid-template-rows: 15vh 40vh 10vh;
   width: 1200px;
 }
 
@@ -385,35 +387,53 @@ mark {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0px 0px 5px 0px rgba(173, 0, 0, 0.3);
+  }
+  65% {
+    box-shadow: 0px 0px 5px 13px rgba(173, 0, 0, 0.3);
+  }
+  90% {
+    box-shadow: 0px 0px 5px 13px rgba(173, 0, 0, 0);
+  }
+}
+
 #va-record-button {
   font-size: 1em;
 
-  height: 80px;
-  width: 80px;
+  height: 65px;
+  width: 65px;
 
   background-color: red;
   border-style: solid;
 
-  border-width: thick;
-  border-color: var(--main);
+  border-width: thin;
+  border-color: red;
   border-radius: 50%;
 
   /* position */
   position: relative;
-  top: -10px;
-  left: 95px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  top: 15px;
+  left: 15px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
   outline: none;
+
+  animation-name: pulse;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 #va-record-button:hover {
   font-size: 1em;
 
-  height: 80px;
-  width: 80px;
+  height: 65px;
+  width: 65px;
 
   background-color: red;
   color: white;
@@ -426,12 +446,12 @@ mark {
 
   /* position */
   position: relative;
-  top: -10px;
-  left: 95px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  top: 15px;
+  left: 15px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
   outline: none;
 
   cursor: pointer;
@@ -440,22 +460,22 @@ mark {
 #va-recorder-audio-hidden {
   z-index: -1;
   position: relative;
-  top: 10px;
-  left: 200px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  top: 15px;
+  left: 100px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 #va-recorder-audio-revealed {
   /* position */
   position: relative;
-  top: 10px;
-  left: 200px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  top: 15px;
+  left: 100px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
   outline: none;
 }
