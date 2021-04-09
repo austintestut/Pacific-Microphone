@@ -33,9 +33,14 @@ class MainPage extends React.Component {
     const { voiceAnalysisData, clickedSentence, audioToText } = this.state;
     return (
       <div id="mainPage">
-        <h2>Page: {page}</h2>
+        <h3>
+          {selectedScript?.title ? (
+            `Script: "${selectedScript?.title}"`
+          ) : (
+            'Please select script'
+          )}
+        </h3>
 
-        <div>Script: {selectedScript?.title || 'Please select script'}</div>
         {page === 'toneAnalyzer' ? (
           // <>{selectedScript && <ScriptAnalyzer script={selectedScript} />}</>
           <div></div>
