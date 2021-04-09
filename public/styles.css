@@ -138,6 +138,7 @@ body {
   margin-bottom: 2px;
   opacity: 0.8;
   position: static;
+  border-bottom: solid 4px transparent;
 }
 
 .newScriptinSidePanel:hover {
@@ -222,10 +223,43 @@ mark {
   bottom: 'auto';
   margin-right: '-50%';
   transform: 'translate(-50%, -50%)';
+  display: flex;
+  justify-content: center;
+}
+
+#modalTitleInput{
+  width: 500px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modalAuthorInput{
+  width: 500px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modalScriptInput{
+  width: 500px;
+  height: 250px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 #VoiceAnalysisChart {
-  height: 400px;
+  height: 800px;
   width: 40vw;
   grid-row-start: 1;
   grid-row-end: 3;
@@ -274,3 +308,4 @@ mark {
   display: flex;
   height: 100%;
 }
+
