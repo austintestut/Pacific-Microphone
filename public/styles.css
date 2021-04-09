@@ -87,9 +87,14 @@ body {
 }
 
 #mainPage {
+  font-family: 'Avenir Next Regular', sans-serif;
   width: calc(100% - 300px);
   min-width: 80%;
   height: 100%;
+}
+
+#mainScriptChoice {
+  font-weight: 600;
 }
 
 #sidePanel {
@@ -97,7 +102,7 @@ body {
   width: 20%;
   max-width: 300px;
   height: 100%;
-  background-color: rgb(218, 218, 218);
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,10 +125,27 @@ body {
   margin-top: auto;
   width: 100%;
   border-radius: 5px;
-  border: 2px solid black;
-  background-color: moccasin;
+  background-color: white;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+}
+
+.newScriptinSidePanel {
+  border: none;
+  background-color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  opacity: 0.8;
+  position: static;
+  border-bottom: solid 4px transparent;
+}
+
+.newScriptinSidePanel:hover {
+  border-bottom: solid 4px var(--main);
+  opacity: 1;
 }
 
 #livePerformance {
@@ -135,7 +157,7 @@ body {
   float: right;
   padding-right: 5%;
   height: 75%;
-  max-width: 60%;
+  width: 60%;
 }
 
 .talkingBlock {
@@ -159,20 +181,42 @@ mark {
 }
 
 .recorder {
+  width: 80vw;
   grid-row-start: 3;
   grid-row-end: 4;
-  grid-column-start: 0;
+  grid-column-start: 1;
   grid-column-end: 2;
 }
 
 #deleteScriptButton {
-  margin-top: auto;
-  background-color: #910000;
-  color: white;
+  bottom: 2px;
+  border-color: var(--main);
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 1px;
+  background-color: white;
+  opacity: 0.8;
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 #newScriptButton {
-  margin-top: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 2px;
+  border-color: var(--main);
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 1px;
+  background-color: white;
+  opacity: 0.8;
+}
+
+#newScriptButton:hover {
+  box-shadow: 1px 1px 1px var(--secondAccent);
+  opacity: 1;
 }
 
 #newScriptModal {
@@ -182,10 +226,43 @@ mark {
   bottom: 'auto';
   margin-right: '-50%';
   transform: 'translate(-50%, -50%)';
+  display: flex;
+  justify-content: center;
+}
+
+#modalTitleInput {
+  width: 500px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modalAuthorInput {
+  width: 500px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modalScriptInput {
+  width: 500px;
+  height: 250px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 #VoiceAnalysisChart {
-  height: 400px;
+  height: 800px;
   width: 40vw;
   grid-row-start: 1;
   grid-row-end: 3;
@@ -212,11 +289,11 @@ mark {
 }
 
 #mic {
-  width: 70vw;
+  width: 80vw;
   grid-row-start: 3;
   grid-row-end: 4;
-  grid-column-start: 0;
-  grid-column-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 #audioTextDisplay {
@@ -228,11 +305,13 @@ mark {
   grid-row-end: 3;
   grid-column-start: 2;
   grid-column-end: 3;
+  /* margin */
+  margin-bottom: none;
 }
 
 #scriptAnalyzerContainer {
+  font-family: 'Avenir Next Regular', sans-serif;
   display: flex;
-  height: 100%;
 }
 
 .pageOption {
@@ -258,4 +337,73 @@ mark {
 .pageOption:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+#va-record-button {
+  font-size: 1em;
+
+  height: 5vh;
+  width: 5vw;
+
+  background-color: white;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: transparent;
+
+  border-width: thick;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+
+  /* position */
+  position: relative;
+  top: 2vh;
+  left: 9vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  outline: none;
+}
+
+#va-record-button:hover {
+  height: 5vh;
+  width: 5vw;
+
+  background-color: white;
+  color: var(--main);
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+  border-width: thick;
+  border-bottom-color: var(--main);
+  padding-bottom: 2px;
+
+  transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+
+  /* position */
+  position: relative;
+  top: 2vh;
+  left: 8vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  outline: none;
+}
+
+#va-recorder-audio {
+  background-color: var(--secondAccent);
+  color: var(--main);
+
+  /* position */
+  position: relative;
+  top: 1vh;
+  left: 15vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
