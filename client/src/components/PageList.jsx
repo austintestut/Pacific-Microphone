@@ -17,7 +17,7 @@ class PageList extends React.Component {
           onClick={() => changeSelectedPage('toneAnalyzer')}
         >
           <i className="" />
-          <h3>Tone Analyzer</h3>
+          <h3>Script Analyzer</h3>
         </button>
         <button
           type="button"
