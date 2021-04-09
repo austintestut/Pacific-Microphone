@@ -55,7 +55,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100vw;
-  height: 10vh;
+  height: 5em;
   background-image: linear-gradient(var(--secondAccent), white);
   border-bottom: 2px solid black;
   color: var(--main);
@@ -88,8 +88,7 @@ body {
 }
 
 #appTitle {
-  padding-left: 25%;
-  padding-right: 25%;
+  margin: 0 auto;
 }
 
 #appBody {
@@ -105,6 +104,12 @@ body {
   height: 100%;
 }
 
+#pleaseSelectScript {
+  position: relative;
+  margin: 30% 40% 0 40%;
+  min-width: 40%;
+}
+
 #mainScriptChoice {
   font-weight: 600;
 }
@@ -113,6 +118,7 @@ body {
   box-sizing: border-box;
   width: 20%;
   max-width: 300px;
+  min-width: 225px;
   height: 100%;
   background-color: white;
   display: flex;
@@ -135,6 +141,7 @@ body {
 
 #scriptList {
   height: 60%;
+  min-height: 75px;
   margin-top: auto;
   width: 100%;
   border-radius: 5px;
@@ -168,8 +175,7 @@ body {
 .scriptDisplay {
   text-align: center;
   float: right;
-  padding-right: 5%;
-  width: 60%;
+  width: 100%;
 }
 
 .talkingBlock {
@@ -292,6 +298,7 @@ mark {
   grid-column-start: 1;
   grid-column-end: 2;
   float: left;
+  text-align: center;
 }
 
 .voiceRecorderAndTextContainer {
