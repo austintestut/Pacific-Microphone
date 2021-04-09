@@ -156,7 +156,6 @@ body {
   text-align: center;
   float: right;
   padding-right: 5%;
-  height: 75%;
   width: 60%;
 }
 
@@ -314,6 +313,30 @@ mark {
   display: flex;
 }
 
+.pageOption {
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  border: none;
+}
+
+.pageOption:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #662d91;
+  transform-origin: bottom right;
+  transition: transform 0.15s ease-out;
+}
+
+.pageOption:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 #va-record-button {
   font-size: 1em;
 
