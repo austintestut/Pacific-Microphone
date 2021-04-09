@@ -128,7 +128,7 @@ body {
   background-color: white;
   display: flex;
   flex-direction: column;
-  overflow-y:scroll;
+  overflow-y: scroll;
 }
 
 .newScriptinSidePanel {
@@ -145,7 +145,7 @@ body {
 
 .newScriptinSidePanel:hover {
   border-bottom: solid 4px var(--main);
-  opacity: 1.0;
+  opacity: 1;
 }
 
 #livePerformance {
@@ -216,7 +216,7 @@ mark {
 
 #newScriptButton:hover {
   box-shadow: 1px 1px 1px var(--secondAccent);
-  opacity: 1.0;
+  opacity: 1;
 }
 
 #newScriptModal {
@@ -230,7 +230,7 @@ mark {
   justify-content: center;
 }
 
-#modalTitleInput{
+#modalTitleInput {
   width: 500px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -240,7 +240,7 @@ mark {
   box-sizing: border-box;
 }
 
-#modalAuthorInput{
+#modalAuthorInput {
   width: 500px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -250,7 +250,7 @@ mark {
   box-sizing: border-box;
 }
 
-#modalScriptInput{
+#modalScriptInput {
   width: 500px;
   height: 250px;
   padding: 12px 20px;
@@ -317,51 +317,19 @@ mark {
 #va-record-button {
   font-size: 1em;
 
-  height: 5vh;
-  width: 5vw;
+  height: 10vh;
+  width: 6vw;
 
-  background-color: white;
-
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom-color: transparent;
+  background-color: red;
+  border-style: solid;
 
   border-width: thick;
-  margin-bottom: 30px;
-  padding-bottom: 30px;
+  border-color: var(--main);
+  border-radius: 50%;
 
   /* position */
   position: relative;
-  top: 2vh;
-  left: 9vw;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  outline: none;
-}
-
-#va-record-button:hover {
-  height: 5vh;
-  width: 5vw;
-
-  background-color: white;
-  color: var(--main);
-
-  border-top: none;
-  border-left: none;
-  border-right: none;
-
-  border-width: thick;
-  border-bottom-color: var(--main);
-  padding-bottom: 2px;
-
-  transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
-
-  /* position */
-  position: relative;
-  top: 2vh;
+  top: 1vh;
   left: 8vw;
   grid-column-start: 2;
   grid-column-end: 3;
@@ -370,10 +338,36 @@ mark {
   outline: none;
 }
 
+#va-record-button:hover {
+  font-size: 1em;
+
+  height: 10vh;
+  width: 6vw;
+
+  background-color: red;
+  color: white;
+
+  border-width: thin;
+  border-color: red;
+  border-radius: 50%;
+
+  transition: all 0.7s cubic-bezier(0, 0, 0.3, 1);
+
+  /* position */
+  position: relative;
+  top: 1vh;
+  left: 8vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  outline: none;
+
+  cursor: pointer;
+}
+
 #va-recorder-audio {
   background-color: var(--secondAccent);
-  color: var(--main);
-
   /* position */
   position: relative;
   top: 1vh;
@@ -383,4 +377,3 @@ mark {
   grid-row-start: 3;
   grid-row-end: 4;
 }
-
