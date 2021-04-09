@@ -176,7 +176,7 @@ class Recorder extends React.Component {
             visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
             className="recorder" // provide css class name
             onStop={this.handleEndRecordFull} // required - called when audio stops recording
-            strokeColor="purple" // sinewave or frequency bar color
+            strokeColor="#a580f2" // sinewave or frequency bar color
             backgroundColor="white" // background color
             mimeType="audio/mp3" // defaults -> "audio/webm".  Set to "audio/wav" for WAV or "audio/mp3" for MP3 audio format (available in React-Mic-Gold)
             echoCancellation // defaults -> false
