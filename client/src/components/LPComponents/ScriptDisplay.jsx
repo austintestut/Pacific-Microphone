@@ -3,7 +3,7 @@ import ScriptTalkingBlock from './ScriptTalkingBlock';
 
 const ScriptDisplay = ({ script, currentIndex }) => {
   if (!script) {
-    return <div>Waiting for script to be selected</div>;
+    return <h3 id="pleaseSelectScript">Please Select Script</h3>;
   }
   const { title, author, talkingBlocks } = script;
 
