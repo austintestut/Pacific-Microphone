@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DBTOKEN);
+mongoose.connect('mongodb://localhost:27017/ocean');
 
 const ScriptSchema = mongoose.Schema({
   title: { type: String, unique: true },
@@ -26,40 +26,40 @@ const Scripts = mongoose.model('Script', ScriptSchema);
 
 const Users = mongoose.model('Users', UserSchema);
 
-// Users.create([
-//   {
-//     userName: 'Sam',
-//     googleId: 'whatever',
-//     listScripts: [
-//       {
-//         title: 'hello',
-//         author: 'sam',
-//         talkingBlocks: [
-//           {
-//             character: 'sma',
-//             text: 'hello world',
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   {
-//     userName: 'Chandler',
-//     googleId: 'whatever',
-//     listScripts: [
-//       {
-//         title: 'hi',
-//         author: 'sam',
-//         talkingBlocks: [
-//           {
-//             character: 'sma',
-//             text: 'hello world',
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ]);
+Users.create([
+  {
+    userName: 'Sam',
+    googleId: 'whatever',
+    listScripts: [
+      {
+        title: 'hello',
+        author: 'sam',
+        talkingBlocks: [
+          {
+            character: 'sma',
+            text: 'hello world',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    userName: 'Chandler',
+    googleId: 'whatever',
+    listScripts: [
+      {
+        title: 'hi',
+        author: 'sam',
+        talkingBlocks: [
+          {
+            character: 'sma',
+            text: 'hello world',
+          },
+        ],
+      },
+    ],
+  },
+]);
 
 module.exports = {
   Users,

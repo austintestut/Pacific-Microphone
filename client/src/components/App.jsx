@@ -9,17 +9,40 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      authenticated: false,
-      user: '',
-      userId: '',
-      scriptList: [],
+      authenticated: true,
+      user: 'Samuel Cho',
+      userId: 'whatever',
+      scriptList: [
+        {
+          title: 'hello',
+          author: 'sam',
+          characterList: [
+            'sam',
+            'dan'
+          ],
+          talkingBlocks: [
+            {
+              character: 'sam',
+              text: 'hello world.',
+            },
+            {
+              character: 'dan',
+              text: 'hello.',
+            },
+            {
+              character: 'sam',
+              text: 'sibal.',
+            },
+          ],
+        },
+      ],
     };
     this.login = this.login.bind(this);
     this.getScripts = this.getScripts.bind(this);
   }
 
   componentDidMount() {
-    this.login();
+    // this.login();
   }
 
   getScripts() {
