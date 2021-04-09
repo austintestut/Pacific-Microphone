@@ -29,7 +29,6 @@ class TextAnalysisChart extends React.Component {
     }));
     return (
       <div id="TextAnalysisChart">
-        Text Analysis
         <VictoryChart
           padding={100}
           theme={VictoryTheme.material}
