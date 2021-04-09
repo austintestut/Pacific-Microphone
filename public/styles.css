@@ -173,9 +173,27 @@ body {
 }
 
 .scriptDisplay {
-  text-align: center;
-  float: right;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  max-height: 80vh;
+  min-width: 400px;
+  width: 700px;
+  max-width: 700px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+  overflow-y: scroll;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.scriptTalkingBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
 }
 
 .talkingBlock {
@@ -184,8 +202,17 @@ body {
   flex-direction: column;
 }
 
-.title,
+.title {
+  font-weight: bold;
+  font-size: 125%;
+  margin-bottom: 5px;
+}
 .author {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.scriptCharacterText {
   font-weight: bold;
 }
 
@@ -237,7 +264,7 @@ mark {
   opacity: 1;
 }
 
-#yourScriptsHeading{
+#yourScriptsHeading {
   margin: 0 auto;
 }
 
@@ -246,11 +273,13 @@ mark {
   justify-content: center;
   align-items: center;
   width: 700px;
-  margin:0 auto;
+  margin: 0 auto;
   box-shadow: -2rem 2rem 2rem grey;
 }
 
-#modalAuthorInput:hover, #modalScriptInput:hover, #modalTitleInput:hover{
+#modalAuthorInput:hover,
+#modalScriptInput:hover,
+#modalTitleInput:hover {
   box-shadow: 1px 1px 1px grey;
   transition: box-shadow 0.4s ease-in-out;
 }
@@ -286,7 +315,7 @@ mark {
   box-sizing: border-box;
 }
 
-.modalButtons{
+.modalButtons {
   border: grey solid 2px;
   text-transform: uppercase;
   background-color: white;
@@ -312,16 +341,20 @@ mark {
   grid-column-end: 2;
 }
 
+#TextAnalysisChartContainer,
+.dummyContainer {
+  width: 20vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 #TextAnalysisChart {
   height: 400px;
   min-width: 400px;
   width: 400px;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  float: left;
   text-align: center;
+  padding-top: 20px;
 }
 
 .voiceRecorderAndTextContainer {
@@ -356,9 +389,10 @@ mark {
   margin-bottom: none;
 }
 
-#scriptAnalyzerContainer {
-  font-family: 'Avenir Next Regular', sans-serif;
+#scriptAnalyzerContainer,
+#livePerformanceContainer {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .pageOption {
