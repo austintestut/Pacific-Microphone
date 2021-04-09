@@ -389,7 +389,18 @@ mark {
   cursor: pointer;
 }
 
-#va-recorder-audio {
+#va-recorder-audio-hidden {
+  z-index: -1;
+  position: relative;
+  top: 1vh;
+  left: 15vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#va-recorder-audio-revealed {
   background-color: var(--secondAccent);
   /* position */
   position: relative;
