@@ -104,6 +104,12 @@ body {
   height: 100%;
 }
 
+#pleaseSelectScript {
+  position: relative;
+  margin: 30% 40% 0 40%;
+  min-width: 40%;
+}
+
 #mainScriptChoice {
   font-weight: 600;
 }
@@ -292,6 +298,7 @@ mark {
   grid-column-start: 1;
   grid-column-end: 2;
   float: left;
+  text-align: center;
 }
 
 .voiceRecorderAndTextContainer {
