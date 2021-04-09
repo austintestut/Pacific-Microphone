@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import micImage from '../../../public/images/Blue_Ocean_Logo_Mic_Only-02.png';
-import title from '../../../public/images/Blue_Ocean_Title.png';
+import title from '../../../public/images/pmText.png';
 
 class AppHeader extends React.Component {
   constructor(props) {
