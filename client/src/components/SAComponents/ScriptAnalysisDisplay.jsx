@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
-  const { title, author, talkingBlocks, watsonAnalysis } = script;
+const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSentence }) => {
+  const { title, author, talkingBlocks } = script;
 
   const regex = /[\w-,;_%''""$&#@*() ]+[.?!] ?/g;
 
@@ -15,7 +15,14 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
           {talkingBlock.text.match(regex).map((s, idx) => (
             <span key={idx}>
               {s && (
-                <span onClick={() => displayWatsonAnalysis(s.trim())}>{s}</span>
+                <span
+                  className={
+                    highlightedSentence === s.trim() && 'highlightedSentence'
+                  }
+                  onClick={() => displayWatsonAnalysis(s.trim())}
+                >
+                  {s}
+                </span>
               )}
             </span>
           ))}

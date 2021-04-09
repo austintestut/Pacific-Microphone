@@ -63,4 +63,5 @@ const Users = mongoose.model('Users', UserSchema);
 
 module.exports = {
   Users,
+  Scripts
 };
