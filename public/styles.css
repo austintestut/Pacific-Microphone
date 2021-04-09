@@ -148,7 +148,7 @@ body {
   background-color: white;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .newScriptinSidePanel {
@@ -232,20 +232,27 @@ mark {
   opacity: 0.8;
 }
 
-#newScriptButton:hover {
+#newScriptButton:hover #deleteScriptButton:hover {
   box-shadow: 1px 1px 1px var(--secondAccent);
   opacity: 1;
 }
 
+#yourScriptsHeading{
+  margin: 0 auto;
+}
+
 #newScriptModal {
-  top: '50%';
-  left: '50%';
-  right: 'auto';
-  bottom: 'auto';
-  margin-right: '-50%';
-  transform: 'translate(-50%, -50%)';
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 700px;
+  margin:0 auto;
+  box-shadow: -2rem 2rem 2rem grey;
+}
+
+#modalAuthorInput:hover, #modalScriptInput:hover, #modalTitleInput:hover{
+  box-shadow: 1px 1px 1px grey;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 #modalTitleInput {
@@ -277,6 +284,21 @@ mark {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.modalButtons{
+  border: grey solid 2px;
+  text-transform: uppercase;
+  background-color: white;
+  color: grey;
+  margin-left: 10px;
+}
+
+.modalButtons:hover {
+  background-color: var(--main);
+  color: white;
+  border-color: var(--main);
+  transition: 0.4s ease-in-out;
 }
 
 #VoiceAnalysisChart {
