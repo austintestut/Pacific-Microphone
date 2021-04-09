@@ -18,28 +18,35 @@ body {
 }
 
 #LoginPage {
-  background-image: linear-gradient(var(--main), #b99bd0);
+  background-color: #fbfbfb;
+  width: 100vw;
+  height: 100vh;
+}
+
+#loginPageAnimation {
   position: absolute;
-  width: 100%;
   height: 100%;
+  left: -150px;
 }
 
 #LoginButton {
   position: absolute;
   top: 45%;
   bottom: 45%;
-  left: 45%;
-  right: 45%;
-  height: 100px;
+  left: 75%;
+  right: 15%;
+  height: 50px;
   width: 200px;
-  background-image: linear-gradient(#deb4ff, #ffffff);
   font-size: 20px;
   border-radius: 10px;
+  background-color: var(--main);
+  color: #fbfbfb;
+  transition: ease-in-out 200ms;
 }
 
 #LoginButton:hover {
   cursor: pointer;
-  background-image: linear-gradient(#ffffff, #deb4ff);
+  background-color: var(--secondAccent);
 }
 
 #appHeader {
