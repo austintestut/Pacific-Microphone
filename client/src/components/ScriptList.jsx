@@ -17,10 +17,14 @@ class ScriptList extends React.Component {
     } = this.props;
     return (
       <div id="scriptList">
+        <button id="newScriptButton" type="button" onClick={toggleModal}>
+          + Add New Script
+        </button>
         {scriptList.map((s, idx) => (
           <button
             type="button"
             key={idx}
+            className="newScriptinSidePanel"
             onClick={() => changeSelectedScript(scriptList.indexOf(s))}
           >
             {s.title}
@@ -31,9 +35,6 @@ class ScriptList extends React.Component {
             Delete Selected Script
           </button>
         )}
-        <button id="newScriptButton" type="button" onClick={toggleModal}>
-          + Add New Script
-        </button>
       </div>
     );
   }
