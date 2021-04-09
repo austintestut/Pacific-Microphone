@@ -37,7 +37,8 @@ class MainPage extends React.Component {
 
         <div>Script: {selectedScript?.title || 'Please select script'}</div>
         {page === 'toneAnalyzer' ? (
-          <>{selectedScript && <ScriptAnalyzer script={selectedScript} />}</>
+          // <>{selectedScript && <ScriptAnalyzer script={selectedScript} />}</>
+          <div></div>
         ) : page === 'voiceAnalyzer' ? (
           <>
             <VoiceAnalyzer

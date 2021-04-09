@@ -17,6 +17,7 @@ class ScriptAnalyzer extends React.Component {
 
   componentDidMount() {
     const { script } = this.props;
+    console.log(script.watsonAnalysis);
     this.setState({
       watsonAnalysisObj: JSON.parse(script.watsonAnalysis),
       prevScript: script,

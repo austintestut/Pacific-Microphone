@@ -5,9 +5,10 @@ const db = require('../database/index.js');
 
 const textToSpeech = new TextToSpeechV1({
   authenticator: new IamAuthenticator({
-    apikey: process.env.WATSON_TEXT_TO_SPEECH,
+    apikey: 'k037pHL4_QITdM8HTBUlZUpzJ2R_LigpFhN-rUGwIKNF',
   }),
-  serviceUrl: process.env.WATSON_TEXT_TO_SPEECH_URL,
+  serviceUrl: 'https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/dcb18c84-f0a5-4bd9-8fcc-1e12356f1dd0'
+  ,
 });
 
 const watsonGetAudio = (text, title, index) => {

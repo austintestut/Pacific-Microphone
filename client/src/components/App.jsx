@@ -14,24 +14,24 @@ class App extends React.Component {
       userId: 'whatever',
       scriptList: [
         {
-          title: 'hello',
-          author: 'sam',
+          title: 'Hello',
+          author: 'SAM',
           characterList: [
-            'sam',
-            'dan'
+            'SAM',
+            'DAN'
           ],
           talkingBlocks: [
             {
-              character: 'sam',
-              text: 'hello world.',
+              character: 'SAM',
+              text: 'Hello world.',
             },
             {
-              character: 'dan',
-              text: 'hello.',
+              character: 'DAN',
+              text: 'Hello.',
             },
             {
-              character: 'sam',
-              text: 'sibal.',
+              character: 'SAM',
+              text: 'Sibal.',
             },
           ],
         },
