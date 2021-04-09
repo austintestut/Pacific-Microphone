@@ -87,9 +87,14 @@ body {
 }
 
 #mainPage {
+  font-family: 'Avenir Next Regular', sans-serif;
   width: calc(100% - 300px);
   min-width: 80%;
   height: 100%;
+}
+
+#mainScriptChoice {
+  font-weight: 600;
 }
 
 #sidePanel {
@@ -135,7 +140,7 @@ body {
   float: right;
   padding-right: 5%;
   height: 75%;
-  max-width: 60%;
+  width: 60%;
 }
 
 .talkingBlock {
@@ -231,6 +236,6 @@ mark {
 }
 
 #scriptAnalyzerContainer {
+  font-family: 'Avenir Next Regular', sans-serif;
   display: flex;
-  height: 100%;
 }
