@@ -2,7 +2,7 @@ const passport = require('passport');
 require('../passport-setup.js');
 
 const authScope = passport.authenticate('google', {
-  scope: ['profile', 'email'],
+  scope: ['email'],
 });
 const googleAuth = passport.authenticate('google');
 const loggedinRedirect = (req, res) => {

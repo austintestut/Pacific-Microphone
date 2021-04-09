@@ -3,7 +3,6 @@
 import React from 'react';
 import LivePerformance from './LivePerformance';
 import VoiceAnalyzer from './VoiceAnalyzer';
-import TextAnalysisChart from './TextAnalysisChart';
 import ScriptAnalyzer from './ScriptAnalyzer';
 
 class MainPage extends React.Component {
@@ -12,7 +11,6 @@ class MainPage extends React.Component {
     this.state = {
       voiceAnalysisData: [],
       audioToText: '',
-      clickedSentence: '',
     };
     this.sendDataToMainPage = this.sendDataToMainPage.bind(this);
   }
@@ -24,25 +22,17 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const {
-      page,
-      selectedScript,
-      currentSentenceTones,
-      userCharacter,
-    } = this.props;
-    const { voiceAnalysisData, clickedSentence, audioToText } = this.state;
+    const { page, selectedScript, userCharacter } = this.props;
+    const { voiceAnalysisData, audioToText } = this.state;
     return (
       <div id="mainPage">
-        <h3>
-          {selectedScript?.title ? (
-            `Script: "${selectedScript?.title}"`
-          ) : (
-            'Please select script'
-          )}
-        </h3>
-
         {page === 'toneAnalyzer' ? (
-          <>{selectedScript && <ScriptAnalyzer script={selectedScript} />}</>
+          <>
+            {selectedScript && <ScriptAnalyzer script={selectedScript} />}
+            {!selectedScript && (
+              <h3 id="pleaseSelectScript">Please Select Script</h3>
+            )}
+          </>
         ) : page === 'voiceAnalyzer' ? (
           <>
             <VoiceAnalyzer
