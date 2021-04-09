@@ -186,6 +186,21 @@ body {
   position: absolute;
 }
 
+.button {
+  background: none;
+  border: none;
+}
+
+.button img {
+  width: 25px;
+  height: auto;
+}
+
+.button img:hover {
+  cursor: pointer;
+  transform: scale(1.15);
+}
+
 mark {
   background-color: white;
   color: purple;
