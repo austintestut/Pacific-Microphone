@@ -135,7 +135,6 @@ class AppBody extends React.Component {
     return (
       <div id="appBody">
         <Modal id="newScriptModal" isOpen={showModal}>
-          <h3>Modal title</h3>
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <div className="modalInputField">
               <label htmlFor="modalTitleInput">Title</label>
@@ -143,6 +142,7 @@ class AppBody extends React.Component {
                 type="text"
                 id="modalTitleInput"
                 required
+                placeholder="Tile of script"
                 onChange={(e) => this.setState({ title: e.target.value })}
               />
             </div>
@@ -152,6 +152,7 @@ class AppBody extends React.Component {
                 type="text"
                 id="modalAuthorInput"
                 required
+                placeholder="Author of script"
                 onChange={(e) => this.setState({ author: e.target.value })}
               />
             </div>
@@ -160,6 +161,7 @@ class AppBody extends React.Component {
               <textarea
                 id="modalScriptInput"
                 required
+                placeholder="Author of script"
                 onChange={(e) => this.setState({ scriptBody: e.target.value })}
               />
             </div>

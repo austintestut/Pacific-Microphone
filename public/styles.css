@@ -102,7 +102,7 @@ body {
   width: 20%;
   max-width: 300px;
   height: 100%;
-  background-color: rgb(218, 218, 218);
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,10 +125,27 @@ body {
   margin-top: auto;
   width: 100%;
   border-radius: 5px;
-  border: 2px solid black;
-  background-color: moccasin;
+  background-color: white;
   display: flex;
   flex-direction: column;
+  overflow-y:scroll;
+}
+
+.newScriptinSidePanel {
+  border: none;
+  background-color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  opacity: 0.8;
+  position: static;
+  border-bottom: solid 4px transparent;
+}
+
+.newScriptinSidePanel:hover {
+  border-bottom: solid 4px var(--main);
+  opacity: 1.0;
 }
 
 #livePerformance {
@@ -172,13 +189,34 @@ mark {
 }
 
 #deleteScriptButton {
-  margin-top: auto;
-  background-color: #910000;
-  color: white;
+  bottom: 2px;
+  border-color: var(--main);
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 1px;
+  background-color: white;
+  opacity: 0.8;
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 #newScriptButton {
-  margin-top: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 2px;
+  border-color: var(--main);
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 1px;
+  background-color: white;
+  opacity: 0.8;
+}
+
+#newScriptButton:hover {
+  box-shadow: 1px 1px 1px var(--secondAccent);
+  opacity: 1.0;
 }
 
 #newScriptModal {
@@ -188,10 +226,43 @@ mark {
   bottom: 'auto';
   margin-right: '-50%';
   transform: 'translate(-50%, -50%)';
+  display: flex;
+  justify-content: center;
+}
+
+#modalTitleInput{
+  width: 500px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modalAuthorInput{
+  width: 500px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modalScriptInput{
+  width: 500px;
+  height: 250px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 #VoiceAnalysisChart {
-  height: 400px;
+  height: 800px;
   width: 40vw;
   grid-row-start: 1;
   grid-row-end: 3;
@@ -312,3 +383,4 @@ mark {
   grid-row-start: 3;
   grid-row-end: 4;
 }
+
