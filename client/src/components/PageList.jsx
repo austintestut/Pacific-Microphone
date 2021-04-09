@@ -17,7 +17,7 @@ class PageList extends React.Component {
           onClick={() => changeSelectedPage('toneAnalyzer')}
         >
           <i className="" />
-          <h3>Script Analyzer</h3>
+          <div className="pageTitle">Script Analyzer</div>
         </button>
         <button
           type="button"
@@ -25,7 +25,7 @@ class PageList extends React.Component {
           onClick={() => changeSelectedPage('voiceAnalyzer')}
         >
           <i className="" />
-          <h3>Voice Analyzer</h3>
+          <div className="pageTitle">Voice Analyzer</div>
         </button>
         <button
           type="button"
@@ -33,7 +33,7 @@ class PageList extends React.Component {
           onClick={() => changeSelectedPage('livePractice')}
         >
           <i className="" />
-          <h3>Live Practice</h3>
+          <div className="pageTitle">Live Practice</div>
         </button>
       </div>
     );
