@@ -10,6 +10,7 @@
 
 body {
   margin: 0;
+  overflow: hidden;
 }
 
 #app {
@@ -54,7 +55,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100vw;
-  height: 10vh;
+  height: 5em;
   background-image: linear-gradient(var(--secondAccent), white);
   border-bottom: 2px solid black;
   color: var(--main);
@@ -87,8 +88,7 @@ body {
 }
 
 #appTitle {
-  padding-left: 25%;
-  padding-right: 25%;
+  margin: 0 auto;
 }
 
 #appBody {
@@ -104,6 +104,12 @@ body {
   height: 100%;
 }
 
+#pleaseSelectScript {
+  position: relative;
+  margin: 30% 40% 0 40%;
+  min-width: 40%;
+}
+
 #mainScriptChoice {
   font-weight: 600;
 }
@@ -112,6 +118,7 @@ body {
   box-sizing: border-box;
   width: 20%;
   max-width: 300px;
+  min-width: 225px;
   height: 100%;
   background-color: white;
   display: flex;
@@ -134,6 +141,7 @@ body {
 
 #scriptList {
   height: 60%;
+  min-height: 75px;
   margin-top: auto;
   width: 100%;
   border-radius: 5px;
@@ -167,8 +175,9 @@ body {
 .scriptDisplay {
   text-align: center;
   float: right;
-  padding-right: 5%;
-  width: 60%;
+  width: 100%;
+  height: 90%;
+  overflow-y: scroll;
 }
 
 .talkingBlock {
@@ -182,8 +191,19 @@ body {
   font-weight: bold;
 }
 
-.playButton {
+.playButtons {
   position: absolute;
+  top: 90%;
+  left: 55%;
+  margin: 0 auto;
+  border: solid #a580f2;
+  border-radius: 30px;
+  background-color: white;
+}
+
+.playButtons img {
+  width: 25px;
+  height: auto;
 }
 
 .button {
@@ -191,14 +211,15 @@ body {
   border: none;
 }
 
-.button img {
-  width: 25px;
-  height: auto;
-}
-
 .button img:hover {
   cursor: pointer;
   transform: scale(1.15);
+}
+
+.disabledButton {
+  background: none;
+  border: none;
+  filter: grayscale(100%);
 }
 
 mark {
@@ -288,7 +309,8 @@ mark {
 }
 
 #VoiceAnalysisChart {
-  height: 800px;
+  top: 10vh;
+  height: 50vh;
   width: 40vw;
   grid-row-start: 1;
   grid-row-end: 3;
@@ -305,6 +327,7 @@ mark {
   grid-column-start: 1;
   grid-column-end: 2;
   float: left;
+  text-align: center;
 }
 
 .voiceRecorderAndTextContainer {
@@ -325,6 +348,7 @@ mark {
 #audioTextDisplay {
   color: black;
   text-align: center;
+  font-size: large;
   overflow-y: scroll;
   /* position */
   grid-row-start: 1;
@@ -367,51 +391,19 @@ mark {
 #va-record-button {
   font-size: 1em;
 
-  height: 5vh;
-  width: 5vw;
+  height: 9vh;
+  width: 6vw;
 
-  background-color: white;
-
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom-color: transparent;
+  background-color: red;
+  border-style: solid;
 
   border-width: thick;
-  margin-bottom: 30px;
-  padding-bottom: 30px;
+  border-color: var(--main);
+  border-radius: 50%;
 
   /* position */
   position: relative;
-  top: 2vh;
-  left: 9vw;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  outline: none;
-}
-
-#va-record-button:hover {
-  height: 5vh;
-  width: 5vw;
-
-  background-color: white;
-  color: var(--main);
-
-  border-top: none;
-  border-left: none;
-  border-right: none;
-
-  border-width: thick;
-  border-bottom-color: var(--main);
-  padding-bottom: 2px;
-
-  transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
-
-  /* position */
-  position: relative;
-  top: 2vh;
+  top: 1vh;
   left: 8vw;
   grid-column-start: 2;
   grid-column-end: 3;
@@ -420,10 +412,47 @@ mark {
   outline: none;
 }
 
-#va-recorder-audio {
-  background-color: var(--secondAccent);
-  color: var(--main);
+#va-record-button:hover {
+  font-size: 1em;
 
+  height: 9vh;
+  width: 6vw;
+
+  background-color: red;
+  color: white;
+
+  border-width: thin;
+  border-color: red;
+  border-radius: 50%;
+
+  transition: all 0.7s cubic-bezier(0, 0, 0.3, 1);
+
+  /* position */
+  position: relative;
+  top: 1vh;
+  left: 8vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  outline: none;
+
+  cursor: pointer;
+}
+
+#va-recorder-audio-hidden {
+  z-index: -1;
+  position: relative;
+  top: 1vh;
+  left: 15vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#va-recorder-audio-revealed {
+  background-color: var(--secondAccent);
   /* position */
   position: relative;
   top: 1vh;
