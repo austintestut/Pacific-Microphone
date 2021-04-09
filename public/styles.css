@@ -311,6 +311,7 @@ mark {
 #audioTextDisplay {
   color: black;
   text-align: center;
+  font-size: large;
   overflow-y: scroll;
   /* position */
   grid-row-start: 1;
