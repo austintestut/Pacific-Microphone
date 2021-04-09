@@ -295,6 +295,9 @@ mark {
 }
 
 #va-recorder-audio {
+  background-color: var(--secondAccent);
+  color: var(--main);
+
   /* position */
   position: relative;
   top: 1vh;
