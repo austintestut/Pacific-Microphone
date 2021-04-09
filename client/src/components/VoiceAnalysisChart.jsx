@@ -18,7 +18,7 @@ class VoiceAnalysisChart extends React.Component {
     let timestamp = 0;
     const { voiceAnalysisData } = this.props;
     if (voiceAnalysisData[0]?.error !== 0) {
-      return <div>Record  your lines for emotional analysis</div>;
+      return <div id="va-analysis-chart-premessage">Record  your lines for emotional analysis</div>;
     }
     const angerData = [{ x: 0, y: 0 }];
     const sadnessData = [{ x: 0, y: 0 }];

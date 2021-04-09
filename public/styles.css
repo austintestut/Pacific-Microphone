@@ -329,7 +329,7 @@ mark {
 .voiceRecorderAndTextContainer {
   display: grid;
   grid-template-columns: 40vw 40vw;
-  grid-template-rows: 15vh 40vh 10vh;
+  grid-template-rows: 15vh 50vh 20vh;
   width: 1200px;
 }
 
@@ -415,18 +415,13 @@ mark {
 
   /* position */
   position: relative;
-  top: 15px;
+  top: 25px;
   left: 15px;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
   outline: none;
-
-  animation-name: pulse;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
 }
 
 #va-record-button:hover {
@@ -446,7 +441,7 @@ mark {
 
   /* position */
   position: relative;
-  top: 15px;
+  top: 25px;
   left: 15px;
   grid-column-start: 1;
   grid-column-end: 2;
@@ -455,27 +450,35 @@ mark {
   outline: none;
 
   cursor: pointer;
+
+  animation-name: pulse;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 #va-recorder-audio-hidden {
-  z-index: -1;
-  position: relative;
-  top: 15px;
-  left: 100px;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  display: none;
 }
 
 #va-recorder-audio-revealed {
   /* position */
   position: relative;
-  top: 15px;
+  top: 33px;
   left: 100px;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
   outline: none;
+}
+
+#va-analysis-chart-premessage {
+  position: relative;
+  top: 2px;
+  left: 110px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
