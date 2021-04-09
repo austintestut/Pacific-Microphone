@@ -10,8 +10,8 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
       <div className="title">{title}</div>
       <div className="author">By: {author}</div>
       {talkingBlocks.map((talkingBlock, idx) => (
-        <div key={idx}>
-          <div>{talkingBlock.character}</div>
+        <div className="scriptTalkingBlock" key={idx}>
+          <div className="scriptCharacterText"> {talkingBlock.character}</div>
           {talkingBlock.text.match(regex).map((s, idx) => (
             <span key={idx}>
               {s && (

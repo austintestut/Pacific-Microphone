@@ -5,7 +5,7 @@ const ScriptTalkingBlock = ({ talkingBlock, identifier }) => {
 
   if (identifier) {
     return (
-      <div id="highLighted" className="talkingBlock">
+      <div id="highLighted" className="scriptTalkingBlock">
         <div className="TBcharacter">
           <mark>{character}</mark>
         </div>
@@ -17,8 +17,8 @@ const ScriptTalkingBlock = ({ talkingBlock, identifier }) => {
   }
 
   return (
-    <div className="talkingBlock">
-      <div className="TBcharacter">{character}</div>
+    <div className="scriptTalkingBlock">
+      <div className="scriptCharacterText">{character}</div>
       <div className="TBtext">{text}</div>
     </div>
   );
