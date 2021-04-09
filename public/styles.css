@@ -193,8 +193,8 @@ body {
   grid-row-end: 3;
   grid-column-start: 2;
   grid-column-end: 3;
-  /* padding */
-  padding-right: 5px;
+  /* margin */
+  margin-bottom: none;
 }
 
 #scriptAnalyzerContainer {
@@ -203,20 +203,59 @@ body {
 }
 
 #va-record-button {
+  font-size: 1em;
+
   height: 5vh;
   width: 5vw;
-  border-radius: 50%;
-  background-color: red;
-  border-width: thin;
-  border-color: var(--main);
+
+  background-color: white;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: transparent;
+
+  border-width: thick;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+
   /* position */
   position: relative;
   top: 2vh;
-  left: 10vw;
+  left: 9vw;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
+  outline: none;
+}
+
+#va-record-button:hover {
+  height: 5vh;
+  width: 5vw;
+
+  background-color: white;
+  color: var(--main);
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+  border-width: thick;
+  border-bottom-color: var(--main);
+  padding-bottom: 2px;
+
+  transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+
+  /* position */
+  position: relative;
+  top: 2vh;
+  left: 8vw;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  outline: none;
 }
 
 #va-recorder-audio {
