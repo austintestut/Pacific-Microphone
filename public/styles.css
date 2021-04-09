@@ -175,8 +175,7 @@ body {
 .scriptDisplay {
   text-align: center;
   float: right;
-  padding-right: 5%;
-  width: 60%;
+  width: 100%;
 }
 
 .talkingBlock {
