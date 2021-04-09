@@ -224,6 +224,12 @@ mark {
   align-items: center;
   width: 700px;
   margin:0 auto;
+  box-shadow: -2rem 2rem 2rem grey;
+}
+
+#modalAuthorInput:hover, #modalScriptInput:hover, #modalTitleInput:hover{
+  box-shadow: 1px 1px 1px grey;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 #modalTitleInput {
@@ -255,6 +261,21 @@ mark {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.modalButtons{
+  border: grey solid 2px;
+  text-transform: uppercase;
+  background-color: white;
+  color: grey;
+  margin-left: 10px;
+}
+
+.modalButtons:hover {
+  background-color: var(--main);
+  color: white;
+  border-color: var(--main);
+  transition: 0.4s ease-in-out;
 }
 
 #VoiceAnalysisChart {
