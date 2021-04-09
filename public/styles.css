@@ -128,7 +128,7 @@ body {
   background-color: white;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .newScriptinSidePanel {
@@ -213,9 +213,13 @@ mark {
   opacity: 0.8;
 }
 
-#newScriptButton:hover {
+#newScriptButton:hover #deleteScriptButton:hover {
   box-shadow: 1px 1px 1px var(--secondAccent);
   opacity: 1;
+}
+
+#yourScriptsHeading{
+  margin: 0 auto;
 }
 
 #newScriptModal {
