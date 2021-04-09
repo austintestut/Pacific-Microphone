@@ -40,6 +40,8 @@ body {
 
 #appHeader {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   width: 100vw;
   height: 10vh;
   background-image: linear-gradient(var(--secondAccent), white);
@@ -47,16 +49,12 @@ body {
   color: var(--main);
 }
 
-#headerLogo {
-  height: 100%;
-}
-
 #username {
   font-family: 'Avenir Next Regular', sans-serif;
   font-size: 100%;
   text-align: center;
   position: relative;
-  bottom: 40%;
+  top: 40%;
 }
 
 #logoutButton {
@@ -78,9 +76,8 @@ body {
 }
 
 #appTitle {
-  height: 100%;
-  margin-left: 25%;
-  margin-right: 25%;
+  padding-left: 25%;
+  padding-right: 25%;
 }
 
 #appBody {
