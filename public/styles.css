@@ -273,7 +273,8 @@ mark {
 }
 
 #VoiceAnalysisChart {
-  height: 800px;
+  top: 10vh;
+  height: 50vh;
   width: 40vw;
   grid-row-start: 1;
   grid-row-end: 3;
@@ -352,7 +353,7 @@ mark {
 #va-record-button {
   font-size: 1em;
 
-  height: 10vh;
+  height: 9vh;
   width: 6vw;
 
   background-color: red;
@@ -376,7 +377,7 @@ mark {
 #va-record-button:hover {
   font-size: 1em;
 
-  height: 10vh;
+  height: 9vh;
   width: 6vw;
 
   background-color: red;
