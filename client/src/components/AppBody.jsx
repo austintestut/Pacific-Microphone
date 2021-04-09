@@ -55,7 +55,6 @@ class AppBody extends React.Component {
 
     axios
       .post('/uploadScript', objScript)
-      .then(() => getScripts())
       .catch((error) => console.error(error));
 
     axios
