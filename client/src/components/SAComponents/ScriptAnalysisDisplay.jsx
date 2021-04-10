@@ -1,18 +1,28 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-shadow */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSentence }) => {
   const { title, author, talkingBlocks } = script;
-
-  const regex = /[\w-,;_%''""$&#@*() ]+[.?!] ?/g;
+  const regex = /[\w-,;_%''""$&#@*():{}<> ]+[.?!] ?/g;
 
   return (
     <div className="scriptDisplay">
       <div className="title">{title}</div>
       <div className="author">By: {author}</div>
-      {talkingBlocks.map((talkingBlock, idx) => (
+      {talkingBlocks.map((talkingBlock, idx) => {
+        let arrayOfSentences = [];
+        if (talkingBlock.text.includes(".") || talkingBlock.text.includes("?") || talkingBlock.text.includes("!")) {
+          arrayOfSentences = talkingBlock.text.match(regex)
+        } else {
+          arrayOfSentences.push(talkingBlock.text);
+        }
+        return (
         <div className="scriptTalkingBlock" key={idx}>
           <div className="scriptCharacterText"> {talkingBlock.character}</div>
-          {talkingBlock.text.match(regex).map((s, idx) => (
+          {arrayOfSentences.map((s, idx) => (
             <span key={idx}>
               {s && (
                 <span
@@ -27,7 +37,8 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSente
             </span>
           ))}
         </div>
-      ))}
+      );
+      })}
     </div>
   );
 };

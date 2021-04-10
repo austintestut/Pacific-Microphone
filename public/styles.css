@@ -216,12 +216,37 @@ body {
   font-weight: bold;
 }
 
-.playButton {
+.playButtons {
   position: absolute;
+  top: 90%;
+  left: 53.5%;
+  margin: 0 auto;
+  background-color: none;
+}
+
+.playButtons img {
+  width: 25px;
+  height: auto;
+}
+
+.button {
+  background: none;
+  border: none;
+}
+
+.button img:hover {
+  cursor: pointer;
+  transform: scale(1.15);
+}
+
+.disabledButton {
+  background: none;
+  border: none;
+  filter: grayscale(100%);
 }
 
 mark {
-  background-color: white;
+  background: none;
   color: var(--secondAccent);
 }
 
@@ -281,9 +306,17 @@ mark {
   box-shadow: -2rem 2rem 2rem grey;
 }
 
-#modalAuthorInput:hover,
-#modalScriptInput:hover,
-#modalTitleInput:hover {
+#livePerformanceModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin:0 auto;
+  box-shadow: -2rem 2rem 2rem grey;
+}
+
+#modalAuthorInput:hover, #modalScriptInput:hover, #modalTitleInput:hover{
   box-shadow: 1px 1px 1px grey;
   transition: box-shadow 0.4s ease-in-out;
 }

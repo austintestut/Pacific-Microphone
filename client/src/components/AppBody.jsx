@@ -103,6 +103,11 @@ class AppBody extends React.Component {
     this.setState({ showLPModal: !showLPModal });
   }
 
+  toggleLPModal() {
+    const { showLPModal } = this.state;
+    this.setState({ showLPModal: !showLPModal });
+  }
+
   changeSelectedPage(page) {
     this.setState({ selectedPage: page, selectedScriptIndex: null });
   }
@@ -174,7 +179,6 @@ class AppBody extends React.Component {
         </Modal>
         {selectedScriptIndex !== null && (
           <Modal id="livePerformanceModal" isOpen={showLPModal}>
-            <h3>Script: {scriptList[selectedScriptIndex].title}</h3>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
