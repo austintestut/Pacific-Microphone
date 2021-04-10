@@ -26,41 +26,7 @@ const Scripts = mongoose.model('Script', ScriptSchema);
 
 const Users = mongoose.model('Users', UserSchema);
 
-// Users.create([
-//   {
-//     userName: 'Sam',
-//     googleId: 'whatever',
-//     listScripts: [
-//       {
-//         title: 'hello',
-//         author: 'sam',
-//         talkingBlocks: [
-//           {
-//             character: 'sma',
-//             text: 'hello world',
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   {
-//     userName: 'Chandler',
-//     googleId: 'whatever',
-//     listScripts: [
-//       {
-//         title: 'hi',
-//         author: 'sam',
-//         talkingBlocks: [
-//           {
-//             character: 'sma',
-//             text: 'hello world',
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ]);
-
 module.exports = {
   Users,
+  Scripts
 };

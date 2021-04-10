@@ -174,7 +174,6 @@ class AppBody extends React.Component {
         </Modal>
         {selectedScriptIndex !== null && (
           <Modal id="livePerformanceModal" isOpen={showLPModal}>
-            <h3>Script: {scriptList[selectedScriptIndex].title}</h3>
             <form
               onSubmit={(e) => {
                 e.preventDefault();

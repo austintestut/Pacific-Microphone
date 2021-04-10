@@ -190,7 +190,7 @@ class Recorder extends React.Component {
             type="submit"
             onClick={this.handlePlay}
             value={record ? 'Stop' : 'Record'}
-            id="va-record-button"
+            id={record ? "va-record-button-on" : "va-record-button"}
           >
             {record ? 'Stop' : 'Record'}
           </button>
