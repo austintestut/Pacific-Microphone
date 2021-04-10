@@ -1,9 +1,13 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-shadow */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
   const { title, author, talkingBlocks, watsonAnalysis } = script;
 
-  const regex = /[\w-,;_%''""$&#@*():{} ]+[.?!] ?/g;
+  const regex = /[\w-,;_%''""$&#@*():{}<> ]+[.?!] ?/g;
 
   return (
     <div className="scriptDisplay">
@@ -22,6 +26,7 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
           {arrayOfSentences.map((s, idx) => (
             <span key={idx}>
               {(s) && (
+                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                 <span onClick={() => displayWatsonAnalysis(s.trim())}>{s}</span>
               )}
             </span>
