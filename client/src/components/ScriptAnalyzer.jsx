@@ -47,13 +47,16 @@ class ScriptAnalyzer extends React.Component {
     const { script } = this.props;
     const { currToneArray } = this.state;
     return (
-        <div id="scriptAnalyzerContainer">
+      <div id="scriptAnalyzerContainer">
+        <div id="TextAnalysisChartContainer">
           <TextAnalysisChart currentSentenceTones={currToneArray} />
-          <ScriptAnalysisDisplay
-            script={script}
-            displayWatsonAnalysis={this.displayWatsonAnalysis}
-          />
         </div>
+        <ScriptAnalysisDisplay
+          script={script}
+          displayWatsonAnalysis={this.displayWatsonAnalysis}
+        />
+        <div className="dummyContainer" />
+      </div>
     );
   }
 }
