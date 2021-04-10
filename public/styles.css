@@ -438,6 +438,7 @@ mark {
 #livePerformanceContainer {
   display: flex;
   justify-content: space-evenly;
+  max-height: calc(100vh - 5em);
 }
 
 .pageOption {
