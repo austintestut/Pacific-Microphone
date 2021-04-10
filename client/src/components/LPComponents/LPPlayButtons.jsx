@@ -1,6 +1,4 @@
 import React from 'react';
-import { GrCaretNext, GrCaretPrevious, GrRefresh } from 'react-icons/gr';
-import { RiArrowGoBackFill } from 'react-icons/ri';
 
 const LPPlayButtons = ({
   playNext,
@@ -22,16 +20,16 @@ const LPPlayButtons = ({
       audiosLength !== 0 && (
       <div className="playButtons">
           <button type="button" className={disable.previous ? "disabledButton" : "button"} disabled={disable.previous} onClick={playPrevious}>
-            <img src="./images/icons/146-play_.png" alt="playButton" />
+            <img src="./images/icons/play_previous.png" alt="playButton" />
           </button>
           <button type="button" className={disable.repeat ? "disabledButton" : "button"} disabled={disable.repeat} onClick={repeat}>
-            <img src="./images/icons/153-recycle-2.png" alt="playButton"  />
+            <img src="./images/icons/repeat.png" alt="playButton"  />
           </button>
           <button type="button" className={disable.replay ? "disabledButton" : "button"} disabled={disable.replay} onClick={replayScript}>
-            <img src="./images/icons/154-refresh.png"  />
+            <img src="./images/icons/replay.png"  />
           </button>
           <button type="button" className={disable.next ? "disabledButton" : "button"} disabled={disable.next} onClick={playNext}>
-            <img src="./images/icons/146-play.png" alt="playButton"  />
+            <img src="./images/icons/play_next.png" alt="playButton"  />
           </button>
       </div>
       )}

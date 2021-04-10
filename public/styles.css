@@ -148,7 +148,7 @@ body {
   background-color: white;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .newScriptinSidePanel {
@@ -173,11 +173,27 @@ body {
 }
 
 .scriptDisplay {
-  text-align: center;
-  float: right;
-  width: 100%;
-  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  max-height: 80vh;
+  min-width: 400px;
+  width: 700px;
+  max-width: 700px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid black;
   overflow-y: scroll;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.scriptTalkingBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
 }
 
 .talkingBlock {
@@ -186,15 +202,24 @@ body {
   flex-direction: column;
 }
 
-.title,
+.title {
+  font-weight: bold;
+  font-size: 125%;
+  margin-bottom: 5px;
+}
 .author {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.scriptCharacterText {
   font-weight: bold;
 }
 
 .playButtons {
   position: absolute;
   top: 90%;
-  left: 55%;
+  left: 53.5%;
   margin: 0 auto;
   border: solid #a580f2;
   border-radius: 30px;
@@ -261,20 +286,29 @@ mark {
   opacity: 0.8;
 }
 
-#newScriptButton:hover {
+#newScriptButton:hover #deleteScriptButton:hover {
   box-shadow: 1px 1px 1px var(--secondAccent);
   opacity: 1;
 }
 
+#yourScriptsHeading {
+  margin: 0 auto;
+}
+
 #newScriptModal {
-  top: '50%';
-  left: '50%';
-  right: 'auto';
-  bottom: 'auto';
-  margin-right: '-50%';
-  transform: 'translate(-50%, -50%)';
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 700px;
+  margin: 0 auto;
+  box-shadow: -2rem 2rem 2rem grey;
+}
+
+#modalAuthorInput:hover,
+#modalScriptInput:hover,
+#modalTitleInput:hover {
+  box-shadow: 1px 1px 1px grey;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 #modalTitleInput {
@@ -308,37 +342,57 @@ mark {
   box-sizing: border-box;
 }
 
+.modalButtons {
+  border: grey solid 2px;
+  text-transform: uppercase;
+  background-color: white;
+  color: grey;
+  margin-left: 10px;
+}
+
+.modalButtons:hover {
+  background-color: var(--main);
+  color: white;
+  border-color: var(--main);
+  transition: 0.4s ease-in-out;
+}
+
 #VoiceAnalysisChart {
-  top: 10vh;
-  height: 50vh;
-  width: 40vw;
+  border-color: black;
+  top: 100px;
+  height: 600px;
+  width: 600px;
   grid-row-start: 1;
   grid-row-end: 3;
   grid-column-start: 1;
   grid-column-end: 2;
+}
+
+#TextAnalysisChartContainer,
+.dummyContainer {
+  width: 20vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 #TextAnalysisChart {
   height: 400px;
   min-width: 400px;
-  width: 40vw;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  float: left;
+  width: 400px;
   text-align: center;
+  padding-top: 20px;
 }
 
 .voiceRecorderAndTextContainer {
   display: grid;
   grid-template-columns: 40vw 40vw;
-  grid-template-rows: 10vh 50vh 10vh;
-  width: 80vw;
+  grid-template-rows: 100px 400px 100px;
+  width: 1200px;
 }
 
 #mic {
-  width: 80vw;
+  width: 700px;
   grid-row-start: 3;
   grid-row-end: 4;
   grid-column-start: 1;
@@ -346,11 +400,14 @@ mark {
 }
 
 #audioTextDisplay {
+  border-width: thick;
+  border-color: black;
   color: black;
   text-align: center;
   font-size: large;
-  overflow-y: scroll;
+  overflow-y: auto;
   /* position */
+  left: 600px;
   grid-row-start: 1;
   grid-row-end: 3;
   grid-column-start: 2;
@@ -359,9 +416,10 @@ mark {
   margin-bottom: none;
 }
 
-#scriptAnalyzerContainer {
-  font-family: 'Avenir Next Regular', sans-serif;
+#scriptAnalyzerContainer,
+#livePerformanceContainer {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .pageOption {
@@ -391,8 +449,8 @@ mark {
 #va-record-button {
   font-size: 1em;
 
-  height: 9vh;
-  width: 6vw;
+  height: 80px;
+  width: 80px;
 
   background-color: red;
   border-style: solid;
@@ -403,8 +461,8 @@ mark {
 
   /* position */
   position: relative;
-  top: 1vh;
-  left: 8vw;
+  top: -10px;
+  left: 95px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
@@ -415,8 +473,8 @@ mark {
 #va-record-button:hover {
   font-size: 1em;
 
-  height: 9vh;
-  width: 6vw;
+  height: 80px;
+  width: 80px;
 
   background-color: red;
   color: white;
@@ -429,8 +487,8 @@ mark {
 
   /* position */
   position: relative;
-  top: 1vh;
-  left: 8vw;
+  top: -10px;
+  left: 95px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
@@ -443,8 +501,8 @@ mark {
 #va-recorder-audio-hidden {
   z-index: -1;
   position: relative;
-  top: 1vh;
-  left: 15vw;
+  top: 10px;
+  left: 200px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
@@ -452,11 +510,10 @@ mark {
 }
 
 #va-recorder-audio-revealed {
-  background-color: var(--secondAccent);
   /* position */
   position: relative;
-  top: 1vh;
-  left: 15vw;
+  top: 10px;
+  left: 200px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
