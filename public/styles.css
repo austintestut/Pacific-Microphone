@@ -306,9 +306,17 @@ mark {
   box-shadow: -2rem 2rem 2rem grey;
 }
 
-#modalAuthorInput:hover,
-#modalScriptInput:hover,
-#modalTitleInput:hover {
+#livePerformanceModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin:0 auto;
+  box-shadow: -2rem 2rem 2rem grey;
+}
+
+#modalAuthorInput:hover, #modalScriptInput:hover, #modalTitleInput:hover{
   box-shadow: 1px 1px 1px grey;
   transition: box-shadow 0.4s ease-in-out;
 }
