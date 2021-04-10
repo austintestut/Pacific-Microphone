@@ -8,32 +8,38 @@ class PageList extends React.Component {
   }
 
   render() {
-    const { changeSelectedPage } = this.props;
+    const { changeSelectedPage, selectedPage } = this.props;
     return (
       <div id="pageList">
         <button
           type="button"
-          className="pageOption"
+          className={`${
+            selectedPage === 'toneAnalyzer' ? 'selectedPage' : 'pageOption'
+          }`}
           onClick={() => changeSelectedPage('toneAnalyzer')}
         >
           <i className="" />
-          <div className="pageTitle">Script Analyzer</div>
+          <h3>Script Analyzer</h3>
         </button>
         <button
           type="button"
-          className="pageOption"
+          className={`${
+            selectedPage === 'voiceAnalyzer' ? 'selectedPage' : 'pageOption'
+          }`}
           onClick={() => changeSelectedPage('voiceAnalyzer')}
         >
           <i className="" />
-          <div className="pageTitle">Voice Analyzer</div>
+          <h3>Voice Analyzer</h3>
         </button>
         <button
           type="button"
-          className="pageOption"
+          className={`${
+            selectedPage === 'livePractice' ? 'selectedPage' : 'pageOption'
+          }`}
           onClick={() => changeSelectedPage('livePractice')}
         >
           <i className="" />
-          <div className="pageTitle">Live Practice</div>
+          <h3>Live Practice</h3>
         </button>
       </div>
     );

@@ -24,7 +24,11 @@ class ScriptList extends React.Component {
           <button
             type="button"
             key={idx}
-            className="newScriptinSidePanel"
+            className={`${
+              selectedScriptIndex === idx
+                ? 'selectedScript'
+                : 'newScriptinSidePanel'
+            }`}
             onClick={() => changeSelectedScript(scriptList.indexOf(s))}
           >
             {s.title}

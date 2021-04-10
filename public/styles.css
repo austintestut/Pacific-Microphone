@@ -156,6 +156,22 @@ body {
   border-bottom: solid 4px transparent;
 }
 
+.selectedScript {
+  display: inline-block;
+  position: relative;
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+  text-decoration-color: var(--main);
+  text-decoration-style: solid;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  opacity: 0.8;
+  border-bottom: solid 4px transparent;
+}
+
 #livePerformance {
   height: 100%;
 }
@@ -327,6 +343,17 @@ mark {
   font-weight: bold;
 }
 
+.selectedPage {
+  display: inline-block;
+  position: relative;
+  background-color: var(--main);
+  border-style: none;
+  border-radius: 10px;
+  opacity: 0.8;
+  margin-bottom: 6.667px;
+  color: white;
+}
+
 .pageOption {
   display: inline-block;
   position: relative;
@@ -337,6 +364,8 @@ mark {
 }
 
 .pageOption:after,
+.selectedPage:after,
+.selectedScript:after,
 .newScriptinSidePanel:after {
   content: '';
   position: absolute;
@@ -351,15 +380,20 @@ mark {
 }
 
 .pageOption:hover,
+.selectedPage:hover,
+.selectedScript:hover,
 .newScriptinSidePanel:hover {
   cursor: pointer;
 }
 
 .pageOption:hover:after,
+.selectedPage:hover:after,
+.selectedScript:hover:after,
 .newScriptinSidePanel:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
 #va-record-button {
   font-size: 1em;
 
