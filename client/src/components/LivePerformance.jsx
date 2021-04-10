@@ -25,10 +25,7 @@ class LivePerformance extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { script, userCharacter } = this.props;
-    console.log('preprops: ', prevProps.userCharacter);
     if (prevProps.userCharacter !== userCharacter) {
-      console.log('Im in!');
-      console.log(script);
       this.setState({ pointer: -1 });
       this.getAudios();
     }
@@ -72,7 +69,7 @@ class LivePerformance extends React.Component {
       pointer: nextPointer,
     });
     var elmnt = document.getElementById('highLighted');
-    elmnt.scrollIntoView();
+    elmnt.parentNode.scrollTop = elmnt.offsetTop;
   }
 
   playPrevious() {
@@ -81,7 +78,7 @@ class LivePerformance extends React.Component {
     audios[previousPointer].play();
     this.setState({ pointer: previousPointer });
     var elmnt = document.getElementById('highLighted');
-    elmnt.scrollIntoView(false);
+    elmnt.parentNode.scrollTop = elmnt.offsetParent;
   }
 
   repeat() {
