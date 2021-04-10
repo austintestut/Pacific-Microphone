@@ -222,10 +222,10 @@ body {
 
 .playButtons {
   position: absolute;
-  top: 90%;
+  /* top: 90%; */
   left: 53.5%;
   margin: 0 auto;
-  background-color: none;
+  background: none;
 }
 
 .playButtons img {
@@ -438,7 +438,7 @@ mark {
 #livePerformanceContainer {
   display: flex;
   justify-content: space-evenly;
-  max-height: calc(100vh - 5em);
+  max-height: calc(100vh - 7em);
 }
 
 .pageOption {
