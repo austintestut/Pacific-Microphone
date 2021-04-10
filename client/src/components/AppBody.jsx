@@ -11,7 +11,7 @@ class AppBody extends React.Component {
     super(props);
     this.state = {
       selectedPage: 'toneAnalyzer',
-      selectedScriptIndex: 0,
+      selectedScriptIndex: null,
       showModal: false,
       title: '',
       author: '',
