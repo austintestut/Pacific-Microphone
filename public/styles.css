@@ -196,6 +196,10 @@ body {
   margin: 10px 0;
 }
 
+.scriptAnalysisSentence:hover {
+  cursor: pointer;
+}
+
 .talkingBlock {
   margin: 25px;
   display: flex;

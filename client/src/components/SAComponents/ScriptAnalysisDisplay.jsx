@@ -4,7 +4,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSentence }) => {
+const ScriptAnalysisDisplay = ({
+  script,
+  displayWatsonAnalysis,
+  highlightedSentence,
+}) => {
   const { title, author, talkingBlocks } = script;
   const regex = /[\w-,;_%''""$&#@*():{}<> ]+[.?!] ?/g;
 
@@ -14,30 +18,34 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSente
       <div className="author">By: {author}</div>
       {talkingBlocks.map((talkingBlock, idx) => {
         let arrayOfSentences = [];
-        if (talkingBlock.text.includes(".") || talkingBlock.text.includes("?") || talkingBlock.text.includes("!")) {
-          arrayOfSentences = talkingBlock.text.match(regex)
+        if (
+          talkingBlock.text.includes('.') ||
+          talkingBlock.text.includes('?') ||
+          talkingBlock.text.includes('!')
+        ) {
+          arrayOfSentences = talkingBlock.text.match(regex);
         } else {
           arrayOfSentences.push(talkingBlock.text);
         }
         return (
-        <div className="scriptTalkingBlock" key={idx}>
-          <div className="scriptCharacterText"> {talkingBlock.character}</div>
-          {arrayOfSentences.map((s, idx) => (
-            <span key={idx}>
-              {s && (
-                <span
-                  className={
-                    highlightedSentence === s.trim() && 'highlightedSentence'
-                  }
-                  onClick={() => displayWatsonAnalysis(s.trim())}
-                >
-                  {s}
-                </span>
-              )}
-            </span>
-          ))}
-        </div>
-      );
+          <div className="scriptTalkingBlock" key={idx}>
+            <div className="scriptCharacterText"> {talkingBlock.character}</div>
+            {arrayOfSentences.map((s, idx) => (
+              <span className="scriptAnalysisSentence" key={idx}>
+                {s && (
+                  <span
+                    className={
+                      highlightedSentence === s.trim() && 'highlightedSentence'
+                    }
+                    onClick={() => displayWatsonAnalysis(s.trim())}
+                  >
+                    {s}
+                  </span>
+                )}
+              </span>
+            ))}
+          </div>
+        );
       })}
     </div>
   );
