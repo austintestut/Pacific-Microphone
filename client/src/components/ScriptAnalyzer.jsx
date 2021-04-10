@@ -28,7 +28,6 @@ class ScriptAnalyzer extends React.Component {
     const { script } = this.props;
     const { prevScript } = this.state;
     if (script !== prevScript) {
-      debugger;
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         watsonAnalysisObj: JSON.parse(script.watsonAnalysis),
@@ -39,7 +38,6 @@ class ScriptAnalyzer extends React.Component {
   }
 
   displayWatsonAnalysis(sentence) {
-    debugger;
     const { watsonAnalysisObj } = this.state;
     this.setState({
       currToneArray: watsonAnalysisObj[sentence],

@@ -6,7 +6,6 @@ import React from 'react';
 
 const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSentence }) => {
   const { title, author, talkingBlocks } = script;
-
   const regex = /[\w-,;_%''""$&#@*():{}<> ]+[.?!] ?/g;
 
   return (
@@ -21,19 +20,25 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSente
           arrayOfSentences.push(talkingBlock.text);
         }
         return (
-        <div key={idx}>
-          <div>{talkingBlock.character}</div>
+        <div className="scriptTalkingBlock" key={idx}>
+          <div className="scriptCharacterText"> {talkingBlock.character}</div>
           {arrayOfSentences.map((s, idx) => (
             <span key={idx}>
-              {(s) && (
-                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                <span onClick={() => displayWatsonAnalysis(s.trim())}>{s}</span>
+              {s && (
+                <span
+                  className={
+                    highlightedSentence === s.trim() && 'highlightedSentence'
+                  }
+                  onClick={() => displayWatsonAnalysis(s.trim())}
+                >
+                  {s}
+                </span>
               )}
             </span>
           ))}
         </div>
-      );})
-    }
+      );
+      })}
     </div>
   );
 };
