@@ -221,9 +221,7 @@ body {
   top: 90%;
   left: 53.5%;
   margin: 0 auto;
-  border: solid 2px black;
-  border-radius: 30px;
-  background-color: white;
+  background-color: none;
 }
 
 .playButtons img {
