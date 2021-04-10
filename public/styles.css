@@ -281,7 +281,6 @@ mark {
   box-shadow: -2rem 2rem 2rem grey;
 }
 
-<<<<<<< HEAD
 #livePerformanceModal {
   display: flex;
   justify-content: center;
@@ -293,11 +292,6 @@ mark {
 }
 
 #modalAuthorInput:hover, #modalScriptInput:hover, #modalTitleInput:hover{
-=======
-#modalAuthorInput:hover,
-#modalScriptInput:hover,
-#modalTitleInput:hover {
->>>>>>> 43dc5967aca8428217a403ff65519d9217f5d627
   box-shadow: 1px 1px 1px grey;
   transition: box-shadow 0.4s ease-in-out;
 }
