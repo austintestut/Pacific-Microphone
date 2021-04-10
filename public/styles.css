@@ -10,6 +10,7 @@
 
 body {
   margin: 0;
+  overflow: hidden;
 }
 
 #app {
@@ -54,7 +55,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100vw;
-  height: 10vh;
+  height: 5em;
   background-image: linear-gradient(var(--secondAccent), white);
   border-bottom: 2px solid black;
   color: var(--main);
@@ -87,8 +88,7 @@ body {
 }
 
 #appTitle {
-  padding-left: 25%;
-  padding-right: 25%;
+  margin: 0 auto;
 }
 
 #appBody {
@@ -104,6 +104,12 @@ body {
   height: 100%;
 }
 
+#pleaseSelectScript {
+  position: relative;
+  margin: 30% 40% 0 40%;
+  min-width: 40%;
+}
+
 #mainScriptChoice {
   font-weight: 600;
 }
@@ -112,6 +118,7 @@ body {
   box-sizing: border-box;
   width: 20%;
   max-width: 300px;
+  min-width: 225px;
   height: 100%;
   background-color: white;
   display: flex;
@@ -134,13 +141,14 @@ body {
 
 #scriptList {
   height: 60%;
+  min-height: 75px;
   margin-top: auto;
   width: 100%;
   border-radius: 5px;
   background-color: white;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .newScriptinSidePanel {
@@ -177,10 +185,27 @@ body {
 }
 
 .scriptDisplay {
-  text-align: center;
-  float: right;
-  padding-right: 5%;
-  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  max-height: 80vh;
+  min-width: 400px;
+  width: 700px;
+  max-width: 700px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+  overflow-y: scroll;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.scriptTalkingBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
 }
 
 .talkingBlock {
@@ -189,8 +214,17 @@ body {
   flex-direction: column;
 }
 
-.title,
+.title {
+  font-weight: bold;
+  font-size: 125%;
+  margin-bottom: 5px;
+}
 .author {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.scriptCharacterText {
   font-weight: bold;
 }
 
@@ -237,20 +271,29 @@ mark {
   opacity: 0.8;
 }
 
-#newScriptButton:hover {
+#newScriptButton:hover #deleteScriptButton:hover {
   box-shadow: 1px 1px 1px var(--secondAccent);
   opacity: 1;
 }
 
+#yourScriptsHeading {
+  margin: 0 auto;
+}
+
 #newScriptModal {
-  top: '50%';
-  left: '50%';
-  right: 'auto';
-  bottom: 'auto';
-  margin-right: '-50%';
-  transform: 'translate(-50%, -50%)';
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 700px;
+  margin: 0 auto;
+  box-shadow: -2rem 2rem 2rem grey;
+}
+
+#modalAuthorInput:hover,
+#modalScriptInput:hover,
+#modalTitleInput:hover {
+  box-shadow: 1px 1px 1px grey;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 #modalTitleInput {
@@ -284,35 +327,57 @@ mark {
   box-sizing: border-box;
 }
 
+.modalButtons {
+  border: grey solid 2px;
+  text-transform: uppercase;
+  background-color: white;
+  color: grey;
+  margin-left: 10px;
+}
+
+.modalButtons:hover {
+  background-color: var(--main);
+  color: white;
+  border-color: var(--main);
+  transition: 0.4s ease-in-out;
+}
+
 #VoiceAnalysisChart {
-  height: 800px;
-  width: 40vw;
+  border-color: black;
+  top: 100px;
+  height: 600px;
+  width: 600px;
   grid-row-start: 1;
   grid-row-end: 3;
   grid-column-start: 1;
   grid-column-end: 2;
+}
+
+#TextAnalysisChartContainer,
+.dummyContainer {
+  width: 20vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 #TextAnalysisChart {
   height: 400px;
   min-width: 400px;
-  width: 40vw;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  float: left;
+  width: 400px;
+  text-align: center;
+  padding-top: 20px;
 }
 
 .voiceRecorderAndTextContainer {
   display: grid;
   grid-template-columns: 40vw 40vw;
-  grid-template-rows: 10vh 50vh 10vh;
-  width: 80vw;
+  grid-template-rows: 100px 400px 100px;
+  width: 1200px;
 }
 
 #mic {
-  width: 80vw;
+  width: 700px;
   grid-row-start: 3;
   grid-row-end: 4;
   grid-column-start: 1;
@@ -320,10 +385,14 @@ mark {
 }
 
 #audioTextDisplay {
+  border-width: thick;
+  border-color: black;
   color: black;
   text-align: center;
-  overflow-y: scroll;
+  font-size: large;
+  overflow-y: auto;
   /* position */
+  left: 600px;
   grid-row-start: 1;
   grid-row-end: 3;
   grid-column-start: 2;
@@ -332,9 +401,10 @@ mark {
   margin-bottom: none;
 }
 
-#scriptAnalyzerContainer {
-  font-family: 'Avenir Next Regular', sans-serif;
+#scriptAnalyzerContainer,
+#livePerformanceContainer {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .pageTitle {
@@ -397,24 +467,20 @@ mark {
 #va-record-button {
   font-size: 1em;
 
-  height: 5vh;
-  width: 5vw;
+  height: 80px;
+  width: 80px;
 
-  background-color: white;
-
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom-color: transparent;
+  background-color: red;
+  border-style: solid;
 
   border-width: thick;
-  margin-bottom: 30px;
-  padding-bottom: 30px;
+  border-color: var(--main);
+  border-radius: 50%;
 
   /* position */
   position: relative;
-  top: 2vh;
-  left: 9vw;
+  top: -10px;
+  left: 95px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
@@ -423,41 +489,49 @@ mark {
 }
 
 #va-record-button:hover {
-  height: 5vh;
-  width: 5vw;
+  font-size: 1em;
 
-  background-color: white;
-  color: var(--main);
+  height: 80px;
+  width: 80px;
 
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  background-color: red;
+  color: white;
 
-  border-width: thick;
-  border-bottom-color: var(--main);
-  padding-bottom: 2px;
+  border-width: thin;
+  border-color: red;
+  border-radius: 50%;
 
-  transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+  transition: all 0.7s cubic-bezier(0, 0, 0.3, 1);
 
   /* position */
   position: relative;
-  top: 2vh;
-  left: 8vw;
+  top: -10px;
+  left: 95px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
   outline: none;
+
+  cursor: pointer;
 }
 
-#va-recorder-audio {
-  background-color: var(--secondAccent);
-  color: var(--main);
+#va-recorder-audio-hidden {
+  z-index: -1;
+  position: relative;
+  top: 10px;
+  left: 200px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
 
+#va-recorder-audio-revealed {
   /* position */
   position: relative;
-  top: 1vh;
-  left: 15vw;
+  top: 10px;
+  left: 200px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;

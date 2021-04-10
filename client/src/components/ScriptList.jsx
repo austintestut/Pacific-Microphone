@@ -17,6 +17,7 @@ class ScriptList extends React.Component {
     } = this.props;
     return (
       <div id="scriptList">
+        <h4 id="yourScriptsHeading">Your Scripts:</h4>
         <button id="newScriptButton" type="button" onClick={toggleModal}>
           + Add New Script
         </button>

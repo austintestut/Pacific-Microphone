@@ -55,7 +55,6 @@ class AppBody extends React.Component {
 
     axios
       .post('/uploadScript', objScript)
-      .then(() => getScripts())
       .catch((error) => console.error(error));
 
     axios
@@ -137,18 +136,19 @@ class AppBody extends React.Component {
       <div id="appBody">
         <Modal id="newScriptModal" isOpen={showModal}>
           <form onSubmit={(e) => this.handleSubmit(e)}>
+            <h3>Input Script Information</h3>
             <div className="modalInputField">
-              <label htmlFor="modalTitleInput">Title</label>
+              <label htmlFor="modalTitleInput"></label>
               <input
                 type="text"
                 id="modalTitleInput"
                 required
-                placeholder="Tile of script"
+                placeholder="Title of script"
                 onChange={(e) => this.setState({ title: e.target.value })}
               />
             </div>
             <div className="modalInputField">
-              <label htmlFor="modalAuthorInput">Author</label>
+              <label htmlFor="modalAuthorInput"></label>
               <input
                 type="text"
                 id="modalAuthorInput"
@@ -158,16 +158,16 @@ class AppBody extends React.Component {
               />
             </div>
             <div className="modalInputField">
-              <label htmlFor="modalScriptInput">Script</label>
+              <label htmlFor="modalScriptInput"></label>
               <textarea
                 id="modalScriptInput"
                 required
-                placeholder="Author of script"
+                placeholder="Body Of Script"
                 onChange={(e) => this.setState({ scriptBody: e.target.value })}
               />
             </div>
-            <button type="submit">Submit</button>
-            <button type="button" onClick={this.toggleModal}>
+            <button type="submit" className="modalButtons">Submit</button>
+            <button type="button" className="modalButtons" onClick={this.toggleModal}>
               Cancel
             </button>
           </form>
