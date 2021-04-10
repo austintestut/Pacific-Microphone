@@ -8,12 +8,14 @@ class PageList extends React.Component {
   }
 
   render() {
-    const { changeSelectedPage } = this.props;
+    const { changeSelectedPage, selectedPage } = this.props;
     return (
       <div id="pageList">
         <button
           type="button"
-          className="pageOption"
+          className={`${
+            selectedPage === 'toneAnalyzer' ? 'selectedPage' : 'pageOption'
+          }`}
           onClick={() => changeSelectedPage('toneAnalyzer')}
         >
           <i className="" />
@@ -21,7 +23,9 @@ class PageList extends React.Component {
         </button>
         <button
           type="button"
-          className="pageOption"
+          className={`${
+            selectedPage === 'voiceAnalyzer' ? 'selectedPage' : 'pageOption'
+          }`}
           onClick={() => changeSelectedPage('voiceAnalyzer')}
         >
           <i className="" />
@@ -29,7 +33,9 @@ class PageList extends React.Component {
         </button>
         <button
           type="button"
-          className="pageOption"
+          className={`${
+            selectedPage === 'livePractice' ? 'selectedPage' : 'pageOption'
+          }`}
           onClick={() => changeSelectedPage('livePractice')}
         >
           <i className="" />
