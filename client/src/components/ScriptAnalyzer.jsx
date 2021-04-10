@@ -11,6 +11,7 @@ class ScriptAnalyzer extends React.Component {
       watsonAnalysisObj: null,
       currToneArray: [],
       prevScript: null,
+      highlightedSentence: '',
     };
     this.displayWatsonAnalysis = this.displayWatsonAnalysis.bind(this);
   }
@@ -40,12 +41,15 @@ class ScriptAnalyzer extends React.Component {
   displayWatsonAnalysis(sentence) {
     debugger;
     const { watsonAnalysisObj } = this.state;
-    this.setState({ currToneArray: watsonAnalysisObj[sentence] });
+    this.setState({
+      currToneArray: watsonAnalysisObj[sentence],
+      highlightedSentence: sentence,
+    });
   }
 
   render() {
     const { script } = this.props;
-    const { currToneArray } = this.state;
+    const { currToneArray, highlightedSentence } = this.state;
     return (
       <div id="scriptAnalyzerContainer">
         <div id="TextAnalysisChartContainer">
@@ -54,6 +58,7 @@ class ScriptAnalyzer extends React.Component {
         <ScriptAnalysisDisplay
           script={script}
           displayWatsonAnalysis={this.displayWatsonAnalysis}
+          highlightedSentence={highlightedSentence}
         />
         <div className="dummyContainer" />
       </div>

@@ -4,8 +4,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
-  const { title, author, talkingBlocks, watsonAnalysis } = script;
+const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSentence }) => {
+  const { title, author, talkingBlocks } = script;
 
   const regex = /[\w-,;_%''""$&#@*():{}<> ]+[.?!] ?/g;
 
@@ -25,9 +25,21 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis }) => {
           <div>{talkingBlock.character}</div>
           {arrayOfSentences.map((s, idx) => (
             <span key={idx}>
+<<<<<<< HEAD
               {(s) && (
                 // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                 <span onClick={() => displayWatsonAnalysis(s.trim())}>{s}</span>
+=======
+              {s && (
+                <span
+                  className={
+                    highlightedSentence === s.trim() && 'highlightedSentence'
+                  }
+                  onClick={() => displayWatsonAnalysis(s.trim())}
+                >
+                  {s}
+                </span>
+>>>>>>> f75e183aa772dc712c8e45e375a85495318d1c64
               )}
             </span>
           ))}
