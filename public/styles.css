@@ -93,7 +93,7 @@ body {
 
 #appBody {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   display: flex;
 }
 
@@ -364,7 +364,7 @@ mark {
 .voiceRecorderAndTextContainer {
   display: grid;
   grid-template-columns: 40vw 40vw;
-  grid-template-rows: 100px 400px 100px;
+  grid-template-rows: 15vh 50vh 20vh;
   width: 1200px;
 }
 
@@ -378,7 +378,9 @@ mark {
 
 #audioTextDisplay {
   border-width: thick;
-  border-color: black;
+  background-color: yellow;
+  width: 400px;
+  height: 400px;
   color: black;
   text-align: center;
   font-size: large;
@@ -423,35 +425,48 @@ mark {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0px 0px 5px 0px rgba(173, 0, 0, 0.3);
+  }
+  65% {
+    box-shadow: 0px 0px 5px 13px rgba(173, 0, 0, 0.3);
+  }
+  90% {
+    box-shadow: 0px 0px 5px 13px rgba(173, 0, 0, 0);
+  }
+}
+
 #va-record-button {
   font-size: 1em;
 
-  height: 80px;
-  width: 80px;
+  height: 65px;
+  width: 65px;
 
   background-color: red;
   border-style: solid;
 
-  border-width: thick;
-  border-color: var(--main);
+  border-width: thin;
+  border-color: red;
   border-radius: 50%;
 
   /* position */
   position: relative;
-  top: -10px;
-  left: 95px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  top: 25px;
+  left: 15px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
   outline: none;
 }
 
 #va-record-button:hover {
   font-size: 1em;
 
-  height: 80px;
-  width: 80px;
+  height: 65px;
+  width: 65px;
 
   background-color: red;
   color: white;
@@ -464,35 +479,77 @@ mark {
 
   /* position */
   position: relative;
-  top: -10px;
-  left: 95px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  top: 25px;
+  left: 15px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
   outline: none;
 
   cursor: pointer;
+
+  animation-name: pulse;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+#va-record-button-on {
+  font-size: 1em;
+
+  height: 65px;
+  width: 65px;
+
+  background-color: red;
+  color: white;
+
+  border-width: thin;
+  border-color: red;
+  border-radius: 50%;
+
+  transition: all 0.7s cubic-bezier(0, 0, 0.3, 1);
+
+  /* position */
+  position: relative;
+  top: 25px;
+  left: 15px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  outline: none;
+
+  cursor: pointer;
+
+  animation-name: pulse;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 #va-recorder-audio-hidden {
-  z-index: -1;
-  position: relative;
-  top: 10px;
-  left: 200px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  display: none;
 }
 
 #va-recorder-audio-revealed {
   /* position */
   position: relative;
-  top: 10px;
-  left: 200px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  top: 33px;
+  left: 100px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  outline: none;
+}
+
+#va-analysis-chart-premessage {
+  position: relative;
+  top: 2px;
+  left: 110px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
