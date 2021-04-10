@@ -451,6 +451,7 @@ mark {
   display: flex;
   justify-content: space-evenly;
   max-height: calc(100vh - 7em);
+  height: 100%;
 }
 
 .pageTitle {
