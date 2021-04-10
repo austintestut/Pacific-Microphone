@@ -123,7 +123,7 @@ class Recorder extends React.Component {
         const { blobURL } = this.state;
         const { sendDataToMainPage } = this.props;
         fetch(blobURL)
-          .then((res) => res.blob())
+          .then((res) => {console.log('Here:', blobURL, res); res.blob()})
           .then((buffer) => {
             const data = new FormData();
             data.append(
