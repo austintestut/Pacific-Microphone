@@ -18,8 +18,16 @@ class TextAnalysisChart extends React.Component {
   }
 
   render() {
-    const { currentSentenceTones } = this.props;
-    if (currentSentenceTones?.length === 0 || currentSentenceTones === undefined) {
+    const { currentSentenceTones, highlightedSentence } = this.props;
+    if (!highlightedSentence) {
+      return (
+        <div id="TextAnalysisChart">Click on sentence to display tone data</div>
+      );
+    }
+    if (
+      currentSentenceTones?.length === 0 ||
+      currentSentenceTones === undefined
+    ) {
       return <div id="TextAnalysisChart">No analysis data</div>;
     }
     const data = currentSentenceTones.map((tone) => ({
