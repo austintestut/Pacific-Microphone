@@ -13,7 +13,7 @@ const ScriptAnalysisDisplay = ({ script, displayWatsonAnalysis, highlightedSente
         <div className="scriptTalkingBlock" key={idx}>
           <div className="scriptCharacterText"> {talkingBlock.character}</div>
           {talkingBlock.text.match(regex).map((s, idx) => (
-            <span key={idx}>
+            <span key={idx} className='scriptAnalysisSentence'>
               {s && (
                 <span
                   className={
