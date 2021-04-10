@@ -11,7 +11,7 @@ class AppBody extends React.Component {
     super(props);
     this.state = {
       selectedPage: 'toneAnalyzer',
-      selectedScriptIndex: null,
+      selectedScriptIndex: 0,
       showModal: false,
       title: '',
       author: '',
@@ -19,19 +19,7 @@ class AppBody extends React.Component {
       showLPModal: false,
       userCharacter: null,
       tmp: null,
-      // hard coded
-      currentSentenceTones: [
-        {
-          score: 0.895415,
-          tone_id: 'analytical',
-          tone_name: 'Analytical',
-        },
-        {
-          score: 1,
-          tone_id: 'joy',
-          tone_name: 'Joy',
-        },
-      ],
+      currentSentenceTones: [],
     };
 
     this.changeSelectedPage = this.changeSelectedPage.bind(this);
@@ -91,8 +79,12 @@ class AppBody extends React.Component {
       })
       .then(() => {
         getScripts();
+        let idx = 0;
+        if (scriptList.length === 0) {
+          idx = null;
+        }
         this.setState({
-          selectedScriptIndex: null,
+          selectedScriptIndex: idx,
         });
       })
       .catch((err) => console.error(err));
@@ -104,7 +96,12 @@ class AppBody extends React.Component {
   }
 
   changeSelectedPage(page) {
-    this.setState({ selectedPage: page, selectedScriptIndex: null });
+    const { scriptList } = this.props;
+    let idx = null;
+    if (page === 'toneAnalyzer' && scriptList.length !== 0) {
+      idx = 0;
+    }
+    this.setState({ selectedPage: page, selectedScriptIndex: idx });
   }
 
   changeSelectedScript(index) {
@@ -131,7 +128,7 @@ class AppBody extends React.Component {
       userCharacter,
     } = this.state;
     const { scriptList } = this.props;
-
+    console.log(scriptList);
     return (
       <div id="appBody">
         <Modal id="newScriptModal" isOpen={showModal}>
@@ -166,8 +163,14 @@ class AppBody extends React.Component {
                 onChange={(e) => this.setState({ scriptBody: e.target.value })}
               />
             </div>
-            <button type="submit" className="modalButtons">Submit</button>
-            <button type="button" className="modalButtons" onClick={this.toggleModal}>
+            <button type="submit" className="modalButtons">
+              Submit
+            </button>
+            <button
+              type="button"
+              className="modalButtons"
+              onClick={this.toggleModal}
+            >
               Cancel
             </button>
           </form>
@@ -190,7 +193,7 @@ class AppBody extends React.Component {
                 }}
               >
                 <option>Select your role</option>
-                {scriptList[selectedScriptIndex].characterList.map(
+                {scriptList[selectedScriptIndex]?.characterList.map(
                   (character) => (
                     <option value={character}>{character}</option>
                   )
