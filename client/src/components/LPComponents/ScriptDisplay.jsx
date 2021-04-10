@@ -31,6 +31,4 @@ const ScriptDisplay = ({ script, currentIndex }) => {
   );
 };
 
-// array[pointer] = current index
-
 export default ScriptDisplay;

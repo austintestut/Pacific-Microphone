@@ -28,10 +28,8 @@ class MainPage extends React.Component {
       <div id="mainPage">
         {page === 'toneAnalyzer' ? (
           <>
-            {/* {selectedScript && <ScriptAnalyzer script={selectedScript} />} */}
-            {
-            // !selectedScript &&
-            (
+            {selectedScript && <ScriptAnalyzer script={selectedScript} />}
+            {!selectedScript && (
               <h3 id="pleaseSelectScript">Please Select Script</h3>
             )}
           </>
