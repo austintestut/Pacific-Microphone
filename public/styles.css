@@ -220,12 +220,37 @@ body {
   font-weight: bold;
 }
 
-.playButton {
+.playButtons {
   position: absolute;
+  top: 90%;
+  left: 53.5%;
+  margin: 0 auto;
+  background-color: none;
+}
+
+.playButtons img {
+  width: 25px;
+  height: auto;
+}
+
+.button {
+  background: none;
+  border: none;
+}
+
+.button img:hover {
+  cursor: pointer;
+  transform: scale(1.15);
+}
+
+.disabledButton {
+  background: none;
+  border: none;
+  filter: grayscale(100%);
 }
 
 mark {
-  background-color: white;
+  background: none;
   color: var(--secondAccent);
 }
 

@@ -103,6 +103,11 @@ class AppBody extends React.Component {
     this.setState({ showLPModal: !showLPModal });
   }
 
+  toggleLPModal() {
+    const { showLPModal } = this.state;
+    this.setState({ showLPModal: !showLPModal });
+  }
+
   changeSelectedPage(page) {
     this.setState({ selectedPage: page, selectedScriptIndex: null });
   }
