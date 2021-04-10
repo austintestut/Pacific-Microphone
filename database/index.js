@@ -63,4 +63,5 @@ Users.create([
 
 module.exports = {
   Users,
+  Scripts
 };

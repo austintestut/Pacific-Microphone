@@ -249,7 +249,11 @@ body {
 
 mark {
   background-color: white;
-  color: purple;
+  color: var(--secondAccent);
+}
+
+.highlightedSentence {
+  color: var(--secondAccent);
 }
 
 .recorder {
