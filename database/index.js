@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/ocean');
+mongoose.connect(process.env.DBTOKEN);
 
 const ScriptSchema = mongoose.Schema({
   title: { type: String, unique: true },
@@ -25,41 +25,6 @@ const UserSchema = mongoose.Schema({
 const Scripts = mongoose.model('Script', ScriptSchema);
 
 const Users = mongoose.model('Users', UserSchema);
-
-Users.create([
-  {
-    userName: 'Sam',
-    googleId: 'whatever',
-    listScripts: [
-      {
-        title: 'hello',
-        author: 'sam',
-        talkingBlocks: [
-          {
-            character: 'sma',
-            text: 'hello world',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    userName: 'Chandler',
-    googleId: 'whatever',
-    listScripts: [
-      {
-        title: 'hi',
-        author: 'sam',
-        talkingBlocks: [
-          {
-            character: 'sma',
-            text: 'hello world',
-          },
-        ],
-      },
-    ],
-  },
-]);
 
 module.exports = {
   Users,
