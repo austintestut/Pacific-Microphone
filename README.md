@@ -26,7 +26,7 @@ Click on the "Add New Script" button in the left side panel, under "Your Scripts
     ANOTHER SPEAKER
     This app has made all the difference in my acting skills.  I am so grateful to the creators.
 
-Make sure to use punctuation for the end of each sentence for proper sentence-by sentence analysis.
+Make sure to use punctuation for the end of each sentence for proper sentence-by-sentence analysis.
 
 ### Script Analysis
 In the Script Analyzer tool, you can select a script to display its tone analyzation per sentence.  Select a script from your collection on the left, then click any sentence in the script to view its analyzed tone percentage score.
